@@ -38,7 +38,7 @@ struct LoginView: View {
                                 Image("boy_ship")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                                    .frame(width: geo.size.width * 0.90, height: geo.size.height, alignment: .center)
                             }
                             
                         }
@@ -82,7 +82,7 @@ struct FirstPage: View{
             
             Text("Don't just be there,\nbe present").font(.largeTitle).fontWeight(.heavy)
             
-            NavigationLink(destination: SecondPage(), isActive: $showSecond){
+            NavigationLink(destination: SecondPage(showSecond: self.$showSecond), isActive: $showSecond){
                 Button(action: {
                     //                            self.ID = ID
                     self.showSecond.toggle()
@@ -99,7 +99,7 @@ struct FirstPage: View{
                 .navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)
             
-            NavigationLink(destination: AuthenticatePage(), isActive: $showAuth){
+            NavigationLink(destination: AuthenticatePage(showAuth: self.$showAuth), isActive: $showAuth){
                 Button(action: {
                     //                            self.ID = ID
                     self.showAuth.toggle()
@@ -113,9 +113,7 @@ struct FirstPage: View{
                     )
                 }
                 
-            }.navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
+            }
             
             
         }.padding(.bottom)
@@ -133,6 +131,7 @@ struct FirstPage: View{
 
 struct SecondPage: View{
     
+    @Binding var showSecond:Bool
     @State var Code:String = ""
     @State var msg:String = ""
     @State var alert = false
@@ -182,7 +181,15 @@ struct SecondPage: View{
                 }
                 
             }
-       
+            
+       Button(action: {
+                    self.showSecond.toggle()
+                }
+                ){
+                    
+                    Image(systemName: "chevron.left").font(.title)
+                    
+                }.foregroundColor(.orange)
             
         }
             
@@ -197,10 +204,32 @@ struct SecondPage: View{
 }
 
 struct AuthenticatePage:View {
+    @Binding var showAuth:Bool
     var body: some View{
-        
-        Text("Auth")
-    }
+        ZStack(alignment:.topLeading){
+            GeometryReader{_ in
+                
+                VStack(spacing:20){
+                    
+                    
+                    Text("Auth Here").font(.largeTitle).fontWeight(.heavy)
+                    
+                }
+                
+            }
+            
+            Button(action: {
+                self.showAuth.toggle()
+            }
+            ){
+                
+                Image(systemName: "chevron.left").font(.title)
+                
+            }.foregroundColor(.orange)
+            
+        }
+        .padding()
+        }
 }
 
 struct LoginView_Previews: PreviewProvider {
