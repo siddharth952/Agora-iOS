@@ -21,8 +21,7 @@ struct LoginView: View {
     
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     var body: some View {
-        
-        let topGradient: LinearGradient = LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+ 
         
        return VStack{
             if status == true{

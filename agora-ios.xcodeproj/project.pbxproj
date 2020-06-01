@@ -25,6 +25,7 @@
 		E17B642B2427163400475579 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B642A2427163400475579 /* Settings.swift */; };
 		E17B642D2427189B00475579 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B642C2427189B00475579 /* LoginView.swift */; };
 		E17EDB6A242B4FD90082EDE3 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EDB69242B4FD90082EDE3 /* BackgroundColor.swift */; };
+		E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E181E7192484E27100875E3F /* TopCircleShape.swift */; };
 		E18F18792420F770002FED89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F18782420F770002FED89 /* AppDelegate.swift */; };
 		E18F187B2420F770002FED89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F187A2420F770002FED89 /* SceneDelegate.swift */; };
 		E18F187F2420F774002FED89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E18F187E2420F774002FED89 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		E17B642A2427163400475579 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E17B642C2427189B00475579 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E17EDB69242B4FD90082EDE3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		E181E7192484E27100875E3F /* TopCircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCircleShape.swift; sourceTree = "<group>"; };
 		E18F18752420F770002FED89 /* agora-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "agora-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18F18782420F770002FED89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E18F187A2420F770002FED89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				E13215D32423AA8C00B40532 /* CustomShape.swift */,
 				E13215D52423AB5B00B40532 /* DashboardShape.swift */,
 				E17EDB69242B4FD90082EDE3 /* BackgroundColor.swift */,
+				E181E7192484E27100875E3F /* TopCircleShape.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
 				E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */,
+				E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */,
 				E13215D62423AB5B00B40532 /* DashboardShape.swift in Sources */,
 				E18F18792420F770002FED89 /* AppDelegate.swift in Sources */,
 				E164BCE024236FD7002E8B23 /* Navigation.swift in Sources */,
