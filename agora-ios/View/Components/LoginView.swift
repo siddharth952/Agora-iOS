@@ -82,7 +82,7 @@ struct FirstPage: View{
         
         VStack(spacing:20){
             
-            Text("Don't just be there,\nbe present").font(.largeTitle).fontWeight(.heavy)
+            Text("Don't just be there,\nbe present").font(.largeTitle).fontWeight(.medium)
             
             NavigationLink(destination: SecondPage(showSecond: self.$showSecond), isActive: $showSecond){
                 Button(action: {
@@ -145,9 +145,9 @@ struct SecondPage: View{
                 
                 VStack(spacing:20){
                     
-                    Image("img_mail").resizable().clipped()
+                    Image("login_tree").resizable().clipped()
                     
-                    Text("Verification Code").font(.largeTitle).fontWeight(.heavy)
+                    Text("Create your account").font(.largeTitle).fontWeight(.medium)
                     
                     Text("Enter your verification code!")
                         .font(.body)
@@ -158,7 +158,7 @@ struct SecondPage: View{
                         .keyboardType(.numberPad)
                         .padding()
                         .background(Color("myColor1"))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(.top,15)
                     
                     
@@ -237,7 +237,7 @@ struct AuthenticatePage:View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
           Group {
-                      LoginView()
+            SecondPage(showSecond: .constant(true))
                          .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                          .previewDisplayName("iPhone 8")
 
