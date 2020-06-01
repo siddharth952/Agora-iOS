@@ -71,12 +71,10 @@ struct FirstPage: View{
     //    }
     
     
-    @State var cCode = ""
-    @State var registerUserNumber = ""
-    @State var show :Bool = false
+    @State var showSecond :Bool = false
+    @State var showAuth :Bool = false
     @State var msg = ""
     @State var alert :Bool = false
-    @State var ID = ""
     var body: some View{
         
         
@@ -84,10 +82,10 @@ struct FirstPage: View{
             
             Text("Don't just be there,\nbe present").font(.largeTitle).fontWeight(.heavy)
             
-            NavigationLink(destination: SecondPage(show: $show,ID: $ID), isActive: $show){
+            NavigationLink(destination: SecondPage(), isActive: $showSecond){
                 Button(action: {
                     //                            self.ID = ID
-                    self.show.toggle()
+                    self.showSecond.toggle()
                 }
                     
                 ){
@@ -101,10 +99,10 @@ struct FirstPage: View{
                 .navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)
             
-            NavigationLink(destination: AuthenticatePage(), isActive: $show){
+            NavigationLink(destination: AuthenticatePage(), isActive: $showAuth){
                 Button(action: {
                     //                            self.ID = ID
-                    self.show.toggle()
+                    self.showAuth.toggle()
                 }
                     
                 ){
@@ -114,11 +112,6 @@ struct FirstPage: View{
                             .stroke(Color.yellow, lineWidth: 4)
                     )
                 }
-                   
-                
-                
-                
-                
                 
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
@@ -141,8 +134,6 @@ struct FirstPage: View{
 struct SecondPage: View{
     
     @State var Code:String = ""
-    @Binding var show:Bool
-    @Binding var ID:String
     @State var msg:String = ""
     @State var alert = false
     
@@ -191,16 +182,7 @@ struct SecondPage: View{
                 }
                 
             }
-            
-            
-            Button(action: {
-                self.show.toggle()
-            }
-            ){
-                
-                Image(systemName: "chevron.left").font(.title)
-                
-            }.foregroundColor(.orange)
+       
             
         }
             
