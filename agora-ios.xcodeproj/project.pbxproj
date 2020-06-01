@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E13215D22423A0BD00B40532 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D12423A0BD00B40532 /* SearchBar.swift */; };
-		E13215D42423AA8C00B40532 /* CustomShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D32423AA8C00B40532 /* CustomShape.swift */; };
-		E13215D62423AB5B00B40532 /* DashboardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D52423AB5B00B40532 /* DashboardShape.swift */; };
 		E13215D82424760200B40532 /* CreateElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D72424760200B40532 /* CreateElection.swift */; };
 		E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */; };
 		E15FA5D624233EB400E9BF58 /* Election.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D524233EB400E9BF58 /* Election.swift */; };
@@ -37,6 +35,7 @@
 		E19012F32430729100741EF9 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19012F22430729100741EF9 /* NetworkingService.swift */; };
 		E19012F6243074B600741EF9 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F5243074B600741EF9 /* SwiftyJSON */; };
 		E19012F9243075D100741EF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F8243075D100741EF9 /* Alamofire */; };
+		E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FF6B624852E5F0087A238 /* CornersShape.swift */; };
 		E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E98279242935FD007C461C /* ElectionEditView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +72,6 @@
 
 /* Begin PBXFileReference section */
 		E13215D12423A0BD00B40532 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		E13215D32423AA8C00B40532 /* CustomShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShape.swift; sourceTree = "<group>"; };
-		E13215D52423AB5B00B40532 /* DashboardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardShape.swift; sourceTree = "<group>"; };
 		E13215D72424760200B40532 /* CreateElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateElection.swift; sourceTree = "<group>"; };
 		E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		E15FA5D524233EB400E9BF58 /* Election.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Election.swift; sourceTree = "<group>"; };
@@ -106,6 +103,7 @@
 		E18F189A2420F774002FED89 /* agora_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agora_iosUITests.swift; sourceTree = "<group>"; };
 		E18F189C2420F774002FED89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19012F22430729100741EF9 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		E19FF6B624852E5F0087A238 /* CornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornersShape.swift; sourceTree = "<group>"; };
 		E1DD630E2428AC7E00DFCA04 /* RealmSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = RealmSwift.framework.dSYM; sourceTree = "<group>"; };
 		E1DD630F2428AC7E00DFCA04 /* Realm.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Realm.framework.dSYM; sourceTree = "<group>"; };
 		E1DD63102428AC7E00DFCA04 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -179,11 +177,10 @@
 				E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */,
 				E164BCDD24235C43002E8B23 /* CardView.swift */,
 				E13215D12423A0BD00B40532 /* SearchBar.swift */,
-				E13215D32423AA8C00B40532 /* CustomShape.swift */,
-				E13215D52423AB5B00B40532 /* DashboardShape.swift */,
 				E17EDB69242B4FD90082EDE3 /* BackgroundColor.swift */,
 				E181E7192484E27100875E3F /* TopCircleShape.swift */,
 				E181E71C2484F7BD00875E3F /* AppleIdButton.swift */,
+				E19FF6B624852E5F0087A238 /* CornersShape.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,16 +467,15 @@
 				E19012F32430729100741EF9 /* NetworkingService.swift in Sources */,
 				E17B642D2427189B00475579 /* LoginView.swift in Sources */,
 				E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */,
+				E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */,
 				E17EDB6A242B4FD90082EDE3 /* BackgroundColor.swift in Sources */,
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
 				E181E71D2484F7BD00875E3F /* AppleIdButton.swift in Sources */,
 				E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */,
 				E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */,
-				E13215D62423AB5B00B40532 /* DashboardShape.swift in Sources */,
 				E18F18792420F770002FED89 /* AppDelegate.swift in Sources */,
 				E164BCE024236FD7002E8B23 /* Navigation.swift in Sources */,
-				E13215D42423AA8C00B40532 /* CustomShape.swift in Sources */,
 				E13215D82424760200B40532 /* CreateElection.swift in Sources */,
 				E18F187B2420F770002FED89 /* SceneDelegate.swift in Sources */,
 				E13215D22423A0BD00B40532 /* SearchBar.swift in Sources */,

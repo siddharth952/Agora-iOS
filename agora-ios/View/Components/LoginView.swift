@@ -23,7 +23,7 @@ struct LoginView: View {
     var body: some View {
  
         
-       return VStack{
+        return VStack{
             if status == true{
                 
                 Navigation()
@@ -31,24 +31,30 @@ struct LoginView: View {
             else{
                 
                 NavigationView{
-                    VStack {
+                    VStack(spacing:0) {
                         
-                        ZStack {
-                            
-                            GeometryReader { geo in
-                                Image("boy_ship")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geo.size.width * 0.95, height: geo.size.height, alignment: .center)
+                        VStack {
+                            ZStack {
+                                TopCircleShape()
+                                
+                                GeometryReader { geo in
+                                    
+                                    Image("boy_ship")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geo.size.width * 0.90, height: geo.size.height, alignment: .center)
+                                }
+                                
                             }
-                            
                         }
                         Spacer()
+                        
                         FirstPage()
-                    }
+                    }.edgesIgnoringSafeArea(.top)
                     
-                   
-                }.padding()
+                    
+                    
+                }
             }
         }.onAppear{
             
@@ -189,14 +195,11 @@ struct SecondPage: View{
                     self.showSecond.toggle()
                 }
                 ){
-                    
                     Image(systemName: "chevron.left").font(.title)
                     
                 }.foregroundColor(.orange)
             
         }
-            
-            
         .padding()
         .alert(isPresented: $alert) {
             Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
@@ -238,13 +241,17 @@ struct AuthenticatePage:View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
           Group {
+            LoginView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+                .previewDisplayName("iPhone 11")
+            LoginView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                .previewDisplayName("iPhone 8")
+            
             SecondPage(showSecond: .constant(true))
-                         .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-                         .previewDisplayName("iPhone 8")
-
-                      LoginView()
-                         .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-                         .previewDisplayName("iPhone 11")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                .previewDisplayName("iPhone 8")
+            
                    }
     }
 }
