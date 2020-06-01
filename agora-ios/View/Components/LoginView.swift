@@ -32,20 +32,23 @@ struct LoginView: View {
                 
                 NavigationView{
                     VStack {
+                        
                         ZStack {
+                            
                             GeometryReader { geo in
                                 Image("boy_ship")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: geo.size.width * 0.90, height: geo.size.height, alignment: .center)
+                                    .frame(width: geo.size.width * 0.95, height: geo.size.height, alignment: .center)
                             }
                             
                         }
+                        Spacer()
                         FirstPage()
                     }
                     
                    
-                }
+                }.padding()
             }
         }.onAppear{
             
