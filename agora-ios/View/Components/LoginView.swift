@@ -11,27 +11,41 @@ import SwiftUI
 struct LoginView: View {
     
     ///Auto Resize UI Elements on keyboard active
-   // @ObservedObject var keyboardHandler: KeyboardFollower
-
-//    init(keyboardHandler: KeyboardFollower) {
-//      self.keyboardHandler = keyboardHandler
-//    }
-
+    // @ObservedObject var keyboardHandler: KeyboardFollower
+    
+    //    init(keyboardHandler: KeyboardFollower) {
+    //      self.keyboardHandler = keyboardHandler
+    //    }
+    
     
     
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     var body: some View {
         
-        VStack{
-            if status{
+        let topGradient: LinearGradient = LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        
+       return VStack{
+            if status == true{
                 
                 Navigation()
             }
             else{
                 
                 NavigationView{
-                    //if status not true
-                    DashboardView()
+                    VStack {
+                        ZStack {
+                            GeometryReader { geo in
+                                Image("boy_ship")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            }
+                            
+                        }
+                        FirstPage()
+                    }
+                    
+                   
                 }
             }
         }.onAppear{
@@ -44,17 +58,17 @@ struct LoginView: View {
         }
         
         
-       
+        
     }
 }
 
 
 struct FirstPage: View{
     
-   // @ObservedObject var keyboardHandler: KeyboardFollower
-//    init(keyboardHandler: KeyboardFollower) {
-//      self.keyboardHandler = keyboardHandler
-//    }
+    // @ObservedObject var keyboardHandler: KeyboardFollower
+    //    init(keyboardHandler: KeyboardFollower) {
+    //      self.keyboardHandler = keyboardHandler
+    //    }
     
     
     @State var cCode = ""
@@ -68,59 +82,55 @@ struct FirstPage: View{
         
         VStack(spacing:20){
             
-            Image("img_mail").resizable().clipped()
-            
-            Text("Verify Your Number").font(.largeTitle).fontWeight(.heavy)
-            
-            Text("Please enter your phone number to verify your account!")
-                .font(.body)
-                .foregroundColor(.gray)
-                .padding(.top,12)
-            
-            HStack{
-                TextField("+1",text: $cCode)
-                    .keyboardType(.numberPad)
-                               .frame(width:45)
-                               .padding()
-                               .background(Color("myColor1"))
-                               .clipShape(RoundedRectangle(cornerRadius: 10))
-                              
-                
-                TextField("Number",text: $registerUserNumber)
-                               .padding()
-                               .background(Color("myColor1"))
-                               .clipShape(RoundedRectangle(cornerRadius: 10))
-            } .padding(.top,15)
-            
+            Text("Don't just be there,\nbe present").font(.largeTitle).fontWeight(.heavy)
             
             NavigationLink(destination: SecondPage(show: $show,ID: $ID), isActive: $show){
-                
-                
-                         Button(action: {
-                
-//                            self.ID = ID
-                                self.show.toggle()
-                                
-                            }
-
-                         ){
-                             Text("Send").frame(width: UIScreen.main.bounds.width - 30,height: 50)
-                         }.foregroundColor(.white)
-                         .background(Color.orange)
-                          .cornerRadius(10)
+                Button(action: {
+                    //                            self.ID = ID
+                    self.show.toggle()
+                }
+                    
+                ){
+                    Text("GET STARTED").foregroundColor(.black).frame(width: UIScreen.main.bounds.width * 0.70,height: 50)
+                }.foregroundColor(.white)
+                    .background(Color.yellow)
+                    .cornerRadius(20)
                 
                 
             }.navigationBarTitle("")
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+            
+            NavigationLink(destination: AuthenticatePage(), isActive: $show){
+                Button(action: {
+                    //                            self.ID = ID
+                    self.show.toggle()
+                }
+                    
+                ){
+                    Text("Login").foregroundColor(.black).frame(width: UIScreen.main.bounds.width * 0.70,height: 50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.yellow, lineWidth: 4)
+                    )
+                }
+                   
+                
+                
+                
+                
+                
+            }.navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
             
             
         }.padding(.bottom)
             .alert(isPresented: $alert) {
                 Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
                 
-               
-
+                
+                
         }
         
     }
@@ -153,29 +163,29 @@ struct SecondPage: View{
                         .padding(.top,12)
                     
                     TextField("Code",text: self.$Code)
-                            .keyboardType(.numberPad)
-                                       .padding()
-                                       .background(Color("myColor1"))
-                                       .clipShape(RoundedRectangle(cornerRadius: 10))
-                                       .padding(.top,15)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .background(Color("myColor1"))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.top,15)
                     
                     
                     //button
                     Button(action: {
-                            UserDefaults.standard.set(true, forKey: "status")
-                            
-                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-                            
+                        UserDefaults.standard.set(true, forKey: "status")
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        
                         
                         
                     }){
                         Text("Verify").frame(width: UIScreen.main.bounds.width - 30,height: 50)
                     }.foregroundColor(.white)
-                    .background(Color.orange)
-                    .cornerRadius(10)
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
+                        .background(Color.orange)
+                        .cornerRadius(10)
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
                     //end
                     
                 }
@@ -185,50 +195,31 @@ struct SecondPage: View{
             
             Button(action: {
                 self.show.toggle()
-                }
-                ){
+            }
+            ){
                 
                 Image(systemName: "chevron.left").font(.title)
                 
             }.foregroundColor(.orange)
             
         }
-        
-        
+            
+            
         .padding()
         .alert(isPresented: $alert) {
-                       Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
-        
-    }
-    
-}
-}
-
-
-struct Home:View {
-    var body:some View{
-        
-        VStack{
-            Text("Home")
-            
-            Button(action: {
-                
-              
-                
-                UserDefaults.standard.set(false, forKey: "status")
-                
-                NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-                
-                
-            }) {
-                Text("Logout")
-            }
+            Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
             
         }
         
     }
 }
 
+struct AuthenticatePage:View {
+    var body: some View{
+        
+        Text("Auth")
+    }
+}
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
