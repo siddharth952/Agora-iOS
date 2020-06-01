@@ -6,7 +6,7 @@
 //  Copyright © 2020 HalfPolygon. All rights reserved.
 //
 import SwiftUI
-
+import AuthenticationServices
 
 struct LoginView: View {
     
@@ -141,7 +141,7 @@ struct SecondPage: View{
     var body: some View{
         
         ZStack(alignment:.topLeading){
-            GeometryReader{_ in
+            GeometryReader{geo in
                 
                 VStack(spacing:20){
                     
@@ -149,10 +149,11 @@ struct SecondPage: View{
                     
                     Text("Create your account").font(.largeTitle).fontWeight(.medium)
                     
-                    Text("Enter your verification code!")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                        .padding(.top,12)
+                    // AppleID
+                    Button (action: {}) {
+                      AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width - 100, height: geo.size.height / 9)
+                    }
+                    
                     
                     TextField("Code",text: self.$Code)
                         .keyboardType(.numberPad)
