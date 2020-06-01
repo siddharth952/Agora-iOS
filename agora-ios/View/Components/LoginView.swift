@@ -223,6 +223,14 @@ struct AuthenticatePage:View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+          Group {
+                      LoginView()
+                         .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                         .previewDisplayName("iPhone 8")
+
+                      LoginView()
+                         .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+                         .previewDisplayName("iPhone 11")
+                   }
     }
 }
