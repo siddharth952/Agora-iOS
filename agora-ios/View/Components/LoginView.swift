@@ -135,10 +135,7 @@ struct SignUpView: View{
             GeometryReader{_ in
                 
                 VStack(spacing:20){
-                    
-                    
                     Text("Sign up Here").font(.largeTitle).fontWeight(.heavy)
-                    
                 }
                 
             }
@@ -171,9 +168,10 @@ struct AuthenticateView:View {
     @State var height:CGFloat = 0
     
     var body: some View{
-        ScrollView(self.height == 0 ? .init(): .vertical,showsIndicators: false){
+        
         ZStack(alignment:.topLeading){
             GeometryReader{geo in
+                ScrollView(UIScreen.main.bounds.height < 750 ? . vertical :(self.height == 0 ? .init(): .vertical),showsIndicators: false){
                 VStack(spacing:5){
                     
                     Image("login_tree").resizable()
@@ -263,6 +261,29 @@ struct AuthenticateView:View {
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true)
                 }
+                    
+                }.padding(.bottom,self.height) // Move view according to keyboard
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear(){
+                        // MARK: Keyboard
+                        // Show Keyboard remove outside safearea height
+                        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main){
+                            (not) in
+                            let data = not.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+                            let height = data.cgRectValue.height - (UIApplication.shared.windows.first?.safeAreaInsets.bottom)!
+                            
+                            self.height = height
+                            
+                            print(height)
+                        }
+                        // Hide Keyboard
+                        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: .main){
+                            (_) in
+                            print("Keyboard Hidden")
+                            self.height = 0
+                        }
+                }
+                
             }
             
             Button(action: {
@@ -279,27 +300,7 @@ struct AuthenticateView:View {
             Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
             
         }
-        } .padding(.bottom,self.height) // Move view according to keyboard
-                               .edgesIgnoringSafeArea(.all)
-                               .onAppear(){
-                                   // MARK: Keyboard
-                                   // Show Keyboard remove outside safearea height
-                                   NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main){
-                                       (not) in
-                                       let data = not.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-                                       let height = data.cgRectValue.height - (UIApplication.shared.windows.first?.safeAreaInsets.bottom)!
-                                       
-                                       self.height = height
-                                       
-                                       print(height)
-                                   }
-                                   // Hide Keyboard
-                                   NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main){
-                                       (_) in
-                                       print("Keyboard Hidden")
-                                       self.height = 0
-                                   }
-                           }
+        
     }
     
 }
