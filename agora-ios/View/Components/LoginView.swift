@@ -196,12 +196,14 @@ struct AuthenticateView:View {
                             .frame(height:3)
                         }
                     }
+                    HStack{
+                        
                     Button(action: {
                         
                     }){
                     HStack(spacing:10){
                         ZStack{
-                            Rectangle()
+                            Circle()
                             .stroke(LinearGradient(gradient: Gradient(colors: [Color("Color2"), Color("Color1")]), startPoint: .top, endPoint: .bottom))
                                 .frame(width:20,height:20)
                             if self.remember{
@@ -214,11 +216,25 @@ struct AuthenticateView:View {
                             .foregroundColor(Color.black)
                     }
                     }
+                        Spacer()
+                        Button(action: {
+                            
+                        }){
+                        Text("Forgot Password?")
+                        }
+                    }
+                    
+                    //MARK: Social Login Buttons
                     
                     // AppleID
                     Button (action: {}) {
                         AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                     }
+                    
+                    //Facebook
+//                    Button (action: {}) {
+//
+//                    }
                     
                     
                     
@@ -228,7 +244,7 @@ struct AuthenticateView:View {
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                     }){
-                        Text("Login").frame(width: UIScreen.main.bounds.width - 30,height: 50)
+                        Text("Sign In").frame(width: UIScreen.main.bounds.width - 30,height: 50)
                         
                     }.foregroundColor(.black)
                         .background(Color.yellow)
