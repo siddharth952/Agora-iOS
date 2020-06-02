@@ -3,7 +3,7 @@
 1. [Download](https://developer.apple.com/xcode/download/) the Xcode 11 release.
 2. Clone the repository. 
 3. [Download Carthage](https://github.com/Carthage/Carthage)
-4. Run `carthage update` to install tools and dependencies.
+4. Run `carthage bootstrap --platform iOS --cache-builds` to install tools and dependencies.
 
 
 
