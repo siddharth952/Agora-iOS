@@ -9,11 +9,11 @@ import SwiftUI
 import AuthenticationServices
 
 struct LoginView: View {
-
+    
     
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     var body: some View {
- 
+        
         
         return VStack{
             if status == true{
@@ -99,9 +99,9 @@ struct FirstPage: View{
                     
                 ){
                     Text("Login").foregroundColor(.black).frame(width: UIScreen.main.bounds.width * 0.70,height: 50)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.yellow, lineWidth: 4)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.yellow, lineWidth: 4)
                     )
                 }
                 
@@ -122,7 +122,7 @@ struct FirstPage: View{
 
 
 struct SignUpView: View{
-   @Binding var showSecond:Bool
+    @Binding var showSecond:Bool
     var body: some View{
         ZStack(alignment:.topLeading){
             GeometryReader{_ in
@@ -147,81 +147,120 @@ struct SignUpView: View{
             
         }
         .padding()
-        }
+    }
 }
 
 struct AuthenticateView:View {
+    
+    @Binding var showAuth:Bool
+    
+    
+    @State var email:String = ""
+    @State var pass:String = ""
+    @State var remember:Bool = false
 
-        @Binding var showAuth:Bool
-        @State var Code:String = ""
-        @State var msg:String = ""
-        @State var alert = false
+    @State var alert:Bool = false
+    @State var msg:String = ""
+    
+    var body: some View{
         
-        var body: some View{
-            
-            ZStack(alignment:.topLeading){
-                GeometryReader{geo in
+        ZStack(alignment:.topLeading){
+            GeometryReader{geo in
+                VStack(spacing:5){
                     
-                    VStack(spacing:20){
-                        
-                        Image("login_tree").resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geo.size.width * 0.70, height: geo.size.height/2, alignment: .center)
-                        
-                        Text("Create your account").font(.largeTitle).fontWeight(.medium)
-                        
-                        // AppleID
-                        Button (action: {}) {
-                          AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width - 100, height: geo.size.height / 9)
+                    Image("login_tree").resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width * 0.60, height: geo.size.height/3, alignment: .center)
+                    
+                    
+                    
+                //MARK: Login
+                    VStack(alignment: .leading){
+                        Text("Login")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Text("Username")
+                            .fontWeight(.bold)
+                            .padding(.top,20)
+                        VStack{
+                            TextField("",text: self.$email)
+                            Rectangle().fill(self.email == "" ? Color.black.opacity(0.08):Color.yellow)
+                                .frame(height:3)
                         }
+                        Text("Password")
+                            .fontWeight(.bold)
+                            .padding(.top,20)
+                        VStack{
+                            SecureField("",text: self.$pass)
+                            Rectangle().fill(self.pass == "" ? Color.black.opacity(0.08):Color.yellow)
+                            .frame(height:3)
+                        }
+                    }
+                    Button(action: {
                         
-        
-                        
-                        
-                        //button
-                        Button(action: {
-                            UserDefaults.standard.set(true, forKey: "status")
-                            
-                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-                            
-                            
-                            
-                        }){
-                            Text("Login").frame(width: UIScreen.main.bounds.width - 30,height: 50)
-                        }.foregroundColor(.black)
-                            .background(Color.yellow)
-                            .cornerRadius(20)
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                        //end
-                        
+                    }){
+                    HStack(spacing:10){
+                        ZStack{
+                            Rectangle()
+                            .stroke(LinearGradient(gradient: Gradient(colors: [Color("Color2"), Color("Color1")]), startPoint: .top, endPoint: .bottom))
+                                .frame(width:20,height:20)
+                            if self.remember{
+                                Rectangle()
+                                .fill(Color("Color2"))
+                            }
+                        }
+                        Text("Remember me")
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.black)
+                    }
                     }
                     
-                }
-                
-           Button(action: {
-                        self.showAuth.toggle()
+                    // AppleID
+                    Button (action: {}) {
+                        AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                     }
-                    ){
-                        Image(systemName: "chevron.left").font(.title)
+                    
+                    
+                    
+                    
+                    //button
+                    Button(action: {
+                        UserDefaults.standard.set(true, forKey: "status")
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                    }){
+                        Text("Login").frame(width: UIScreen.main.bounds.width - 30,height: 50)
                         
-                    }.foregroundColor(.orange)
-                
+                    }.foregroundColor(.black)
+                        .background(Color.yellow)
+                        .cornerRadius(20)
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                }
             }
-            .padding()
-            .alert(isPresented: $alert) {
-                Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
-                
+            
+            Button(action: {
+                self.showAuth.toggle()
             }
+            ){
+                Image(systemName: "chevron.left").font(.title)
+                
+            }.foregroundColor(.orange)
             
         }
-
+        .padding()
+        .alert(isPresented: $alert) {
+            Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
+            
+        }
+        
+    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-          Group {
+        Group {
             LoginView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
@@ -229,11 +268,11 @@ struct LoginView_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
             
-            SignUpView(showSecond: .constant(true))
+            AuthenticateView(showAuth: .constant(true))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
             
-                   }
+        }
     }
 }
 
