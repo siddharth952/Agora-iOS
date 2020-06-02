@@ -130,13 +130,50 @@ struct FirstPage: View{
 
 struct SignUpView: View{
     @Binding var showSecond:Bool
+    
+    @State var email:String = ""
+    @State var pass:String = ""
+    @State var firstName:String = ""
+    @State var lastName:String = ""
+    @State var userName:String = ""
+    @State var userSelectedQuestion:String = ""
+    @State var userAnswer:String = ""
+    
     var body: some View{
         ZStack(alignment:.topLeading){
-            GeometryReader{_ in
+            GeometryReader{geo in
                 
-                VStack(spacing:20){
-                    Text("Sign up Here").font(.largeTitle).fontWeight(.heavy)
-                }
+                VStack(alignment: .leading){
+                    
+                    Text("Sign Up")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    UserTextField(fieldName: "User Name", userField: self.$userName)
+                    HStack {
+                        UserTextField(fieldName: "First Name", userField: self.$firstName).frame(width: geo.size.width/2)
+                        UserTextField(fieldName: "Last Name", userField: self.$lastName).frame(width: geo.size.width/2)
+                    }
+                    HStack {
+                        UserTextField(fieldName: "Secret Answer", userField: self.$userAnswer)
+                        Text("Secret Question").foregroundColor(.blue)
+                            .contextMenu {
+                                ForEach(userQuestions, id: \.self){question in
+                                    Button(action: {self.userSelectedQuestion = question}) {
+                                        Text(question)}}}
+                    }
+                    UserTextField(fieldName: "Password", secure:true, userField: self.$email)
+                    
+                    
+                    UserTextField(fieldName: "Email", userField: self.$email)
+                    Button(action: {}) {
+                        Text("Sign up").foregroundColor(.black).frame(width: geo.size.width,height: 50).foregroundColor(.white)
+                        .background(Color.yellow)
+                        .cornerRadius(20)
+                        
+                    }
+                    
+                }.padding()
                 
             }
             
@@ -153,6 +190,9 @@ struct SignUpView: View{
         .padding()
     }
 }
+
+
+
 
 struct AuthenticateView:View {
     
@@ -214,7 +254,7 @@ struct AuthenticateView:View {
                                 .frame(width:20,height:20)
                             
                             if self.remember{
-                                Rectangle()
+                                Circle()
                                 .fill(Color("Color2"))
                                 .frame(width: 10, height: 10)
                             }
@@ -239,7 +279,7 @@ struct AuthenticateView:View {
                         AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                     }
                     
-                    //Facebook
+                    //TODO: Facebook
 //                    Button (action: {}) {
 //
 //                    }
@@ -305,13 +345,19 @@ struct AuthenticateView:View {
     
 }
 
+
+// MARK: Secret Questions
+let userQuestions:[String] = ["What is your Mother's maiden name?","What is the name of your first pet?","What is your nickname?","Which elementary school did you attend","What is your hometown?"]
+
+
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LoginView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
-            LoginView()
+            SignUpView(showSecond: .constant(true))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
             
