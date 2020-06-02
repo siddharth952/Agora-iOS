@@ -199,16 +199,18 @@ struct AuthenticateView:View {
                     HStack{
                         
                     Button(action: {
-                        
+                        self.remember.toggle()
                     }){
                     HStack(spacing:10){
                         ZStack{
                             Circle()
                             .stroke(LinearGradient(gradient: Gradient(colors: [Color("Color2"), Color("Color1")]), startPoint: .top, endPoint: .bottom))
                                 .frame(width:20,height:20)
+                            
                             if self.remember{
                                 Rectangle()
                                 .fill(Color("Color2"))
+                                .frame(width: 10, height: 10)
                             }
                         }
                         Text("Remember me")
