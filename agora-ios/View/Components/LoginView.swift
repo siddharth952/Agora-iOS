@@ -10,8 +10,10 @@ import AuthenticationServices
 
 struct LoginView: View {
     
-    
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+    
+    
+    
     var body: some View {
         
         
@@ -23,10 +25,11 @@ struct LoginView: View {
             else{
                 
                 NavigationView{
-                    ScrollView(.init(),showsIndicators: false){
+                    // ScrollView based on height
+                    
                         VStack(spacing:0) {
                             
-                            VStack {
+                            VStack(spacing:0) {
                                 ZStack {
                                     TopCircleShape()
                                     
@@ -43,12 +46,10 @@ struct LoginView: View {
                             Spacer()
                             
                             FirstPage()
-                            .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
-                            .padding(.bottom,UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                                .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+                                .padding(.bottom,UIApplication.shared.windows.first?.safeAreaInsets.bottom)
                             
                         }.edgesIgnoringSafeArea(.top)
-                    }.edgesIgnoringSafeArea(.all)
-                    
                 }
             }
         }.onAppear{
@@ -167,9 +168,10 @@ struct AuthenticateView:View {
 
     @State var alert:Bool = false
     @State var msg:String = ""
+    @State var height:CGFloat = 0
     
     var body: some View{
-        
+        ScrollView(self.height == 0 ? .init(): .vertical,showsIndicators: false){
         ZStack(alignment:.topLeading){
             GeometryReader{geo in
                 VStack(spacing:5){
@@ -277,7 +279,27 @@ struct AuthenticateView:View {
             Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
             
         }
-        
+        } .padding(.bottom,self.height) // Move view according to keyboard
+                               .edgesIgnoringSafeArea(.all)
+                               .onAppear(){
+                                   // MARK: Keyboard
+                                   // Show Keyboard remove outside safearea height
+                                   NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main){
+                                       (not) in
+                                       let data = not.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+                                       let height = data.cgRectValue.height - (UIApplication.shared.windows.first?.safeAreaInsets.bottom)!
+                                       
+                                       self.height = height
+                                       
+                                       print(height)
+                                   }
+                                   // Hide Keyboard
+                                   NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main){
+                                       (_) in
+                                       print("Keyboard Hidden")
+                                       self.height = 0
+                                   }
+                           }
     }
     
 }
