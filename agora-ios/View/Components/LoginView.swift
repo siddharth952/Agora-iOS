@@ -23,26 +23,32 @@ struct LoginView: View {
             else{
                 
                 NavigationView{
-                    VStack(spacing:0) {
-                        
-                        VStack {
-                            ZStack {
-                                TopCircleShape()
-                                
-                                GeometryReader { geo in
+                    ScrollView(.init(),showsIndicators: false){
+                        VStack(spacing:0) {
+                            
+                            VStack {
+                                ZStack {
+                                    TopCircleShape()
                                     
-                                    Image("boy_ship")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width * 0.90, height: geo.size.height, alignment: .center)
+                                    GeometryReader { geo in
+                                        
+                                        Image("boy_ship")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: geo.size.width * 0.90, height: geo.size.height, alignment: .center)
+                                    }
+                                    
                                 }
-                                
                             }
-                        }
-                        Spacer()
-                        
-                        FirstPage()
-                    }.edgesIgnoringSafeArea(.top)
+                            Spacer()
+                            
+                            FirstPage()
+                            .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+                            .padding(.bottom,UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+                            
+                        }.edgesIgnoringSafeArea(.top)
+                    }.edgesIgnoringSafeArea(.all)
+                    
                 }
             }
         }.onAppear{
