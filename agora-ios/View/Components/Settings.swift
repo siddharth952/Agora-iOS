@@ -19,13 +19,13 @@ struct Settings: View {
             ZStack {
                 Color.black.opacity(0.04)
                 VStack(alignment:.leading,spacing: 20){
-                    Text("Manage Data").fontWeight(.bold)
+                    Text("Manage Data").fontWeight(.bold).opacity(0.8)
                     Divider()
-                    Text("Manage Account").fontWeight(.bold)
+                    Text("Manage Account").fontWeight(.bold).opacity(0.8)
                     Divider()
-                    Text("Rate Us").fontWeight(.bold)
+                    Text("Rate Us").fontWeight(.bold).opacity(0.8)
                     Divider()
-                    Text("Contact Us").fontWeight(.bold)
+                    Text("Contact Us").fontWeight(.bold).opacity(0.8)
                     Divider()
                     Button(action: {
                         self.showingAlert = true;
