@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Election: Object{
+class DatabaseElection: Object{
     
     let id = UUID() // sys. gen. unique ID as we do not care of the actual value of it.
     @objc dynamic var title:String = ""

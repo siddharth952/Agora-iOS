@@ -15,7 +15,7 @@ import RealmSwift
 public struct APIService{
     var header:HTTPHeaders
     let baseURL:String = "https://agora-rest-api.herokuapp.com/"
-    var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUxqWnVVbU5BeXNWaVFwaDhiRm9EVnhtSktwWTBpMHEzOHpGWlBETXp4c0x4Rm9IdFVwN2wrM1p5djM3cjdKSEg1UTl5VllNN085T1JKV1Vra0FcL2k0Rk8wTTNzPSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU5MTQyNDE3NywiaWF0IjoxNTkxMzgwOTc3LCJqdGkiOiI5ZDY4ZTY1OGE3ZGY0YmI0ZjA4M2YwNDdkOWE3YmFhY2E5YTFiNDhhMmY4ZGQyOTk4OTdlOTcwMDI1MTljMTg1OTdiNmRkMzA3MDVhM2YwY2RkYjNkYmI0YWM5OTViOGMxZTFlMDdmNGVkZGFhYTdjZGVhMzgyNzJjOTk5YzJiNjJkYjQxMTg5ZjQ3MTZkZWY3ZTgwNmZkOTczNGFjZDQ2NDY1YTBkMWM1ZmQzZTMwMzhkMWRlYjhiZDBiYjVjNmJjZGVlY2UxYTg5NDRiYmY3MWJkMDQwY2QzNjkxMjRjYTFmNjgzZDYwNDQyOTJjMmY3ZmI2MmJlOWNhOTA4MDZlIn0.RbBMPrrq7-k6ym9xsaAzQ464VaZzecbrl7m-tvoUrqQ"
+    var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLTVQb1ViS25PUlM3dGZCWVhibFMzSExydUpJcEhmRFVOZmdaT2NFTEpIMEVwOFMzaEJKNVI2N1lyYUhGYWRZZG9zam1Cak1wZTRSMWNReHA0RGd4RmlzSmpkbDQ9IiwiaXNzIjoicGxheS1zaWxob3VldHRlIiwiZXhwIjoxNTkxNDY5MTQxLCJpYXQiOjE1OTE0MjU5NDEsImp0aSI6Ijk2OTc3OWYwZGY1MDgyZGI1MDQxZDEwYjBhZDgzNzhhZTMzY2QwOTVjZWEzNzZmY2YwZWJjMjNlZTg1NDdjMjg5YzI0ZDJmY2E5Yzk5MDdjODQwNjAwODQyODk1YmQwYTY1MzkzNDNmMzUyYzhlNzY3OTc4OTNjNjJiOWUzNTM4ZDY4Nzc4ODJkZDgwMmYxMWQ1MzBkZjQ3MmM0ZDAzMDViMWMyODRjNmJkZWZkYzdkMWQ2ZGI5MTI4YzBlZGU2NjFkOGE3ZDAwYTBmZDc4ZWRmNTk0NWYyYzg1MjE5YjIzMGRiNjE1NzE3OTZkNGZlOWRlYjg2MzdlNmZjZjQ3MDYifQ.D_cPsrEMefc4yizjg0m-ymBeZjQ4HMOSsHSQwg8tdmQ"
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     
@@ -120,7 +120,7 @@ public struct APIService{
                         let config = Realm.Configuration(schemaVersion : 2)
                         do{
                             let realm = try Realm(configuration: config)
-                            let newdata = Election()
+                            let newdata = DatabaseElection()
                             newdata.title = electionJSON["name"].stringValue
                             newdata.place = electionJSON["description"].stringValue
 //                            newdata.isAllDay = electionJSON["electionType"].stringValue

@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10BDED5248B84AF000A634F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BDED4248B84AF000A634F /* Models.swift */; };
 		E13215D22423A0BD00B40532 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D12423A0BD00B40532 /* SearchBar.swift */; };
 		E13215D82424760200B40532 /* CreateElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D72424760200B40532 /* CreateElection.swift */; };
 		E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */; };
-		E15FA5D624233EB400E9BF58 /* Election.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D524233EB400E9BF58 /* Election.swift */; };
+		E15FA5D624233EB400E9BF58 /* DatabaseElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D524233EB400E9BF58 /* DatabaseElection.swift */; };
 		E15FA5D824233FAA00E9BF58 /* KeyboardFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */; };
 		E15FA5DE24233FF300E9BF58 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5DD24233FF300E9BF58 /* DashboardView.swift */; };
 		E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5DF2423400300E9BF58 /* ElectionView.swift */; };
@@ -74,10 +75,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E10BDED4248B84AF000A634F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E13215D12423A0BD00B40532 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E13215D72424760200B40532 /* CreateElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateElection.swift; sourceTree = "<group>"; };
 		E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
-		E15FA5D524233EB400E9BF58 /* Election.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Election.swift; sourceTree = "<group>"; };
+		E15FA5D524233EB400E9BF58 /* DatabaseElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseElection.swift; sourceTree = "<group>"; };
 		E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollower.swift; sourceTree = "<group>"; };
 		E15FA5DD24233FF300E9BF58 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		E15FA5DF2423400300E9BF58 /* ElectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E10BDEAB248B81C3000A634F /* network */ = {
+			isa = PBXGroup;
+			children = (
+				E10BDED4248B84AF000A634F /* Models.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
 		E15FA5CB24233DF000E9BF58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +172,8 @@
 		E15FA5CD24233E0800E9BF58 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E15FA5D524233EB400E9BF58 /* Election.swift */,
+				E10BDEAB248B81C3000A634F /* network */,
+				E15FA5D524233EB400E9BF58 /* DatabaseElection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,7 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E15FA5D624233EB400E9BF58 /* Election.swift in Sources */,
+				E15FA5D624233EB400E9BF58 /* DatabaseElection.swift in Sources */,
 				E164BCDE24235C43002E8B23 /* CardView.swift in Sources */,
 				E15FA5DE24233FF300E9BF58 /* DashboardView.swift in Sources */,
 				E19012F32430729100741EF9 /* APIService.swift in Sources */,
@@ -505,6 +516,7 @@
 				E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */,
 				E17EDB6A242B4FD90082EDE3 /* BackgroundColor.swift in Sources */,
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
+				E10BDED5248B84AF000A634F /* Models.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
 				E181E71D2484F7BD00875E3F /* AppleIdButton.swift in Sources */,
 				E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */,

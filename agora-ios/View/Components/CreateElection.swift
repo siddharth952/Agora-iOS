@@ -67,7 +67,7 @@ struct Mid_Elections: View{
                         let config = Realm.Configuration(schemaVersion : 2)
                         do{
                             let realm = try Realm(configuration: config)
-                            let newdata = Election()
+                            let newdata = DatabaseElection()
                             newdata.title = self.title
                             newdata.place = self.place
                             newdata.isAllDay = self.isAllDay

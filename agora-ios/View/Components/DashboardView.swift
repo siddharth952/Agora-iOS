@@ -106,7 +106,7 @@ struct Mid_Dashboard: View{
     
     //Realm
     let config = Realm.Configuration(schemaVersion : 2)
-    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 2)).objects(Election.self))
+    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 2)).objects(DatabaseElection.self))
     
     var body: some View {
         VStack {
@@ -123,7 +123,7 @@ struct Mid_Dashboard: View{
 
                 do{
                     let realm = try Realm(configuration: self.config)
-                    let  result = realm.objects(Election.self)
+                    let  result = realm.objects(DatabaseElection.self)
                     
                     
                     for _ in result {
