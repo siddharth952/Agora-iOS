@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+/*
 
 // MARK: - Definitions
 struct Definitions: Codable {
@@ -742,3 +742,4 @@ struct APIV1ElectionIDBallotsClass: Codable {
     }
 }
 
+*/
