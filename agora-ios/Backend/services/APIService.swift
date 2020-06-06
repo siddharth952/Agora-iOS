@@ -1,5 +1,5 @@
 //
-//  NetworkingService.swift
+//  APIService.swift
 //  agora-ios
 //
 //  Created by Siddharth sen on 3/29/20.
@@ -12,8 +12,11 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class NetworkingService:ObservableObject{
+public struct APIService{
     var header:HTTPHeaders
+    let baseURL:String = "https://agora-rest-api.herokuapp.com/"
+    var apiKey = ""
+    
     
     init(userXAUTH:String) {
        header = [
@@ -50,7 +53,7 @@ class NetworkingService:ObservableObject{
     
     func fetchElectionData(ID:String){
         
-        AF.request("https://agora-rest-api.herokuapp.com/api/v1/election/\(ID)",
+        AF.request("\(baseURL))api/v1/election/\(ID)",
             method: .get,
             headers: header).responseJSON { response in
                 if (response.error == nil){
@@ -85,7 +88,7 @@ class NetworkingService:ObservableObject{
                         }
                     }
                 }else{
-                    print(response.error)
+                    print(response.error ?? "network error")
                 }
         }
     }
