@@ -15,14 +15,70 @@ import RealmSwift
 public struct APIService{
     var header:HTTPHeaders
     let baseURL:String = "https://agora-rest-api.herokuapp.com/"
-    var apiKey = ""
+    var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUxqWnVVbU5BeXNWaVFwaDhiRm9EVnhtSktwWTBpMHEzOHpGWlBETXp4c0x4Rm9IdFVwN2wrM1p5djM3cjdKSEg1UTl5VllNN085T1JKV1Vra0FcL2k0Rk8wTTNzPSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU5MTQyNDE3NywiaWF0IjoxNTkxMzgwOTc3LCJqdGkiOiI5ZDY4ZTY1OGE3ZGY0YmI0ZjA4M2YwNDdkOWE3YmFhY2E5YTFiNDhhMmY4ZGQyOTk4OTdlOTcwMDI1MTljMTg1OTdiNmRkMzA3MDVhM2YwY2RkYjNkYmI0YWM5OTViOGMxZTFlMDdmNGVkZGFhYTdjZGVhMzgyNzJjOTk5YzJiNjJkYjQxMTg5ZjQ3MTZkZWY3ZTgwNmZkOTczNGFjZDQ2NDY1YTBkMWM1ZmQzZTMwMzhkMWRlYjhiZDBiYjVjNmJjZGVlY2UxYTg5NDRiYmY3MWJkMDQwY2QzNjkxMjRjYTFmNjgzZDYwNDQyOTJjMmY3ZmI2MmJlOWNhOTA4MDZlIn0.RbBMPrrq7-k6ym9xsaAzQ464VaZzecbrl7m-tvoUrqQ"
+    let decoder = JSONDecoder()
+    let encoder = JSONEncoder()
     
+    public enum APIError:Error{
+        case noResponse
+        case jsonDecodingError(error:Error)
+        case networkError(error:Error)
+    }
+    
+    public enum EndPoint{
+        // Authentication
+        case authenticate
+        case login
+        case forgotPasswordSend
+        case forgotPasswordReset
+        case signup
+        // Election
+        case electionBallots
+        case electionAddVoter
+        case electionVoters
+        case electionGetAll
+        case electionCreate
+        case electionGetWithID
+        case electionEditWithID
+        case electionDeleteWithID
+        case electionPollVoterLink
+        // Result
+        case resultGetWithID
+        // Two Factor
+        case securityQuestionGet
+        case verifyOTP
+        case resendOTP
+        case toggleTwoFactor
+        case verifySecurityQuestion
+        // Verification
+        case resendActivationLink
+        case activateAccount
+        // Vote
+        case castVote
+        case verifyPrivateElectionVotersLink
+        case verifyPublicElectionVotersLink
+        // User
+        case userGet
+        case userChangePassword
+        case userChangeAvatar
+        case userLogout
+        case userUpdate
+        
+    }
+    
+    
+    init() {
+       header = [
+            //AUTH Key
+            "X-Auth-Token": "\(apiKey)"]
+    }
     
     init(userXAUTH:String) {
        header = [
             //AUTH Key
             "X-Auth-Token": "\(userXAUTH)"]
     }
+    
     
     //MARK:- Authentication
     
