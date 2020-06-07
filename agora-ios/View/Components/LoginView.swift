@@ -199,7 +199,7 @@ struct AuthenticateView:View {
     
     @State var email:String = ""
     @State var pass:String = ""
-    @State var remember:Bool = false
+    @State var remember:Bool = true
 
     @State var alert:Bool = false
     @State var msg:String = ""
