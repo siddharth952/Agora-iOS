@@ -59,6 +59,11 @@ struct LoginView: View {
                 
                 self.status = status
             }
+        }.onAppear(){
+            //MARK: Network
+             let apiService = APIService(userXAUTH: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLW9HWllFNVl2MmV6cFgxXC9xUjd3RHIwRnFrV2ZRTlRwZ2dLMGFsTEFYdjRKTUR4SXJoY0NXcmhhdllHcmF0OGtmZTFFem0xZkFXM2tTMHlPVTZmaXphVG1aajRRPSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU5MTU1NTc4NSwiaWF0IjoxNTkxNTEyNTg1LCJqdGkiOiI0OGU5MzE4N2ViMjNkNzEwMDIyYzY1ZmY5OWU0ZDNhY2I4Y2ZjNGZiNTJmMGZkOTJmNzIzNzI0Mjc3NzYyN2EzZjQ4OWJhNTkyZmY0YjM2OTk1Yzk4NjIzMTAxYzg5NzA5YWQ2M2YwNjFlYTFlNjdjOThjZTY2OWFlY2ExMjlhZDZlNjRiMTM1YjVlYjc1NGYzMGVjOGYyNThmMDBkYjQ5ZDU3MzI2MzJhOGRkODVjMTAzYjlhZTg2ZTljNzExN2M2MDBiNTUyZGFiNDllNmZlNjY5MGI5MmUzNzIxMTc2NDg1MGY1NWU3YjA2Mjg1MzVmN2MwOTJiZGRjNDEyOGFiIn0.XjvZrEja00cw_ldDOvKCnMZcI_R__1swkVgq9mtw2O0")
+            apiService.getElection(endpoint: .electionGetAll, ID: "")
+            
         }
         
         

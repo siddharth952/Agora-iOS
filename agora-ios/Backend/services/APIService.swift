@@ -14,7 +14,7 @@ import RealmSwift
 
 public struct APIService{
     var header:HTTPHeaders
-    let baseURL = URL(string:"https://agora-rest-api.herokuapp.com/")
+    let baseURL = URL(string:"https://agora-rest-api.herokuapp.com")
     var apiKey:String?
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
@@ -134,7 +134,7 @@ public struct APIService{
             case .userGet:
                 return "/api/v1/user"
             case .userChangePassword:
-                return "/api/v1/user/changePassword"
+                return "api/v1/user/changePassword"
             case .userChangeAvatar:
                 return "/api/v1/user/changeAvatar"
             case .userLogout:
@@ -142,17 +142,50 @@ public struct APIService{
             
             }
         }
-      
-        
-        
+
     }
     
     
     
     public func getElection(endpoint: EndPoint,ID:String) -> Void{
         let queryURL = baseURL!.appendingPathComponent(endpoint.path())
-        AF.request(queryURL).responseData { (data) in
-            print(data)
+        AF.request(queryURL,
+        method: .get,
+        headers: header).responseData { response in
+            guard let data = response.data else { return }
+            let json = try? JSON(data:data)
+                
+            //print(json!["elections"][0])
+            for i in json!["elections"]{
+                print("Got data for Election: \(i.1["_id"])")
+                
+                // Put in db
+                let config = Realm.Configuration(schemaVersion : 2)
+                do{
+                    let realm = try Realm(configuration: config)
+                    let newData = DatabaseElection()
+                    newData.title = i.1["name"].stringValue
+                    
+                    newData.place = i.1["description"].stringValue
+                    newData.eleColor = "Blue"
+                    newData.candidates = i.1["candidates"].stringValue
+                    
+                    try realm.write({
+                        realm.add(newData)
+                        print("Election details added successfully")
+                    })
+                    
+                    
+                }catch{
+                    print(error.localizedDescription)
+                }
+                
+                
+                
+                
+            }
+            
+            
         }
         
     }
