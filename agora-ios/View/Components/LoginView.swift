@@ -278,18 +278,12 @@ struct AuthenticateView:View {
                     }
                     
                     //TODO: Facebook
-//                    Button (action: {}) {
-//
-//                    }
-                    
-                    
-                    
                     
                     //button
                     Button(action: {
                         // Login, get auth token and get elections
                         var apiService = APIService(userXAUTH: "")
-                        apiService.userLogin(username: self.email.lowercased(), password: self.pass.lowercased(), endpoint: .login)
+                        apiService.userLogin(username: self.email.lowercased(), password: self.pass, endpoint: .login)
                         apiService.header = [
                                   //AUTH Key
                             "X-Auth-Token": "\(Credentials.token)"]
