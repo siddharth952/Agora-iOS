@@ -68,6 +68,7 @@ struct Mid_Elections: View{
                         do{
                             let realm = try Realm(configuration: config)
                             let newdata = DatabaseElection()
+                            newdata._id = UUID().uuidString
                             newdata.title = self.title
                             newdata.place = self.place
                             newdata.isAllDay = self.isAllDay

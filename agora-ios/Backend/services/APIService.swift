@@ -164,6 +164,7 @@ public struct APIService{
                 do{
                     let realm = try Realm(configuration: config)
                     let newData = DatabaseElection()
+                    newData._id = i.1["_id"].stringValue
                     newData.title = i.1["name"].stringValue
                     
                     newData.place = i.1["description"].stringValue
@@ -221,45 +222,6 @@ public struct APIService{
     }
     
     func fetchElectionData(ID:String) -> Void{
-        // Fetch election with ID and store it in db
         
-        AF.request("\(baseURL))api/v1/election/\(ID)",
-            method: .get,
-            headers: header).responseJSON { response in
-                if (response.error == nil){
-                    print("Got data for Election\(ID)")
-                    if let electionDataResponse = response.value{
-                        let electionJSON: JSON = JSON(electionDataResponse)
-                        
-                        let config = Realm.Configuration(schemaVersion : 3)
-                        do{
-                            let realm = try Realm(configuration: config)
-                            let newdata = DatabaseElection()
-                            newdata.title = electionJSON["name"].stringValue
-                            newdata.place = electionJSON["description"].stringValue
-//                            newdata.isAllDay = electionJSON["electionType"].stringValue
-//
-//                            newdata.start = toDate(electionJSON["start"].stringValue)
-//                            newdata.end = toDate(electionJSON["end"].stringValue)
-//                            newdata.timeZone = extractTimeZone(electionJSON["createdTime"].stringValue)
-//                            newdata.votingAlgo = electionJSON["votingAlgo"].stringValue
-
-                            newdata.eleColor = "Blue"
-                            newdata.electionDescription = electionJSON["description"].stringValue
-                            newdata.candidates = electionJSON["candidates"].stringValue
-                            try realm.write({
-                                realm.add(newdata)
-                                print("Election details added successfully")
-                            })
-                            
-                            
-                        }catch{
-                            print(error.localizedDescription)
-                        }
-                    }
-                }else{
-                    print(response.error ?? "network error")
-                }
-        }
     }
 }
