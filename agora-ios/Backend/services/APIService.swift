@@ -154,8 +154,7 @@ public struct APIService{
         headers: header).responseData { response in
             guard let data = response.data else { return }
             let json = try? JSON(data:data)
-                
-            //print(json!["elections"][0])
+     
             for i in json!["elections"]{
                 print("Got data for Election: \(i.1["_id"])")
                 
@@ -180,21 +179,37 @@ public struct APIService{
                 }catch{
                     print(error.localizedDescription)
                 }
-                
-                
-                
-                
             }
-            
-            
         }
-        
     }
-    //MARK:- Authentication
     
-    func userLogin(){
-        
-    }
+   
+    
+    //MARK:- Authentication
+   
+    public func userLogin(username:String,password:String,endpoint:EndPoint){
+           let queryURL = baseURL!.appendingPathComponent(endpoint.path())
+           let parameters: Parameters = [ "identifier" : username, "password" : password,"trustedDevice":"iOS" ]
+           
+           
+           AF.request(queryURL,
+                      method: .post,parameters: parameters,encoding: JSONEncoding.default,headers: nil).responseData { response in
+                       guard let data = response.data else { return }
+                       let json = try? JSON(data:data)
+                       print("Login Successful!")
+                       
+                       Credentials.token = json!["token"]["token"].stringValue
+                      
+                       UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
+                        
+                        // If got userXAUTH login
+                        UserDefaults.standard.set(true, forKey: "status")
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        
+                        
+           }
+           
+       }
     
     func userSignup(){
         

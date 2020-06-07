@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E10BDED5248B84AF000A634F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BDED4248B84AF000A634F /* Models.swift */; };
 		E13215D22423A0BD00B40532 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D12423A0BD00B40532 /* SearchBar.swift */; };
 		E13215D82424760200B40532 /* CreateElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D72424760200B40532 /* CreateElection.swift */; };
 		E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */; };
@@ -37,6 +36,7 @@
 		E19012F32430729100741EF9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19012F22430729100741EF9 /* APIService.swift */; };
 		E19012F6243074B600741EF9 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F5243074B600741EF9 /* SwiftyJSON */; };
 		E19012F9243075D100741EF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F8243075D100741EF9 /* Alamofire */; };
+		E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1926F43248CEA7800CC08A3 /* Credentials.swift */; };
 		E1989DAB248B5C52004ACBE7 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */; };
 		E1989DAE248B5D16004ACBE7 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */; };
 		E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FF6B624852E5F0087A238 /* CornersShape.swift */; };
@@ -75,7 +75,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E10BDED4248B84AF000A634F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E13215D12423A0BD00B40532 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E13215D72424760200B40532 /* CreateElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateElection.swift; sourceTree = "<group>"; };
 		E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 		E18F189A2420F774002FED89 /* agora_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agora_iosUITests.swift; sourceTree = "<group>"; };
 		E18F189C2420F774002FED89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19012F22430729100741EF9 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E1926F43248CEA7800CC08A3 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		E19FF6B624852E5F0087A238 /* CornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornersShape.swift; sourceTree = "<group>"; };
@@ -156,7 +156,6 @@
 		E10BDEAB248B81C3000A634F /* network */ = {
 			isa = PBXGroup;
 			children = (
-				E10BDED4248B84AF000A634F /* Models.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -302,6 +301,7 @@
 		E1989DA9248B5C33004ACBE7 /* preferences */ = {
 			isa = PBXGroup;
 			children = (
+				E1926F43248CEA7800CC08A3 /* Credentials.swift */,
 				E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */,
 			);
 			path = preferences;
@@ -516,13 +516,13 @@
 				E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */,
 				E17EDB6A242B4FD90082EDE3 /* BackgroundColor.swift in Sources */,
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
-				E10BDED5248B84AF000A634F /* Models.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
 				E181E71D2484F7BD00875E3F /* AppleIdButton.swift in Sources */,
 				E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */,
 				E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */,
 				E18F18792420F770002FED89 /* AppDelegate.swift in Sources */,
 				E16F276B2486366800F754B0 /* UserTextField.swift in Sources */,
+				E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */,
 				E164BCE024236FD7002E8B23 /* Navigation.swift in Sources */,
 				E13215D82424760200B40532 /* CreateElection.swift in Sources */,
 				E18F187B2420F770002FED89 /* SceneDelegate.swift in Sources */,

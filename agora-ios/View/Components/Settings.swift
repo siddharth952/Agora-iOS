@@ -40,6 +40,9 @@ struct Settings: View {
                             UserDefaults.standard.set(false, forKey: "status")
                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                             
+                            UserDefaults.standard.set("", forKey: "userXAUTH")
+                          
+                            
                         }), secondaryButton: .default(Text("Dismiss")))
                     }
                 }.padding(.leading,20)
