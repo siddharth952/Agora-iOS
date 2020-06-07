@@ -64,7 +64,7 @@ struct Mid_Elections: View{
                     
                     Button(action: {
                         
-                        let config = Realm.Configuration(schemaVersion : 2)
+                        let config = Realm.Configuration(schemaVersion : 3)
                         do{
                             let realm = try Realm(configuration: config)
                             let newdata = DatabaseElection()

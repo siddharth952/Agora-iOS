@@ -105,8 +105,8 @@ struct Mid_Dashboard: View{
     @State var electionCountMid:Int = 5
     
     //Realm
-    let config = Realm.Configuration(schemaVersion : 2)
-    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 2)).objects(DatabaseElection.self))
+    let config = Realm.Configuration(schemaVersion : 3)
+    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 3)).objects(DatabaseElection.self))
     
     var body: some View {
         VStack {

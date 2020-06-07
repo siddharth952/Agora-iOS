@@ -37,9 +37,9 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
 
 
 struct CardView : View {
-    let config = Realm.Configuration(schemaVersion : 2)
+    let config = Realm.Configuration(schemaVersion : 3)
     
-    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 2)).objects(DatabaseElection.self))
+    @ObservedObject var elections = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 3)).objects(DatabaseElection.self))
     
     @State var activateLink: Int? = 0
     

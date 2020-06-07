@@ -160,7 +160,7 @@ public struct APIService{
                 print("Got data for Election: \(i.1["_id"])")
                 
                 // Put in db
-                let config = Realm.Configuration(schemaVersion : 2)
+                let config = Realm.Configuration(schemaVersion : 3)
                 do{
                     let realm = try Realm(configuration: config)
                     let newData = DatabaseElection()
@@ -171,7 +171,7 @@ public struct APIService{
                     newData.candidates = i.1["candidates"].stringValue
                     
                     try realm.write({
-                        realm.add(newData)
+                        realm.add(newData,update: .modified)
                         print("Election details added successfully")
                     })
                     
@@ -231,7 +231,7 @@ public struct APIService{
                     if let electionDataResponse = response.value{
                         let electionJSON: JSON = JSON(electionDataResponse)
                         
-                        let config = Realm.Configuration(schemaVersion : 2)
+                        let config = Realm.Configuration(schemaVersion : 3)
                         do{
                             let realm = try Realm(configuration: config)
                             let newdata = DatabaseElection()

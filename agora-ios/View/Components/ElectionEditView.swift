@@ -14,7 +14,7 @@ struct ElectionEditView: View {
         VStack{
             Button(action: {
                 
-                let config = Realm.Configuration(schemaVersion : 1)
+                let config = Realm.Configuration(schemaVersion : 3)
                 do{
                     let realm = try Realm(configuration: config)
                     let result = realm.objects(DatabaseElection.self)
@@ -40,7 +40,7 @@ struct ElectionEditView: View {
             
             Button(action: {
                 
-                let config = Realm.Configuration(schemaVersion : 2)
+                let config = Realm.Configuration(schemaVersion : 3)
                 do{
                     let realm = try Realm(configuration: config)
                     let result = realm.objects(DatabaseElection.self)
@@ -61,7 +61,7 @@ struct ElectionEditView: View {
             
             Button(action: {
                           
-                          let config = Realm.Configuration(schemaVersion : 2)
+                          let config = Realm.Configuration(schemaVersion : 3)
                           do{
                               let realm = try Realm(configuration: config)
                             let result = realm.objects(DatabaseElection.self).filter("election.@count > 0")
