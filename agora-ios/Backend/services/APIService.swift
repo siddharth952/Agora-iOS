@@ -14,10 +14,18 @@ import RealmSwift
 
 public struct APIService{
     var header:HTTPHeaders
-    let baseURL:String = "https://agora-rest-api.herokuapp.com/"
-    var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLTVQb1ViS25PUlM3dGZCWVhibFMzSExydUpJcEhmRFVOZmdaT2NFTEpIMEVwOFMzaEJKNVI2N1lyYUhGYWRZZG9zam1Cak1wZTRSMWNReHA0RGd4RmlzSmpkbDQ9IiwiaXNzIjoicGxheS1zaWxob3VldHRlIiwiZXhwIjoxNTkxNDY5MTQxLCJpYXQiOjE1OTE0MjU5NDEsImp0aSI6Ijk2OTc3OWYwZGY1MDgyZGI1MDQxZDEwYjBhZDgzNzhhZTMzY2QwOTVjZWEzNzZmY2YwZWJjMjNlZTg1NDdjMjg5YzI0ZDJmY2E5Yzk5MDdjODQwNjAwODQyODk1YmQwYTY1MzkzNDNmMzUyYzhlNzY3OTc4OTNjNjJiOWUzNTM4ZDY4Nzc4ODJkZDgwMmYxMWQ1MzBkZjQ3MmM0ZDAzMDViMWMyODRjNmJkZWZkYzdkMWQ2ZGI5MTI4YzBlZGU2NjFkOGE3ZDAwYTBmZDc4ZWRmNTk0NWYyYzg1MjE5YjIzMGRiNjE1NzE3OTZkNGZlOWRlYjg2MzdlNmZjZjQ3MDYifQ.D_cPsrEMefc4yizjg0m-ymBeZjQ4HMOSsHSQwg8tdmQ"
+    let baseURL = URL(string:"https://agora-rest-api.herokuapp.com/")
+    var apiKey:String?
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
+    
+ 
+    
+    init(userXAUTH:String) {
+        header = [
+            //AUTH Key
+            "X-Auth-Token": "\(userXAUTH)"]
+    }
     
     public enum APIError:Error{
         case noResponse
@@ -134,25 +142,20 @@ public struct APIService{
             
             }
         }
+      
+        
         
     }
     
     
     
-    
-    init() {
-       header = [
-            //AUTH Key
-            "X-Auth-Token": "\(apiKey)"]
+    public func getElection(endpoint: EndPoint,ID:String) -> Void{
+        let queryURL = baseURL!.appendingPathComponent(endpoint.path())
+        AF.request(queryURL).responseData { (data) in
+            print(data)
+        }
+        
     }
-    
-    init(userXAUTH:String) {
-       header = [
-            //AUTH Key
-            "X-Auth-Token": "\(userXAUTH)"]
-    }
-    
-    
     //MARK:- Authentication
     
     func userLogin(){
@@ -180,7 +183,12 @@ public struct APIService{
         
     }
     
-    func fetchElectionData(ID:String){
+    func getAllElectionsOfUser() -> Void {
+        // Fetch all elections of the user and refresh db
+    }
+    
+    func fetchElectionData(ID:String) -> Void{
+        // Fetch election with ID and store it in db
         
         AF.request("\(baseURL))api/v1/election/\(ID)",
             method: .get,
