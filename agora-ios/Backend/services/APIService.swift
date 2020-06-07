@@ -27,44 +27,117 @@ public struct APIService{
     
     public enum EndPoint{
         // Authentication
-        case authenticate
+        case authenticate(provider:String)
         case login
-        case forgotPasswordSend
-        case forgotPasswordReset
+        case forgotPasswordSend(userName:String)
+        case forgotPasswordReset(token:String)
         case signup
         // Election
-        case electionBallots
-        case electionAddVoter
-        case electionVoters
+        case electionBallots(id:String)
+        case electionAddVoter(id:String)
+        case electionVoters(id:String)
+        case electionAddListOfVoters(id:String)
         case electionGetAll
         case electionCreate
-        case electionGetWithID
-        case electionEditWithID
-        case electionDeleteWithID
-        case electionPollVoterLink
+        case electionGetDataWithID(id:String)
+        case electionEditWithID(id:String)
+        case electionDeleteWithID(id:String)
+        case electionPollVoterLink(id:String)
         // Result
-        case resultGetWithID
+        case resultGetWithID(id:String)
         // Two Factor
-        case securityQuestionGet
+        case securityQuestionGet(crypto:String)
         case verifyOTP
-        case resendOTP
+        case resendOTP(userName:String)
         case toggleTwoFactor
         case verifySecurityQuestion
         // Verification
-        case resendActivationLink
-        case activateAccount
+        case resendActivationLink(userName:String)
+        case activateAccount(token:String)
         // Vote
-        case castVote
-        case verifyPrivateElectionVotersLink
-        case verifyPublicElectionVotersLink
+        case castVote(id:String)
+        case verifyPrivateElectionVotersLink(id:String,pass:String)
+        case verifyPublicElectionVotersLink(id:String)
         // User
+        case userUpdate
         case userGet
         case userChangePassword
         case userChangeAvatar
         case userLogout
-        case userUpdate
+
+        
+        
+        func path() -> String {
+            switch self {
+            case .login:
+               return "/api/v1/auth/login"
+            case let .authenticate(provider):
+                return "/api/v1/auth/authenticate/\(provider))"
+            case .forgotPasswordSend(userName: let userName):
+                return "/api/v1/auth/forgotPassword/send/\(userName)"
+            case .forgotPasswordReset(token: let token):
+                return "/api/v1/auth/forgotPassword/reset/\(token)"
+            case .signup:
+                return "/api/v1/auth/signup"
+            case .electionBallots(id: let id):
+                return "/api/v1/election/\(id)/ballots"
+            case .electionAddVoter(id: let id):
+                return "/api/v1/election/\(id)/voter"
+            case .electionVoters(id: let id):
+                return "/api/v1/election/\(id)/voters"
+            case .electionAddListOfVoters(id: let id):
+                return "/api/v1/election/\(id)/voters"
+            case .electionGetAll:
+                return "/api/v1/election"
+            case .electionCreate:
+                return "/api/v1/election"
+            case .electionGetDataWithID(id: let id):
+                return "/api/v1/election/\(id)"
+            case .electionEditWithID(id: let id):
+                return "/api/v1/election/\(id)"
+            case .electionDeleteWithID(id: let id):
+                return "/api/v1/election/\(id)"
+            case .electionPollVoterLink(id: let id):
+                return "/api/v1/election/\(id)/pollVoterLink"
+            case .resultGetWithID(id: let id):
+                return "/api/v1/result/\(id)"
+            case .securityQuestionGet(crypto: let crypto):
+                return "/api/v1/securityQuestion/\(crypto)"
+            case .verifyOTP:
+                return "/api/v1/verifyOtp"
+            case .resendOTP(userName: let userName):
+                return "/api/v1/resendOtp/\(userName)"
+            case .toggleTwoFactor:
+                return "/api/v1/toggleTwoFactorAuth"
+            case .verifySecurityQuestion:
+                return "/api/v1/verifySecurityQuestion"
+            case .resendActivationLink(userName: let userName):
+                return "/api/v1/account/email/\(userName)"
+            case .activateAccount(token: let token):
+                return "/api/v1/account/activate/\(token)"
+            case .castVote(id: let id):
+                return "/api/v1/vote/\(id)"
+            case .verifyPrivateElectionVotersLink(id:let id,pass: let pass):
+                return "/api/v1/voter/verify/\(id)/\(pass)"
+            case .verifyPublicElectionVotersLink(id: let id):
+                return "/api/v1/voter/verifyPoll/\(id)"
+            case .userUpdate:
+                return "/api/v1/user/update"
+            case .userGet:
+                return "/api/v1/user"
+            case .userChangePassword:
+                return "/api/v1/user/changePassword"
+            case .userChangeAvatar:
+                return "/api/v1/user/changeAvatar"
+            case .userLogout:
+                return "/api/v1/user/logout"
+            
+            }
+        }
         
     }
+    
+    
     
     
     init() {
