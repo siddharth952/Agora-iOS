@@ -187,7 +187,8 @@ public struct APIService{
     
     //MARK:- Authentication
    
-    public func userLogin(username:String,password:String,endpoint:EndPoint){
+    public func userLogin(username:String,password:String,endpoint:EndPoint, complete: ()
+    ){
            let queryURL = baseURL!.appendingPathComponent(endpoint.path())
            let parameters: Parameters = [ "identifier" : username, "password" : password,"trustedDevice":"iOS" ]
            
@@ -202,9 +203,14 @@ public struct APIService{
                       
                        UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
                         
+                        // Perform complete assignment
+                        complete
+                        
                         // If got userXAUTH login
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        
+                        
                         
                         
            }

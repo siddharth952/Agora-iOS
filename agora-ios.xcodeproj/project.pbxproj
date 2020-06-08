@@ -41,6 +41,7 @@
 		E1989DAE248B5D16004ACBE7 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */; };
 		E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FF6B624852E5F0087A238 /* CornersShape.swift */; };
 		E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E98279242935FD007C461C /* ElectionEditView.swift */; };
+		E1FAEDF2248E4CEB003DED66 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FAEDF1248E4CEB003DED66 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		E1DD63142428AC7E00DFCA04 /* E9FFEB42-C0D4-37BC-9016-9904B4EBFC38.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E9FFEB42-C0D4-37BC-9016-9904B4EBFC38.bcsymbolmap"; sourceTree = "<group>"; };
 		E1DD63152428AC7E00DFCA04 /* 2B17A500-B4E3-3999-895C-3051D637D9A1.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "2B17A500-B4E3-3999-895C-3051D637D9A1.bcsymbolmap"; sourceTree = "<group>"; };
 		E1E98279242935FD007C461C /* ElectionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionEditView.swift; sourceTree = "<group>"; };
+		E1FAEDF1248E4CEB003DED66 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				E181E71C2484F7BD00875E3F /* AppleIdButton.swift */,
 				E19FF6B624852E5F0087A238 /* CornersShape.swift */,
 				E16F276A2486366800F754B0 /* UserTextField.swift */,
+				E1FAEDF1248E4CEB003DED66 /* ActivityIndicator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				E164BCDE24235C43002E8B23 /* CardView.swift in Sources */,
 				E15FA5DE24233FF300E9BF58 /* DashboardView.swift in Sources */,
 				E19012F32430729100741EF9 /* APIService.swift in Sources */,
+				E1FAEDF2248E4CEB003DED66 /* ActivityIndicator.swift in Sources */,
 				E1989DAE248B5D16004ACBE7 /* UserDefaultsWrapper.swift in Sources */,
 				E1989DAB248B5C52004ACBE7 /* AppUserDefaults.swift in Sources */,
 				E17B642D2427189B00475579 /* LoginView.swift in Sources */,
