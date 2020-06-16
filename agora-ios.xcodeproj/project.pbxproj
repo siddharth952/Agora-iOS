@@ -37,6 +37,7 @@
 		E19012F32430729100741EF9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19012F22430729100741EF9 /* APIService.swift */; };
 		E19012F6243074B600741EF9 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F5243074B600741EF9 /* SwiftyJSON */; };
 		E19012F9243075D100741EF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F8243075D100741EF9 /* Alamofire */; };
+		E191557A2498CD7C00AC78D9 /* UserLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19155792498CD7C00AC78D9 /* UserLoginManager.swift */; };
 		E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1926F43248CEA7800CC08A3 /* Credentials.swift */; };
 		E1989DAB248B5C52004ACBE7 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */; };
 		E1989DAE248B5D16004ACBE7 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */; };
@@ -117,6 +118,7 @@
 		E18F189A2420F774002FED89 /* agora_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agora_iosUITests.swift; sourceTree = "<group>"; };
 		E18F189C2420F774002FED89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19012F22430729100741EF9 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E19155792498CD7C00AC78D9 /* UserLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginManager.swift; sourceTree = "<group>"; };
 		E1926F43248CEA7800CC08A3 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		E15FA5CB24233DF000E9BF58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E19155792498CD7C00AC78D9 /* UserLoginManager.swift */,
 				E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */,
 				E1EB7A64248FCC0C008726D8 /* DateJSON.swift */,
 			);
@@ -550,6 +553,7 @@
 				E1B4FCCF2492774700907329 /* DatabaseUser.swift in Sources */,
 				E18F18792420F770002FED89 /* AppDelegate.swift in Sources */,
 				E1EB7A65248FCC0C008726D8 /* DateJSON.swift in Sources */,
+				E191557A2498CD7C00AC78D9 /* UserLoginManager.swift in Sources */,
 				E16F276B2486366800F754B0 /* UserTextField.swift in Sources */,
 				E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */,
 				E164BCE024236FD7002E8B23 /* Navigation.swift in Sources */,
