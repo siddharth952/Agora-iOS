@@ -280,6 +280,9 @@ struct AuthenticateView:View {
                         Button (action: {}) {
                             AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                         }
+                        Button (action: {}) {
+                            FacebookButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
+                        }
                         
                         //TODO: Facebook
                         
