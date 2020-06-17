@@ -152,7 +152,15 @@ class APIService{
                     guard let data = response.data else { return }
                     let json = try? JSON(data:data)
                     
+                     
+                    if json!["elections"].arrayValue.isEmpty{
+                        print("No Elections")
+                        completion()
+                        return
+                    }
+                    
                     for i in json!["elections"]{
+                        
                         print("Got data for Election: \(i.1["_id"])")
                         
                         // Put in db
