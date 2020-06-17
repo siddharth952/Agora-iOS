@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import FBSDKCoreKit
+import FacebookLogin
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

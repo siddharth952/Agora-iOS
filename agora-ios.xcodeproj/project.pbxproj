@@ -183,7 +183,6 @@
 		E15FA5CB24233DF000E9BF58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E19155792498CD7C00AC78D9 /* UserLoginManager.swift */,
 				E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */,
 				E1EB7A64248FCC0C008726D8 /* DateJSON.swift */,
 			);
@@ -319,6 +318,7 @@
 			children = (
 				E19012F22430729100741EF9 /* APIService.swift */,
 				E19B260D2491F71E00B97D43 /* ElectionManager.swift */,
+				E19155792498CD7C00AC78D9 /* UserLoginManager.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";

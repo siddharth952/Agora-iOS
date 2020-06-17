@@ -9,15 +9,12 @@ import SwiftUI
 import RealmSwift
 import AuthenticationServices
 
+
 struct LoginView: View {
     
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-    
-    
-    
     var body: some View {
-        
-        
+
         return VStack{
             if status == true{
                 
@@ -117,8 +114,6 @@ struct FirstPage: View{
         }.padding(.bottom)
             .alert(isPresented: $alert) {
                 Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
-                
-                
                 
         }
         
@@ -284,7 +279,34 @@ struct AuthenticateView:View {
                             AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                         }
                         // Facebook
-                        Button (action: {self.fbManager.facebookLogin()}) {
+                        Button (action: {
+                           
+                            let semaphore = DispatchSemaphore(value: 0)
+                            
+                            self.fbManager.facebookLogin(){
+                                DispatchQueue.global().async {
+                                    /// Concurrently execute a task using the global concurrent queue. Also known as the background queue.
+                                    ElectionManager.apiService.userLoginSocial(endpoint: .authenticate(provider: "facebook")){
+                                         semaphore.signal()
+                                     }
+                                    _ = semaphore.wait(timeout: .distantFuture)
+                                     ElectionManager.apiService.getUserInfo(){
+                                         semaphore.signal()
+                                     }
+                                     
+                                    _ = semaphore.wait(timeout: .distantFuture)
+                                    ElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){
+                                        semaphore.signal()
+                                    }
+                                    _ = semaphore.wait(timeout: .distantFuture)
+                                    // If got userXAUTH login
+                                    UserDefaults.standard.set(true, forKey: "status")
+                                    NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                                }
+                            }
+                           
+                            
+                        }) {
                             FacebookButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                         }
                         
@@ -305,7 +327,7 @@ struct AuthenticateView:View {
                                 
                                 ElectionManager.apiService.header = [
                                     //AUTH Key
-                                    "X-Auth-Token": "\(Credentials.token)"]
+                                    "X-Auth-Token": "\(UserDefaults.standard.string(forKey:"userXAUTH"))"]
                                 
                                 self.activityShow = false
                                 
