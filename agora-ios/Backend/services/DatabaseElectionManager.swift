@@ -11,14 +11,14 @@ import SwiftUI
 import RealmSwift
 
 
-class ElectionManager:ObservableObject{
+class DatabaseElectionManager:ObservableObject{
     
     static var apiService = APIService(userXAUTH: Credentials.token)
     
     
    // MARK: API
     static func getAllElections(complete: () -> Void) -> Void {
-        ElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){}
+        DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){}
         complete()
     }
     

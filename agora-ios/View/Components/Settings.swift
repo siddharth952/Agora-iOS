@@ -46,7 +46,7 @@ struct Settings: View {
                         Alert(title: Text("Log out?"), message: Text("Are you sure you want to log out?"),primaryButton: .default(Text("Yes"), action: {
                             print("Logging out...")
                             
-                            ElectionManager.deleteAllElectionsfromdb {
+                            DatabaseElectionManager.deleteAllElectionsfromdb {
                                 
                                 UserDefaults.standard.set(false, forKey: "status")
                                 NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)

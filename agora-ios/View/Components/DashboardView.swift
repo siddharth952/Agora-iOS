@@ -115,7 +115,7 @@ struct Mid_Dashboard: View{
             }
             
             
-            ElectionManager.getAllElections {
+            DatabaseElectionManager.getAllElections {
                 do{
                     let realm = try Realm(configuration: self.config)
                     let  results = realm.objects(DatabaseElection.self)

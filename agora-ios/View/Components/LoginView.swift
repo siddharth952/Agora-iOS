@@ -286,16 +286,16 @@ struct AuthenticateView:View {
                             self.fbManager.facebookLogin(){
                                 DispatchQueue.global().async {
                                     /// Concurrently execute a task using the global concurrent queue. Also known as the background queue.
-                                    ElectionManager.apiService.userLoginSocial(endpoint: .authenticate(provider: "facebook")){
+                                    DatabaseElectionManager.apiService.userLoginSocial(endpoint: .authenticate(provider: "facebook")){
                                          semaphore.signal()
                                      }
                                     _ = semaphore.wait(timeout: .distantFuture)
-                                     ElectionManager.apiService.getUserInfo(){
+                                     DatabaseElectionManager.apiService.getUserInfo(){
                                          semaphore.signal()
                                      }
                                      
                                     _ = semaphore.wait(timeout: .distantFuture)
-                                    ElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){
+                                    DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){
                                         semaphore.signal()
                                     }
                                     _ = semaphore.wait(timeout: .distantFuture)
@@ -319,20 +319,20 @@ struct AuthenticateView:View {
                             self.activityShow = true
                             
                             // Login, get auth token and get elections
-                            ElectionManager.apiService.userLogin(username: self.email.lowercased(), password: self.pass, endpoint: .login, onFailure: {
+                            DatabaseElectionManager.apiService.userLogin(username: self.email.lowercased(), password: self.pass, endpoint: .login, onFailure: {
                                 self.activityShow = false
                                 self.alert = true
                             }){
                                 
                                 
-                                ElectionManager.apiService.header = [
+                                DatabaseElectionManager.apiService.header = [
                                     //AUTH Key
                                     "X-Auth-Token": "\(UserDefaults.standard.string(forKey:"userXAUTH"))"]
                                 
                                 self.activityShow = false
                                 
                                 // Get all elections and store in db onSuccess
-                                ElectionManager.getAllElections {
+                                DatabaseElectionManager.getAllElections {
                                     // If got userXAUTH login
                                     UserDefaults.standard.set(true, forKey: "status")
                                     NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)

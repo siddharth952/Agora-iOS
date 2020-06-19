@@ -59,12 +59,12 @@
       <dict>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>[APP_ID]</string>
+        <string>fb676116912936626</string>
       </array>
       </dict>
     </array>
     <key>FacebookAppID</key>
-    <string>[APP_ID]</string>
+    <string>676116912936626</string>
     <key>FacebookDisplayName</key>
     <string>Agora-iOS</string>
     <key>LSApplicationQueriesSchemes</key>
