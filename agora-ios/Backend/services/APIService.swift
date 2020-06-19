@@ -273,13 +273,16 @@ class APIService{
                           
                       }
                       let json = try? JSON(data:data)
+                        if(json != nil){
                       print("Signup Successful!")
-             
-                    Credentials.token = json!["token"].stringValue
-                        
+                            
                     UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
                           // Success
                           onSuccess()
+                            
+                        }else{
+                            print("Signup Failed!")
+                        }
           }
       }
     

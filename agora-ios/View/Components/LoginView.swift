@@ -21,10 +21,7 @@ struct LoginView: View {
                 Navigation()
             }
             else{
-                
                 NavigationView{
-                    // ScrollView based on height
-                    
                     VStack(spacing:0) {
                         
                         VStack(spacing:0) {
@@ -96,7 +93,6 @@ struct FirstPage: View{
             
             NavigationLink(destination: AuthenticateView(showAuth: self.$showAuth), isActive: $showAuth){
                 Button(action: {
-                    //                            self.ID = ID
                     self.showAuth.toggle()
                 }
                     
@@ -156,11 +152,19 @@ struct SignUpView: View{
                                     Button(action: {self.userSelectedQuestion = question}) {
                                         Text(question)}}}
                     }
-                    UserTextField(fieldName: "Password", secure:true, userField: self.$email)
+                    UserTextField(fieldName: "Password", secure:true, userField: self.$pass)
                     
                     
                     UserTextField(fieldName: "Email", userField: self.$email)
-                    Button(action: {}) {
+                    Button(action: {
+                        // Perform Signup call
+                        DatabaseElectionManager.apiService.userSignup(username: self.userName, password: self.pass, email: self.email, firstName: self.firstName, lastName: self.lastName, question: self.userSelectedQuestion, questionAnswer: self.userAnswer, endpoint: .signup, onFailure: {
+                            print("Failed!")
+                        }) {
+                            self.showSecond.toggle()
+                        }
+                        
+                    }) {
                         Text("Sign up").foregroundColor(.black).frame(width: geo.size.width,height: 50).foregroundColor(.white)
                             .background(Color.yellow)
                             .cornerRadius(20)

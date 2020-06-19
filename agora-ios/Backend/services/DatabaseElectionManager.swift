@@ -1,5 +1,5 @@
 //
-//  ElectionManager.swift
+//  DatabaseElectionManager.swift
 //  agora-ios
 //
 //  Created by Siddharth sen on 6/11/20.
