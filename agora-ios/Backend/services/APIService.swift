@@ -257,6 +257,32 @@ class APIService{
         
     }
     
+    public func userSignup(username:String,password:String,email:String,firstName:String,lastName:String,question:String, questionAnswer:String,endpoint:EndPoint,onFailure: @escaping ()->Void, onSuccess: @escaping ()->Void
+      ){
+          let queryURL = baseURL!.appendingPathComponent(endpoint.path())
+        let parameters: Parameters = [ "identifier" : username, "password" : password, "email":email,"firstName":firstName,"lastName":lastName,"securityQuestion":["question":question,"answer":questionAnswer] ]
+         
+          
+          AF.request(queryURL,
+                     method: .post,parameters: parameters,encoding: JSONEncoding.default,headers: nil).responseData { response in
+                      guard let data = response.data else {
+                          print("Signup Failed!")
+                          
+                          onFailure()
+                          return
+                          
+                      }
+                      let json = try? JSON(data:data)
+                      print("Signup Successful!")
+             
+                    Credentials.token = json!["token"].stringValue
+                        
+                    UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
+                          // Success
+                          onSuccess()
+          }
+      }
+    
     private func writeToDatabase(json:JSON?,complete:()->Void){
         // Set Realm User
         let userConfig = Realm.Configuration(schemaVersion : 4)
