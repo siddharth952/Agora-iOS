@@ -42,6 +42,9 @@ class UserLoginManager: ObservableObject {
             }
         }
     }
+    func facebookLogout(){
+        loginManager.logOut()
+    }
 }
 
 
