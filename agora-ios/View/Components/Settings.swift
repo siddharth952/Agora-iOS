@@ -26,10 +26,11 @@ struct Settings: View {
                     }
                     Divider()
                     Button(action: {
+                        
                         // Show Sheet for
                         
                     }) {
-                        Text("Change Avatar").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
+                        Text("Change Email").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
                     }
                     Divider()
                     Button(action: {}) {
@@ -38,7 +39,7 @@ struct Settings: View {
                     }
                     Divider()
                     Button(action: {self.showingContact.toggle()}) {
-                        Text("Contact Us").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
+                        Text("About Us").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
                     }
                     Divider()
                     Button(action: {
@@ -60,14 +61,44 @@ struct Settings: View {
         
                         }), secondaryButton: .default(Text("Dismiss")))
                     }
-                }.padding(.leading,20)
+                }.padding(.leading,30)
             }
             Spacer()
         }.sheet(isPresented:$showingContact){
-            VStack{
-                Text("Contact Info Here!")
+            GeometryReader{ geo in
+                VStack(alignment:.leading) {
+                    Text("About Us").font(.largeTitle)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.white)
+                        .shadow(radius: 2)
+
+                        VStack {
+                            Image("logo").resizable().aspectRatio(contentMode: .fit).frame(width: geo.size.width * 0.2, height: geo.size.height * 0.2, alignment: .center)
+                            Text("Agora vote is a voting platform where users can create elections and invite friends to cast their votes.It supports a wide range of voting algorithms some of which are Majority, Egalitarian, Australian STV just to name a few.").multilineTextAlignment(.center).font(.body)
+                            Text("Developed by AOSSIE")
+                        }
+                    }.frame(width: geo.size.width - 20, height: geo.size.height / 2, alignment: .center)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.white)
+                        .shadow(radius: 2)
+                        VStack(alignment: .leading) {
+                            Text("Connect with AOSSIE").bold()
+                            HStack{
+                                Image("gitlab-logo").resizable().aspectRatio(contentMode: .fit).frame(width: geo.size.width / 4, height: 64, alignment: .leading)
+                                Text("Gitlab")
+                                
+                            }
+                        }
+                    }.frame(width: geo.size.width - 20, height: 128, alignment: .center)
+                }
+                
+                
+
             }
         }
+    
     }
 }
 

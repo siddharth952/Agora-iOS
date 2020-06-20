@@ -405,5 +405,8 @@ class APIService{
             
         }
     }
+    public func updateAvatar(){
+        
+    }
     
 }
