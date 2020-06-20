@@ -20,16 +20,20 @@ struct Settings: View {
             ZStack {
                 Color.black.opacity(0.04)
                 VStack(alignment:.leading,spacing: 20){
+                    
                     Button(action: {}) {
-                        Text("Manage Data").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
+                        Text("Change Password").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
+                    }
+                    Divider()
+                    Button(action: {
+                        // Show Sheet for
+                        
+                    }) {
+                        Text("Change Avatar").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
                     }
                     Divider()
                     Button(action: {}) {
-                        Text("Manage Account").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
-                    }
-                    Divider()
-                    Button(action: {}) {
-                        Text("Rate Us").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
+                        Text("Enable Two Factor Authentication").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
 
                     }
                     Divider()
@@ -51,7 +55,7 @@ struct Settings: View {
                                 UserDefaults.standard.set(false, forKey: "status")
                                 NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                                 
-                                UserDefaults.standard.set("", forKey: "userXAUTH")
+                               UserDefaults.standard.set("", forKey: "userXAUTH")
                             }
         
                         }), secondaryButton: .default(Text("Dismiss")))
