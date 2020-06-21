@@ -202,6 +202,8 @@ class APIService{
                             
                         }else{
                             print("Signup Failed!")
+                            onFailure()
+                            return
                         }
           }
       }

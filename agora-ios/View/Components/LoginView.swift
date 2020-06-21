@@ -129,6 +129,9 @@ struct SignUpView: View{
     @State var userSelectedQuestion:String = ""
     @State var userAnswer:String = ""
     
+    @State var activityShow:Bool = false
+    @State var showingAlert:Bool = false
+    
     var body: some View{
         ZStack(alignment:.topLeading){
             GeometryReader{geo in
@@ -157,9 +160,15 @@ struct SignUpView: View{
                     
                     UserTextField(fieldName: "Email", defaultText: "Enter your email Address", userField: self.$email)
                     Button(action: {
+                        //Loading
+                        self.activityShow = true
+                        
                         // Perform Signup call
                         DatabaseElectionManager.apiService.userSignup(username: self.userName, password: self.pass, email: self.email, firstName: self.firstName, lastName: self.lastName, question: self.userSelectedQuestion, questionAnswer: self.userAnswer, endpoint: .signup, onFailure: {
                             print("Failed!")
+                            self.activityShow = false
+                            self.showingAlert = true
+                            
                         }) {
                             self.showSecond.toggle()
                         }
@@ -171,7 +180,9 @@ struct SignUpView: View{
                         
                     }
                     
-                }.padding()
+                }.padding().alert(isPresented: self.$showingAlert) {
+                    Alert(title: Text("Sign up failed!"))
+                            }
                 
             }
             
@@ -183,6 +194,10 @@ struct SignUpView: View{
                 Image(systemName: "chevron.left").font(.title)
                 
             }.foregroundColor(.orange)
+            
+            if self.activityShow == true{
+                ActivityIndicator()
+            }
             
         }
         .padding()
