@@ -33,9 +33,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-
-        //UI Tab Bar Color
-        UITabBar.appearance().isTranslucent = false
         
         //MARK: Networking
         Credentials.token = UserDefaults.standard.value(forKey: "userXAUTH") as? String ?? ""

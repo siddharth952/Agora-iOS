@@ -139,23 +139,23 @@ struct SignUpView: View{
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    UserTextField(fieldName: "User Name", userField: self.$userName)
+                    UserTextField(fieldName: "User Name", defaultText: "Enter UserName", userField: self.$userName)
                     HStack {
-                        UserTextField(fieldName: "First Name", userField: self.$firstName).frame(width: geo.size.width/2)
-                        UserTextField(fieldName: "Last Name", userField: self.$lastName).frame(width: geo.size.width/2)
+                        UserTextField(fieldName: "First Name", defaultText: "Enter your first name", userField: self.$firstName).frame(width: geo.size.width/2)
+                        UserTextField(fieldName: "Last Name", defaultText: "Enter your last name", userField: self.$lastName).frame(width: geo.size.width/2)
                     }
                     HStack {
-                        UserTextField(fieldName: "Secret Answer", userField: self.$userAnswer)
+                        UserTextField(fieldName: "Secret Answer", defaultText: "Your Answer", userField: self.$userAnswer)
                         Text("Secret Question").foregroundColor(.blue)
                             .contextMenu {
                                 ForEach(userQuestions, id: \.self){question in
                                     Button(action: {self.userSelectedQuestion = question}) {
                                         Text(question)}}}
                     }
-                    UserTextField(fieldName: "Password", secure:true, userField: self.$pass)
+                    UserTextField(fieldName: "Password", secure:true, defaultText: "", userField: self.$pass)
                     
                     
-                    UserTextField(fieldName: "Email", userField: self.$email)
+                    UserTextField(fieldName: "Email", defaultText: "Enter your email Address", userField: self.$email)
                     Button(action: {
                         // Perform Signup call
                         DatabaseElectionManager.apiService.userSignup(username: self.userName, password: self.pass, email: self.email, firstName: self.firstName, lastName: self.lastName, question: self.userSelectedQuestion, questionAnswer: self.userAnswer, endpoint: .signup, onFailure: {
