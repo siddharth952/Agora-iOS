@@ -208,6 +208,7 @@ struct AuthenticateView:View {
     
     // Facebook
     @ObservedObject var fbManager = UserLoginManager()
+    @ObservedObject var appleView = AppleViewModel()
     
     var body: some View{
         
@@ -279,7 +280,7 @@ struct AuthenticateView:View {
                         //MARK: Social Login Buttons
                         
                         // AppleID
-                        Button (action: {}) {
+                        Button (action: {self.appleView.getRequest()}) {
                             AppleIdButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                         }
                         // Facebook
