@@ -13,6 +13,7 @@ struct Settings: View {
     @State private var showingAlert = false
     @State private var showingContact:Bool = false
     var body: some View {
+        
         VStack() {
             SettingsTop()
             Text("Settings").font(.title).fontWeight(.bold)
@@ -27,7 +28,6 @@ struct Settings: View {
                     Divider()
                     Button(action: {
                         
-                        // Show Sheet for
                         
                     }) {
                         Text("Change Email").fontWeight(.bold).foregroundColor(Color.black).opacity(0.8)
@@ -71,7 +71,7 @@ struct Settings: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(Color.white)
-                        .shadow(radius: 2)
+                        .shadow(radius: 1)
 
                         VStack {
                             Image("logo").resizable().aspectRatio(contentMode: .fit).frame(width: geo.size.width * 0.2, height: geo.size.height * 0.2, alignment: .center)
