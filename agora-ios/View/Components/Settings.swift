@@ -30,6 +30,8 @@ struct Settings: View {
                         
                         Button(action: {self.showingAccountDetails.toggle()}) {
                             SettingsButtonText(details: "Account Details")
+                        }.sheet(isPresented: $showingAccountDetails) {
+                                AccountDetails()
                         }
                         Divider()
                         Button(action: {}) {
@@ -45,6 +47,8 @@ struct Settings: View {
                         Button(action: {self.showingContact.toggle()}) {
                             SettingsButtonText(details: "About Us")
   
+                        }.sheet(isPresented:$showingContact){
+                            AboutUs()
                         }
                         Divider()
                     }.padding(.leading,30)
@@ -76,11 +80,7 @@ struct Settings: View {
                     
                 }
                 Spacer()
-            }.sheet(isPresented:$showingContact){
-                AboutUs()
-            }.sheet(isPresented: $showingAccountDetails) {
-                AccountDetails()
-        }
+            }
 }
 
 struct SettingsTop:View{
