@@ -300,10 +300,11 @@ struct AuthenticateView:View {
                         }
                         // Facebook
                         Button (action: {
-                           
+                            
                             let semaphore = DispatchSemaphore(value: 0)
                             
                             self.fbManager.facebookLogin(){
+                                self.activityShow = true
                                 DispatchQueue.global().async {
                                     /// Concurrently execute a task using the global concurrent queue. Also known as the background queue.
                                     DatabaseElectionManager.apiService.userLoginSocial(endpoint: .authenticate(provider: "facebook")){
@@ -325,7 +326,7 @@ struct AuthenticateView:View {
                                 }
                             }
                            
-                            
+                           
                         }) {
                             FacebookButton().background(Color.primary).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)).padding(7).frame(width: geo.size.width * 0.80, height: geo.size.height * 0.10)
                         }
