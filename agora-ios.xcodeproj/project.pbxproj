@@ -104,7 +104,7 @@
 		E181E7192484E27100875E3F /* TopCircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCircleShape.swift; sourceTree = "<group>"; };
 		E181E71B2484F50300875E3F /* agora-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "agora-ios.entitlements"; sourceTree = "<group>"; };
 		E181E71C2484F7BD00875E3F /* AppleIdButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdButton.swift; sourceTree = "<group>"; };
-		E18F18752420F770002FED89 /* Agora-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E18F18752420F770002FED89 /* agora-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "agora-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18F18782420F770002FED89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E18F187A2420F770002FED89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E18F187E2420F774002FED89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 		E18F18762420F770002FED89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E18F18752420F770002FED89 /* Agora-iOS.app */,
+				E18F18752420F770002FED89 /* agora-ios.app */,
 				E18F188B2420F774002FED89 /* agora-iosTests.xctest */,
 				E18F18962420F774002FED89 /* agora-iosUITests.xctest */,
 			);
@@ -400,7 +400,7 @@
 				E1AA77992498A5E90067A231 /* FacebookLogin */,
 			);
 			productName = "agora-ios";
-			productReference = E18F18752420F770002FED89 /* Agora-iOS.app */;
+			productReference = E18F18752420F770002FED89 /* agora-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E18F188A2420F774002FED89 /* agora-iosTests */ = {
@@ -750,7 +750,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "aossie.agora-ios";
-				PRODUCT_NAME = "Agora-iOS";
+				PRODUCT_NAME = "agora-ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -775,7 +775,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "aossie.agora-ios";
-				PRODUCT_NAME = "Agora-iOS";
+				PRODUCT_NAME = "agora-ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
