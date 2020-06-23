@@ -16,6 +16,7 @@ struct Settings: View {
     @State private var showingLanguages:Bool = false
     @State private var showingTerms:Bool = false
     
+    @ObservedObject var fbManager = UserLoginManager()
     var body: some View {
         
        
@@ -37,7 +38,7 @@ struct Settings: View {
                         Button(action: {}) {
                             SettingsButtonText(details: "Language")
                         }
-                            
+
                         
                         Divider()
                         Button(action: {}) {
@@ -69,6 +70,7 @@ struct Settings: View {
                                             DatabaseElectionManager.deleteAllElectionsfromdb {
                                                 
                                                 UserDefaults.standard.set(false, forKey: "status")
+                                                self.fbManager.loginManager.logOut()
                                                 NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                                                 
                                                UserDefaults.standard.set("", forKey: "userXAUTH")
