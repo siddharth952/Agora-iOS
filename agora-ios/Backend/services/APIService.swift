@@ -411,24 +411,4 @@ class APIService{
         
     }
     
-    public func getUserInfo(completion:@escaping ()->Void){
-        let queryURL = baseURL!.appendingPathComponent(EndPoint.userGet.path())
-        
-        AF.request(queryURL,method: .get,headers: header ).responseData{
-            response in
-            guard let data = response.data else {
-                print("Failed to get User Info.")
-                return
-            }
-            
-            let json = try? JSON(data:data)
-            self.writeToDatabase(json: json) {
-               // self.getElection(endpoint: .electionGetAll, ID: "")
-                print("email:\(Credentials.email)")
-                completion()
-            }
-            
-        }
-    }
-    
 }
