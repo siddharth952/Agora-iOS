@@ -180,28 +180,26 @@ class APIService{
     public func userSignup(username:String,password:String,email:String,firstName:String,lastName:String,question:String, questionAnswer:String,endpoint:EndPoint,onFailure: @escaping ()->Void, onSuccess: @escaping ()->Void
       ){
           let queryURL = baseURL!.appendingPathComponent(endpoint.path())
-        let parameters: Parameters = [ "identifier" : username, "password" : password, "email":email,"firstName":firstName,"lastName":lastName,"securityQuestion":["question":question,"answer":questionAnswer] ]
+        let parameters: Parameters = [ "identifier" : username, "password" : password, "email":email,"firstName":firstName,"lastName":lastName,"securityQuestion":["crypto": "nil","question":question,"answer":questionAnswer] ]
          
           
           AF.request(queryURL,
                      method: .post,parameters: parameters,encoding: JSONEncoding.default,headers: nil).responseData { response in
                       guard let data = response.data else {
                           print("Signup Failed!")
-                          
                           onFailure()
                           return
                           
                       }
                       let json = try? JSON(data:data)
-                        if(json != nil){
-                      print("Signup Successful!")
-                            
-                    UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
+                        if(json?["status"].stringValue != "Bad request"){
+                         print(data)
                           // Success
                           onSuccess()
                             
                         }else{
                             print("Signup Failed!")
+                             print(json)
                             onFailure()
                             return
                         }

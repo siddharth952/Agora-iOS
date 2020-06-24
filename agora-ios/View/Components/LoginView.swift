@@ -130,7 +130,10 @@ struct SignUpView: View{
     @State var userAnswer:String = ""
     
     @State var activityShow:Bool = false
-    @State var showingAlert:Bool = false
+
+    @State var showQuestions:Bool = false
+    @State var answerDefaultText:String = "Your Answer"
+    @State private var alertItem: AlertItem?
     
     var body: some View{
         ZStack(alignment:.topLeading){
@@ -148,17 +151,41 @@ struct SignUpView: View{
                         UserTextField(fieldName: "Last Name", defaultText: "Enter your last name", userField: self.$lastName).frame(width: geo.size.width/2)
                     }
                     HStack {
-                        UserTextField(fieldName: "Secret Answer", defaultText: "Your Answer", userField: self.$userAnswer)
-                        Text("Secret Question").foregroundColor(.blue)
-                            .contextMenu {
-                                ForEach(userQuestions, id: \.self){question in
-                                    Button(action: {self.userSelectedQuestion = question}) {
-                                        Text(question)}}}
+                        Button(action: {
+                            withAnimation(.default){
+                                self.showQuestions.toggle()
+                            }
+                        }){
+                            HStack {
+                                Text("Secret Question")
+                                Image(systemName: "chevron.down")
+                                    .rotationEffect(.init(degrees: self.showQuestions ? 180 : 0))
+                            }
+                        }
                     }
-                    UserTextField(fieldName: "Password", secure:true, defaultText: "", userField: self.$pass)
+                    if self.showQuestions{
+                        ForEach(userQuestions, id: \.self){question in
+                            Button(action: {
+                                self.userSelectedQuestion = question
+                                self.answerDefaultText = question
+                                withAnimation(.default){self.showQuestions = false}
+                            }){
+                                Text(question)
+                            }
+                        }
+                    }
                     
                     
-                    UserTextField(fieldName: "Email", defaultText: "Enter your email Address", userField: self.$email)
+                    UserTextField(fieldName: "Secret Answer", defaultText: self.answerDefaultText, userField: self.$userAnswer)
+                    
+                       
+                    if !self.showQuestions {
+                        UserTextField(fieldName: "Password", secure:true, defaultText: "", userField: self.$pass)
+                        
+                        
+                        UserTextField(fieldName: "Email", defaultText: "Enter your email Address", userField: self.$email)
+                    }
+                   
                     Button(action: {
                         //Loading
                         self.activityShow = true
@@ -167,10 +194,11 @@ struct SignUpView: View{
                         DatabaseElectionManager.apiService.userSignup(username: self.userName, password: self.pass, email: self.email, firstName: self.firstName, lastName: self.lastName, question: self.userSelectedQuestion, questionAnswer: self.userAnswer, endpoint: .signup, onFailure: {
                             print("Failed!")
                             self.activityShow = false
-                            self.showingAlert = true
+                            self.alertItem = AlertItem(title: Text("Sign up failed!"), message: nil, dismissButton: .cancel(Text("Ok")))
                             
                         }) {
-                            self.showSecond.toggle()
+                            self.activityShow = false
+                            self.alertItem = AlertItem(title: Text("Signup Successful!"), message: Text("A message has been sent to your email. Please follow the link provided in the email to activate your account"), dismissButton: .cancel(Text("Ok")))
                         }
                         
                     }) {
@@ -180,9 +208,10 @@ struct SignUpView: View{
                         
                     }
                     
-                }.padding().alert(isPresented: self.$showingAlert) {
-                    Alert(title: Text("Sign up failed!"))
-                            }
+                }.padding().alert(item: self.$alertItem) { alertItem in
+                    Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+                }
+                
                 
             }
             
@@ -426,7 +455,12 @@ struct AuthenticateView:View {
 // MARK: Secret Questions
 let userQuestions:[String] = ["What is your Mother's maiden name?","What is the name of your first pet?","What is your nickname?","Which elementary school did you attend","What is your hometown?"]
 
-
+struct AlertItem: Identifiable {
+    var id = UUID()
+    var title: Text
+    var message: Text?
+    var dismissButton: Alert.Button?
+}
 
 
 struct LoginView_Previews: PreviewProvider {
