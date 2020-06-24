@@ -13,7 +13,6 @@
 		E13215D82424760200B40532 /* CreateElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13215D72424760200B40532 /* CreateElection.swift */; };
 		E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */; };
 		E15FA5D624233EB400E9BF58 /* DatabaseElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D524233EB400E9BF58 /* DatabaseElection.swift */; };
-		E15FA5D824233FAA00E9BF58 /* KeyboardFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */; };
 		E15FA5DE24233FF300E9BF58 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5DD24233FF300E9BF58 /* DashboardView.swift */; };
 		E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15FA5DF2423400300E9BF58 /* ElectionView.swift */; };
 		E164BCDE24235C43002E8B23 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164BCDD24235C43002E8B23 /* CardView.swift */; };
@@ -90,7 +89,6 @@
 		E13215D72424760200B40532 /* CreateElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateElection.swift; sourceTree = "<group>"; };
 		E15FA5D124233E7200E9BF58 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		E15FA5D524233EB400E9BF58 /* DatabaseElection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseElection.swift; sourceTree = "<group>"; };
-		E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollower.swift; sourceTree = "<group>"; };
 		E15FA5DD24233FF300E9BF58 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		E15FA5DF2423400300E9BF58 /* ElectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionView.swift; sourceTree = "<group>"; };
 		E164BCDD24235C43002E8B23 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -104,7 +102,7 @@
 		E181E7192484E27100875E3F /* TopCircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCircleShape.swift; sourceTree = "<group>"; };
 		E181E71B2484F50300875E3F /* agora-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "agora-ios.entitlements"; sourceTree = "<group>"; };
 		E181E71C2484F7BD00875E3F /* AppleIdButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdButton.swift; sourceTree = "<group>"; };
-		E18F18752420F770002FED89 /* Agora-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E18F18752420F770002FED89 /* Agora-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Agora-iOS.app"; path = "agora-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18F18782420F770002FED89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E18F187A2420F770002FED89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E18F187E2420F774002FED89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 		E15FA5CB24233DF000E9BF58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E15FA5D724233FAA00E9BF58 /* KeyboardFollower.swift */,
 				E1EB7A64248FCC0C008726D8 /* DateJSON.swift */,
 			);
 			path = Utils;
@@ -569,7 +566,6 @@
 				E18F187B2420F770002FED89 /* SceneDelegate.swift in Sources */,
 				E13215D22423A0BD00B40532 /* SearchBar.swift in Sources */,
 				E1AA779C2498AF980067A231 /* FacebookButton.swift in Sources */,
-				E15FA5D824233FAA00E9BF58 /* KeyboardFollower.swift in Sources */,
 				E12816F82490BCC900E03C24 /* Ballot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

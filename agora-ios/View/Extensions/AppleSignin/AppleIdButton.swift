@@ -21,13 +21,7 @@ struct AppleIdButton: UIViewRepresentable {
 
 final class SignInWithAppleCoordinator: NSObject {
     
-//    func getUserInfo() {
-//       if let userData = UserDefaults.standard.object(forKey: "user") as? Data,
-//       let userDecoded = try? JSONDecoder().decode(DatabaseUser.self, from:  userData) {
-//          print("UserData: \(userDecoded)")
-//          DatabaseUser = userDecoded
-//       }
-//    }
+
 
     func getApppleRequest() {
         let appleIdProvider = ASAuthorizationAppleIDProvider()
@@ -51,12 +45,7 @@ final class SignInWithAppleCoordinator: NSObject {
                         fatalError()
                 }
             
-            //Call signup with given email , fullname and userId
-            
-            //let user = DatabaseUser(fullName: fullName ?? "not provided", email: email ?? "email")
-//            if let userEncoded = try? JSONEncoder().encode(user) {
-//                UserDefaults.standard.set(userEncoded, forKey: "user")
-//            }
+
         }
     }
     
@@ -86,12 +75,4 @@ final class AppleViewModel: ObservableObject {
     func getRequest() {
         signInWithApple.getApppleRequest()
     }
-    
-//    func getUserInfo() {
-//        if let userData = UserDefaults.standard.object(forKey: "user") as? Data,
-//            let userDecoded = try? JSONDecoder().decode(User.self, from: userData) {
-//            print("UserData: \(userDecoded)")
-//            user = userDecoded
-//        }
-//    }
 }

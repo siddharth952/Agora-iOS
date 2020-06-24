@@ -276,28 +276,15 @@ class APIService{
                             
                             databaseElection.realtimeResult = i.1["realtimeResult"].boolValue
                             databaseElection.votingAlgo = i.1["votingAlgo"].stringValue
-                            //databaseElection.candidates = i.1["candidates"].arrayValue.map{$0.stringValue}
                             databaseElection.ballotVisibility = i.1["ballotVisibility"].stringValue
                             databaseElection.voterListVisibility = i.1["voterListVisibility"].boolValue
                             databaseElection.isInvite = i.1["isInvite"].boolValue
                             
                             databaseElection.isCompleted = i.1["isCompleted"].boolValue
                             databaseElection.isStarted = i.1["isStarted"].boolValue
-                            // databaseElection.createdTime = i.1["createdTime"].dateValue!
                             
                             databaseElection.adminLink = i.1["adminLink"].stringValue
                             databaseElection.inviteCode = i.1["inviteCode"].stringValue
-                            
-                            //                    for ballot in i.1["ballot"].arrayValue {
-                            //                        let newB = Ballot(voteBallot: ballot["voteBallot"].stringValue, _hash: ballot["hash"].stringValue)
-                            //                        databaseElection.ballot.append(newB)
-                            //                    }
-                            
-                            //                    for voter in i.1["voterList"].arrayValue{
-                            //                        let newVoter = VoterList(name: voter["name"].stringValue, _hash: voter["hash"].stringValue)
-                            //                        databaseElection.voterList.append(newVoter)
-                            //                    }
-                            
                             
                             
                             
@@ -353,7 +340,6 @@ class APIService{
          Credentials.avatarURL = json!["avatarURL"].stringValue
          Credentials.twoFactorAuthentication = json!["twoFactorAuthentication"].boolValue
          Credentials.token = json!["token"]["token"].stringValue
-         //Credentials.expiresOn = json!["token"]["expiresOn"].dateValue!
          Credentials.trustedDevice = json!["trustedDevice"].stringValue
         
         complete()
@@ -371,7 +357,6 @@ class APIService{
             
             let json = try? JSON(data:data)
             self.writeToDatabase(json: json) {
-               // self.getElection(endpoint: .electionGetAll, ID: "")
                 print("email:\(Credentials.email)")
                 completion()
             }
