@@ -13,16 +13,10 @@ import SwiftyJSON
 import RealmSwift
 
 class APIService{
-    var header:HTTPHeaders = ["X-Auth-Token": ""]
+    
     let baseURL = URL(string:"https://agora-rest-api.herokuapp.com")
     var apiKey:String?
 
-    
-    init(userXAUTH:String) {
-        header = [
-            //AUTH Key
-            "X-Auth-Token": "\(userXAUTH)"]
-    }
     
     public enum APIError:Error{
         case noResponse
@@ -151,6 +145,7 @@ class APIService{
     //MARK:- Authentication
     public func userLogin(username:String,password:String,endpoint:EndPoint,onFailure: @escaping ()->Void, onSuccess: @escaping ()->Void
     ){
+        print(username,password)
         let queryURL = baseURL!.appendingPathComponent(endpoint.path())
         let parameters: Parameters = [ "identifier" : username, "password" : password,"trustedDevice":"iOS" ]
        
@@ -167,10 +162,8 @@ class APIService{
                     let json = try? JSON(data:data)
                     print("Login Successful!")
                     
-                    
+                    UserDefaults.standard.set(json!["token"]["token"].stringValue, forKey: "userXAUTH")
                     self.writeToDatabase(json: json){
-                        
-                        UserDefaults.standard.set(Credentials.token, forKey: "userXAUTH")
                         // Success
                         onSuccess()
                     }
@@ -225,7 +218,7 @@ class APIService{
             let token = json!["token"].stringValue
             Credentials.token = token
             
-            self.header = ["X-Auth-Token":token]
+            
             
             UserDefaults.standard.set(json!["token"].stringValue, forKey: "userXAUTH")
             completion()
@@ -236,7 +229,8 @@ class APIService{
     
     
     //MARK: Data
-    public func getElection(endpoint: EndPoint,ID:String, completion: @escaping ()->Void) -> Void{
+    public func getElection(endpoint: EndPoint,ID:String,userXAuth:String, completion: @escaping ()->Void) -> Void{
+        var header:HTTPHeaders = ["X-Auth-Token": userXAuth]
         let queryURL = baseURL!.appendingPathComponent(endpoint.path())
         AF.request(queryURL,
                    method: .get,
@@ -244,7 +238,7 @@ class APIService{
                     guard let data = response.data else { return }
                     let json = try? JSON(data:data)
                     
-                    
+
                     if json!["elections"].arrayValue.isEmpty{
                         print("No Elections")
                         completion()
@@ -343,9 +337,9 @@ class APIService{
         complete()
       
     }
-    public func getUserInfo(completion:@escaping ()->Void){
+    public func getUserInfo(userXAuth:String,completion:@escaping ()->Void){
         let queryURL = baseURL!.appendingPathComponent(EndPoint.userGet.path())
-        
+        var header:HTTPHeaders = ["X-Auth-Token": userXAuth]
         AF.request(queryURL,method: .get,headers: header ).responseData{
             response in
             guard let data = response.data else {
@@ -363,14 +357,13 @@ class APIService{
     }
     
     //MARK: Update
-    public func updateUserPassword(newPassword:String,onSuccess:@escaping ()->Void){
+    public func updateUserPassword(newPassword:String,userXAuth:String,onSuccess:@escaping ()->Void){
         let queryURL = baseURL!.appendingPathComponent(EndPoint.userChangePassword.path())
-       guard let xAuth = UserDefaults.standard.string(forKey: "userXAUTH")
-        else{
-            print("Cannot get XAuth")
-            return
-        }
-        AF.request(queryURL,method: .post,parameters: ["password" : newPassword],encoding: JSONEncoding.default,headers: ["X-Auth-Token":xAuth]).responseData{ response in
+       var header:HTTPHeaders = ["X-Auth-Token": userXAuth]
+       
+        
+        
+        AF.request(queryURL,method: .post,parameters: ["password" : newPassword],encoding: JSONEncoding.default,headers: ["X-Auth-Token":userXAuth]).responseData{ response in
             
             guard let data = response.data else {
                 print("Password Change Failed!")

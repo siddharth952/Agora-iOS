@@ -13,12 +13,12 @@ import RealmSwift
 
 class DatabaseElectionManager:ObservableObject{
     
-    static var apiService = APIService(userXAUTH: Credentials.token)
+    static var apiService = APIService()
     
     
    // MARK: API
     static func getAllElections(complete: () -> Void) -> Void {
-        DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){}
+        DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: "", userXAuth: UserDefaults.standard.string(forKey: "userXAUTH")!){}
         complete()
     }
     
@@ -41,4 +41,22 @@ class DatabaseElectionManager:ObservableObject{
         }
         complete()
     }
+    
+
+    static func deleteAllUserDataFromDB(){
+           let config = Realm.Configuration(schemaVersion : 4)
+           do{
+               let realm = try Realm(configuration: config)
+               let user = realm.objects(DatabaseUser.self)
+             
+                   try! realm.write {
+                       realm.delete(user)
+                   }
+               
+           }catch{
+               print(error.localizedDescription)
+           }
+           
+       }
+    
 }

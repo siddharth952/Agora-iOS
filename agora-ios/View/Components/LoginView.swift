@@ -110,7 +110,9 @@ struct FirstPage: View{
         }.padding(.bottom)
             .alert(isPresented: $alert) {
                 Alert(title: Text("Error"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
-                
+        }
+        .onAppear(){
+            DatabaseElectionManager.deleteAllUserDataFromDB()
         }
         
     }
@@ -340,12 +342,12 @@ struct AuthenticateView:View {
                                          semaphore.signal()
                                      }
                                     _ = semaphore.wait(timeout: .distantFuture)
-                                     DatabaseElectionManager.apiService.getUserInfo(){
+                                    DatabaseElectionManager.apiService.getUserInfo(userXAuth: UserDefaults.standard.string(forKey: "userXAUTH")!){
                                          semaphore.signal()
                                      }
                                      
                                     _ = semaphore.wait(timeout: .distantFuture)
-                                    DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: ""){
+                                    DatabaseElectionManager.apiService.getElection(endpoint: .electionGetAll, ID: "", userXAuth: UserDefaults.standard.string(forKey: "userXAUTH")!){
                                         semaphore.signal()
                                     }
                                     _ = semaphore.wait(timeout: .distantFuture)
@@ -369,15 +371,10 @@ struct AuthenticateView:View {
                             self.activityShow = true
                             
                             // Login, get auth token and get elections
-                            DatabaseElectionManager.apiService.userLogin(username: self.email.lowercased(), password: self.pass, endpoint: .login, onFailure: {
+                            DatabaseElectionManager.apiService.userLogin(username: self.email, password: self.pass, endpoint: .login, onFailure: {
                                 self.activityShow = false
                                 self.alert = true
                             }){
-                                
-                                
-                                DatabaseElectionManager.apiService.header = [
-                                    //AUTH Key
-                                    "X-Auth-Token": "\(UserDefaults.standard.string(forKey:"userXAUTH"))"]
                                 
                                 self.activityShow = false
                                 
