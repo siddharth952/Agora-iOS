@@ -152,7 +152,7 @@ struct Mid_Elections: View{
                                     }else if(self.isStart == false){
                                         HStack{Image(systemName: "clock").padding()
                                         toggleButton(givenStateObject: $isStart, outputString: "Start")
-                                        Text(formatter1.string(from: startingDate))}
+                                        Text(formatter1.string(from: startingDate)).padding(.horizontal,10)}
                                     }
                                      
                                     
@@ -175,7 +175,7 @@ struct Mid_Elections: View{
                                     }else if(self.isEnd == false){
                                         HStack{Image(systemName: "clock").padding().rotationEffect(Angle(degrees: 180))
                                         toggleButton(givenStateObject: $isEnd, outputString: "End")
-                                        Text(formatter1.string(from: endingDate))}
+                                            Text(formatter1.string(from: endingDate)).padding(.horizontal,10)}
                                     }
                                         
                                      
@@ -210,7 +210,7 @@ struct Mid_Elections: View{
                             Divider().frame(minWidth: 0, maxWidth: 320, alignment: .center)
                             HStack {
                                 Image(systemName: "bolt").padding()
-                                // isAllDay checkbox
+                               
                                 Button(action: {self.isInvite.toggle()}){
                                     HStack{
                                         Text("Invite").foregroundColor(.primary)
@@ -224,7 +224,7 @@ struct Mid_Elections: View{
                             Divider().frame(minWidth: 0, maxWidth: 320, alignment: .center)
                             HStack {
                                 
-                                Image(systemName: "paintbrush").padding()
+                                Image(systemName: "wrench").padding()
                                 TextField("Election Type", text: $electionType).opacity(0.9)
                             }
                             
@@ -248,12 +248,14 @@ struct Mid_Elections: View{
                                     HStack{
                                         Text(candi).foregroundColor(.primary)
                                         Spacer()
-                                        Image(systemName: "trash")
+                                        Image(systemName: "trash").onTapGesture {
+                                            self.candidates.removeAll(where: { $0 == candi } )
+                                        }
                                     }.padding(.horizontal,15)
                                 }
                             
                             
-                            Button(action: {self.candidates.append(self.candidate)}){
+                            Button(action: {self.candidates.append(self.candidate);self.candidate = "";}){
                                 Text("Add Candidate").foregroundColor(.black).frame(width: UIScreen.main.bounds.width * 0.5,height: UIScreen.main.bounds.height * 0.054)
                             }.foregroundColor(.white)
                                 .background(Color.yellow)
@@ -311,7 +313,7 @@ struct AlgoCardView : View{
                     ForEach(votingAlgorithmsList,id: \.self) { value in
                         Text(value)
                         .foregroundColor(self.color)
-                        .padding(.top)
+                        .padding(.top,5)
                         .padding(.horizontal,20)
                    }
                 }.labelsHidden()
@@ -323,7 +325,7 @@ struct AlgoCardView : View{
                         .frame(width: UIScreen.main.bounds.width - 100)
                 }.background(Color.yellow)
                     .cornerRadius(8)
-                    .padding(.top,20)
+                    .padding(.top,25)
             }
             .padding(.vertical,25)
             .frame(width: UIScreen.main.bounds.width - 50)

@@ -392,19 +392,19 @@ class APIService{
         AF.request(queryURL,method: .post,parameters: election.toJSON().dictionaryObject,encoding: JSONEncoding.default,headers: ["X-Auth-Token":userXAuth]).responseData{ response in
             
             guard let data = response.data else {
-                print("Password Change Failed!")
+                print("Failed to fetch data!")
                 return
             }
             
             let json = try? JSON(data:data)
             if(json != nil){
-                print("Password Change Successful! : \(json!["message"])")
+                print("New election added successfully! : \(json!["message"])")
                 
                 // Success
                 onSuccess()
                 
             }else{
-                print("Password Change Failed!")
+                print("Failed to add new election!")
             }
             
         }
