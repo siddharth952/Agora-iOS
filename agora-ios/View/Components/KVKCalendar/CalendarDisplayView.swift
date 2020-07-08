@@ -15,7 +15,7 @@ struct CalendarDisplayView: UIViewRepresentable {
     @ObservedObject var databaseElectionEvents = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseElection.self))
     
     private var calendar: CalendarView = {
-        return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 600))
+        return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     }()
         
     // Once when it is ready to display the view
@@ -41,8 +41,6 @@ struct CalendarDisplayView: UIViewRepresentable {
     
     class Coordinator: NSObject, CalendarDataSource, CalendarDelegate {
         func eventsForCalendar() -> [Event] {
-            
-           //let models = databaseElectionEvents // Get events from Database or API
            var events = [Event]()
            
             for model in bindableDatabase.results {
@@ -63,26 +61,6 @@ struct CalendarDisplayView: UIViewRepresentable {
                events.append(event)
            }
            return events
-        }
-        
-//        func eventsForCalendar() -> [Event] {
-//            var event = Event()
-//            event.text = " Test Test Test Ls"
-//            event.backgroundColor = UIColor(displayP3Red: 0.4, green: 0.4, blue: 0.8, alpha: 0.5)
-//
-//            event.start = Date()
-//            event.end = Date(timeInterval: 9000, since: Date())
-//
-//            var event2 = Event()
-//            event2.text = " Test"
-//            event2.backgroundColor = UIColor(displayP3Red: 0.1, green: 0.4, blue: 0.8, alpha: 0.5)
-//
-//            event2.start = Date()
-//            event2.end = Date(timeInterval: 6000, since: Date())
-//            return [event,event2]
-//        }
-        func createEvents(completion: ([Event]) -> Void) {
-            
         }
         
         func willDisplayDate(_ date: Date?, events: [Event]) -> DateStyle? {
