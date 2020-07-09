@@ -15,7 +15,26 @@ struct CalendarDisplayView: UIViewRepresentable {
     @ObservedObject var databaseElectionEvents = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseElection.self))
     
     private var calendar: CalendarView = {
-        return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        
+        var style = Style()
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            style.month.isHiddenSeporator = true
+            style.timeline.widthTime = 40
+            style.timeline.offsetTimeX = 2
+            style.timeline.offsetLineLeft = 2
+        } else {
+            style.timeline.widthEventViewer = 500
+        }
+        style.timeline.startFromFirstEvent = false
+        style.timeline.offsetTimeY = 80
+        style.timeline.offsetEvent = 3
+        style.timeline.currentLineHourWidth = 40
+        style.allDay.isPinned = true
+        style.startWeekDay = .sunday
+        style.timeHourSystem = .twelveHour
+        
+        return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
+        
     }()
         
     // Once when it is ready to display the view
@@ -64,8 +83,15 @@ struct CalendarDisplayView: UIViewRepresentable {
         }
         
         func willDisplayDate(_ date: Date?, events: [Event]) -> DateStyle? {
-            return DateStyle(backgroundColor: UIColor(named: "Color2_2")!, textColor: .white, dotBackgroundColor: .purple)
+            // DateStyle
+            // - backgroundColor = cell background color
+            // - textColor = cell text color
+            // - dotBackgroundColor = selected date dot color
+            return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .green)
         }
+        
+    
+        
         
         private let view: CalendarDisplayView
         private let bindableDatabase:BindableResults<DatabaseElection>
