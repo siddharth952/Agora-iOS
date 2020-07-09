@@ -11,9 +11,9 @@ import KVKCalendar
 
 struct CalendarContentView: View {
     var body: some View {
-        NavigationView {
+       
             CalendarDisplayView()
-        }
+        
     }
 }
 

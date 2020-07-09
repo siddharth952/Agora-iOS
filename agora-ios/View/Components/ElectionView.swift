@@ -12,9 +12,9 @@ import SwiftUI
 
 struct ElectionView: View {
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             Top_ElectionView()
-           CardView()
+            CalendarContentView()
         }
     }
 }
