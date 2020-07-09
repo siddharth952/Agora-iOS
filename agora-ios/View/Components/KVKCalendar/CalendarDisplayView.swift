@@ -36,7 +36,7 @@ struct CalendarDisplayView: UIViewRepresentable {
         return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
         
     }()
-        
+    
     // Once when it is ready to display the view
     func makeUIView(context: UIViewRepresentableContext<CalendarDisplayView>) -> CalendarView {
         calendar.dataSource = context.coordinator
@@ -60,26 +60,26 @@ struct CalendarDisplayView: UIViewRepresentable {
     
     class Coordinator: NSObject, CalendarDataSource, CalendarDelegate {
         func eventsForCalendar() -> [Event] {
-           var events = [Event]()
-           
+            var events = [Event]()
+            
             for model in bindableDatabase.results {
-               var event = Event()
+                var event = Event()
                 event.id = RandomNumberGenerator.self
-               event.start = model.start // start date event
-               event.end = model.end // end date event
+                event.start = model.start // start date event
+                event.end = model.end // end date event
                 event.color = nil
                 event.isAllDay = model.isAllDay
-               event.isContainsFile = false
-           
-               // Add text event (title, info, location, time)
-               if model.isAllDay {
-                   event.text = "\(model.title)"
-               } else {
-                event.text = "\(model.start) - \(model.end)\n\(model.title)"
-               }
-               events.append(event)
-           }
-           return events
+                event.isContainsFile = false
+                
+                // Add text event (title, info, location, time)
+                if model.isAllDay {
+                    event.text = "\(model.title)"
+                } else {
+                    event.text = "\(model.start) - \(model.end)\n\(model.title)"
+                }
+                events.append(event)
+            }
+            return events
         }
         
         func willDisplayDate(_ date: Date?, events: [Event]) -> DateStyle? {
@@ -90,7 +90,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .green)
         }
         
-    
+        
         
         
         private let view: CalendarDisplayView
