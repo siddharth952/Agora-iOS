@@ -16,7 +16,7 @@ struct CreateElection: View {
             VStack{
                 Mid_Elections().navigationBarTitle("New Election",displayMode: .inline)
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 
@@ -66,7 +66,7 @@ struct Mid_Elections: View{
                                     
                                 }, label: { Text("Save").font(.callout).foregroundColor(.white)})
                                 
-                        }.background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 7 , alignment: .center).edgesIgnoringSafeArea(.top))
+                        }.background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 7 , alignment: .center))
                         Text("Add Elections")
                                                .foregroundColor(.white)
                                                .fontWeight(.regular)
@@ -332,7 +332,7 @@ struct AlgoCardView : View{
             .background(Color.white)
             .cornerRadius(10)
         }
-        .background(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all))
+        .background(Color.black.opacity(0.4))
     }
 }
 

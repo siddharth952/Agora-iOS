@@ -29,8 +29,8 @@ struct DashboardView: View {
 // MARK: Top:-
 struct Top_Dashboard: View {
     
-      @ObservedObject var userResults = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseUser.self))
-    
+    @ObservedObject var userResults = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseUser.self))
+    @State var showCreateElection:Bool = false
     var body : some View{
         
         VStack(spacing:0){
@@ -44,17 +44,16 @@ struct Top_Dashboard: View {
                 
                 Spacer()
                 
-                Button(action: {}, label: { Image(systemName: "plus").resizable().frame(width: 32, height: 32,alignment: .topTrailing).foregroundColor(.white).offset(x:-20,y:-20).onTapGesture {
-                    //perform some tasks if needed before opening Destination view
-                    print("New Election Tapped")
-                    }})
+                NavigationLink(destination: CreateElection(),isActive: $showCreateElection) {
+                    Button(action: {self.showCreateElection.toggle()}, label: { Image(systemName: "plus").resizable().frame(width: 32, height: 32,alignment: .topTrailing).foregroundColor(.white).offset(x:-20,y:-20)})
+                }
                 
             }.padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(ZStack {
                     LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: 150)
                     Image("Mountains").offset(y:-10)
                 })
-        }.edgesIgnoringSafeArea(.top)
+        }
         
     }
 }

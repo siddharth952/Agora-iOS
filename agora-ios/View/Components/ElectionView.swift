@@ -51,7 +51,7 @@ struct Top_ElectionView: View {
           
             }
             
-        }.edgesIgnoringSafeArea(.top)
+        }
         
     }
 }
