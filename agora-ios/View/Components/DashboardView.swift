@@ -49,7 +49,7 @@ struct Top_Dashboard: View {
                     .opacity(0.8)
                     .font(.largeTitle)
                     .padding(.top,10)
-                    .padding(.bottom,60)
+                    .padding(.bottom,30)
                     .offset(x:UIScreen.main.bounds.width / 3 )
                 
                 Spacer()
@@ -89,8 +89,8 @@ struct Mid_Dashboard: View{
    
     
     var body: some View {
-        VStack {
-            SearchBar(text:$inputSearch).frame(width:UIScreen.main.bounds.width - 60,height:40)
+        VStack(spacing:0) {
+            SearchBar(text:$inputSearch).frame(width:UIScreen.main.bounds.width - 60)
             Rectangle().frame(width: 350, height: 5, alignment: .center).foregroundColor(Color(.gray)).opacity(0.7)
             ScrollView.init(.vertical, showsIndicators: false) {
                 StaticCard(headerText: "Total Elections", numberElections:$electionTotalCount , myColor: "_Purple")

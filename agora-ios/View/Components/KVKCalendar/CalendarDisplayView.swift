@@ -26,7 +26,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             style.timeline.widthTime = 40
             style.timeline.offsetTimeX = 2
             style.timeline.offsetLineLeft = 2
-            style.timeline.eventCornersRadius = CGSize(width: 20, height: 20)
+            style.timeline.eventCornersRadius = CGSize(width: 8, height: 8)
             style.timeline.startFromFirstEvent = true
         } else {
             style.timeline.widthEventViewer = 500
@@ -83,7 +83,7 @@ struct CalendarDisplayView: UIViewRepresentable {
                 event.id = index
                 event.start = model.start // start date event
                 event.end = model.end // end date event
-                event.color = EventColor(UIColor.cyan)
+                event.color = EventColor(UIColor.init(named: "Color1") ?? UIColor.blue)
                 event.isAllDay = model.isAllDay
                 event.isContainsFile = false
                 event.textForMonth = model.title
@@ -102,7 +102,7 @@ struct CalendarDisplayView: UIViewRepresentable {
         
         func formatter(date: String) -> Date {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
             return formatter.date(from: date) ?? Date()
         }
         
@@ -117,7 +117,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             // - backgroundColor = cell background color
             // - textColor = cell text color
             // - dotBackgroundColor = selected date dot color
-            return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .systemRed)
+            return DateStyle(backgroundColor: UIColor.init(named: "Color2_2") ?? .clear, textColor: .white, dotBackgroundColor: .systemRed)
         }
         
         func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
