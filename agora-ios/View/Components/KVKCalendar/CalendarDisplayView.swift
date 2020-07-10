@@ -14,6 +14,10 @@ import RealmSwift
 struct CalendarDisplayView: UIViewRepresentable {
     @ObservedObject var databaseElectionEvents = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseElection.self))
     
+    var selectDate: Date?
+    public init(selectDate: Date?) {
+        self.selectDate = selectDate
+    }
     private var calendar: CalendarView = {
         
         var style = Style()
@@ -63,17 +67,26 @@ struct CalendarDisplayView: UIViewRepresentable {
     // Bridge between the data inside SwiftUI and the external framework
     
     class Coordinator: NSObject, CalendarDataSource, CalendarDelegate {
+        
+        var selectDate: Date?
+        private var events = [Event]()
+
         func eventsForCalendar() -> [Event] {
+            return events
+            }
+        
+        func loadEvents(completion: ([Event]) -> Void) {
             var events = [Event]()
             
-            for model in bindableDatabase.results {
+            for (index, model) in bindableDatabase.results.enumerated() {
                 var event = Event()
-                event.id = RandomNumberGenerator.self
+                event.id = index
                 event.start = model.start // start date event
                 event.end = model.end // end date event
-                event.color = nil
+                event.color = EventColor(UIColor.cyan)
                 event.isAllDay = model.isAllDay
                 event.isContainsFile = false
+                event.textForMonth = model.title
                 
                 // Add text event (title, info, location, time)
                 if model.isAllDay {
@@ -82,8 +95,21 @@ struct CalendarDisplayView: UIViewRepresentable {
                     event.text = "\(model.start) - \(model.end)\n\(model.title)"
                 }
                 events.append(event)
+                
             }
-            return events
+            completion(events)
+        }
+        
+        func formatter(date: String) -> Date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            return formatter.date(from: date) ?? Date()
+        }
+        
+        func timeFormatter(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            return formatter.string(from: date)
         }
         
         func willDisplayDate(_ date: Date?, events: [Event]) -> DateStyle? {
@@ -91,7 +117,15 @@ struct CalendarDisplayView: UIViewRepresentable {
             // - backgroundColor = cell background color
             // - textColor = cell text color
             // - dotBackgroundColor = selected date dot color
-            return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .green)
+            return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .systemRed)
+        }
+        
+        func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
+            selectDate = date ?? Date()
+            loadEvents { (events) in
+                self.events = events
+                self.view.calendar.reloadData()
+            }
         }
         
         
@@ -103,6 +137,11 @@ struct CalendarDisplayView: UIViewRepresentable {
             self.view = view
             self.bindableDatabase = databaseResult
             super.init()
+            
+            loadEvents { (events) in
+                self.events = events
+                self.view.calendar.reloadData()
+            }
         }
         
         
@@ -111,6 +150,6 @@ struct CalendarDisplayView: UIViewRepresentable {
 
 struct CalendarDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarDisplayView()
+        CalendarDisplayView(selectDate: Date())
     }
 }

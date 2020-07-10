@@ -18,7 +18,7 @@ struct CalendarContentView: View {
                 Text("Week").tag(1)
                 Text("Month").tag(2)
             }.pickerStyle(SegmentedPickerStyle()).labelsHidden()
-            CalendarDisplayView()
+            CalendarDisplayView(selectDate: Date())
         }
          
     }
