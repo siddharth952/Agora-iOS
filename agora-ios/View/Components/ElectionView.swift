@@ -13,7 +13,7 @@ import SwiftUI
 struct ElectionView: View {
     var body: some View {
         VStack(spacing:0) {
-            Top_ElectionView()
+            //Top_ElectionView()
             CalendarContentView()
         }
     }

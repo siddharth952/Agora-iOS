@@ -18,9 +18,9 @@ struct LoginView: View {
         return VStack{
             if status == true{
                 
-                NavigationView {
+               
                     Navigation()
-                }
+                
             }
             else{
                 NavigationView{

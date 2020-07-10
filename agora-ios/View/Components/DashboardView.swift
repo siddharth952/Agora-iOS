@@ -39,19 +39,19 @@ struct Top_Dashboard: View {
                     .opacity(0.8)
                     .font(.largeTitle)
                     .padding(.top,10)
-                    .padding(.bottom,10)
-                    .offset(x:UIScreen.main.bounds.width / 3 - 10)
+                    .padding(.bottom,60)
+                    .offset(x:UIScreen.main.bounds.width / 3 )
                 
                 Spacer()
                 
-                NavigationLink(destination: CreateElection(),isActive: $showCreateElection) {
+                NavigationLink(destination: CreateElection(showCreateElectionView: self.$showCreateElection),isActive: $showCreateElection) {
                     Button(action: {self.showCreateElection.toggle()}, label: { Image(systemName: "plus").resizable().frame(width: 32, height: 32,alignment: .topTrailing).foregroundColor(.white).offset(x:-20,y:-20)})
-                }
+                    }.navigationBarTitle("").navigationBarHidden(true).navigationBarBackButtonHidden(true)
                 
             }.padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(ZStack {
-                    LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: 150)
-                    Image("Mountains").offset(y:-10)
+                    LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 5).edgesIgnoringSafeArea(.top)
+                    Image("Mountains").offset(y:-15)
                 })
         }
         

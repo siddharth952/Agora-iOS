@@ -22,6 +22,8 @@ struct CalendarDisplayView: UIViewRepresentable {
             style.timeline.widthTime = 40
             style.timeline.offsetTimeX = 2
             style.timeline.offsetLineLeft = 2
+            style.timeline.eventCornersRadius = CGSize(width: 20, height: 20)
+            style.timeline.startFromFirstEvent = true
         } else {
             style.timeline.widthEventViewer = 500
         }
@@ -48,6 +50,8 @@ struct CalendarDisplayView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<CalendarDisplayView>) {
         context.coordinator.eventsForCalendar()
+        
+        
     }
     
     // Tell SwiftUI about the Coordinator class
@@ -89,7 +93,6 @@ struct CalendarDisplayView: UIViewRepresentable {
             // - dotBackgroundColor = selected date dot color
             return DateStyle(backgroundColor: .clear, textColor: .black, dotBackgroundColor: .green)
         }
-        
         
         
         

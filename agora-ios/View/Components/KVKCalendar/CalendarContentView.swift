@@ -10,8 +10,17 @@ import SwiftUI
 import KVKCalendar
 
 struct CalendarContentView: View {
+    @State var userSelection:Int = 0
     var body: some View {
+        VStack{
+            Picker("", selection: $userSelection) {
+                Text("Day").tag(0)
+                Text("Week").tag(1)
+                Text("Month").tag(2)
+            }.pickerStyle(SegmentedPickerStyle()).labelsHidden()
             CalendarDisplayView()
+        }
+         
     }
 }
 

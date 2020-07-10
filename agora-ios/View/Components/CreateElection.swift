@@ -10,11 +10,12 @@ import SwiftUI
 import RealmSwift
 
 struct CreateElection: View {
+     @Binding var showCreateElectionView:Bool
     var body: some View {
         ZStack {
            
             VStack{
-                Mid_Elections().navigationBarTitle("New Election",displayMode: .inline)
+                Mid_Elections(showCreateElectionView: self.$showCreateElectionView).navigationBarTitle("New Election",displayMode: .inline)
             }
         }.navigationBarHidden(true)
     }
@@ -44,7 +45,8 @@ struct Mid_Elections: View{
     
     //Algorithm
     @State var selectedAlgo:String = "Select Algorithm"
-   
+    // Navigation
+    @Binding var showCreateElectionView:Bool
     var body: some View {
         // For Date formatting
            let formatter1 = DateFormatter()
@@ -57,6 +59,10 @@ struct Mid_Elections: View{
                         
                         HStack(spacing:10) {
                                 
+                                Button(action: { self.showCreateElectionView.toggle() }
+                                ){
+                                    Image(systemName: "chevron.left").font(.title)
+                                }.foregroundColor(.white)
                                Spacer()
                                     
                                
@@ -340,7 +346,7 @@ struct AlgoCardView : View{
 
 struct CreateElection_Previews: PreviewProvider {
     static var previews: some View {
-        CreateElection()
+        CreateElection(showCreateElectionView: .constant(false))
     }
 }
 
