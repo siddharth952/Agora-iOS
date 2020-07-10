@@ -23,8 +23,12 @@ struct DashboardView: View {
                 Spacer()
                 Mid_Dashboard()
             }
-        }.background(TabBarAccessor { tabbar in 
-            self.tabBar = tabbar
+        }.background(TabBarAccessor { tabbar in
+    
+            DispatchQueue.main.async {
+                self.tabBar = tabbar
+            }
+
         })
         
     }
