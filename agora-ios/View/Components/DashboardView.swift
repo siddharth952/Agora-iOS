@@ -12,16 +12,20 @@ import RealmSwift
 struct DashboardView: View {
     
     @State var activeLink:Int = 0
+    @State private var tabBar: UITabBar! = nil
     
     var body: some View {
         
         
-        VStack {
-            Top_Dashboard()
-            Spacer()
-            Mid_Dashboard().offset(y:-3)
-            
-        }
+        return NavigationView {
+            VStack {
+                Top_Dashboard(tabBar: $tabBar)
+                Spacer()
+                Mid_Dashboard()
+            }
+        }.background(TabBarAccessor { tabbar in 
+            self.tabBar = tabbar
+        })
         
     }
 }
@@ -31,6 +35,8 @@ struct Top_Dashboard: View {
     
     @ObservedObject var userResults = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseUser.self))
     @State var showCreateElection:Bool = false
+    @Binding var tabBar:UITabBar!
+    
     var body : some View{
         
         VStack(spacing:0){
@@ -44,7 +50,10 @@ struct Top_Dashboard: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: CreateElection(showCreateElectionView: self.$showCreateElection),isActive: $showCreateElection) {
+                NavigationLink(destination: CreateElection(showCreateElectionView: self.$showCreateElection)
+                    .onAppear { self.tabBar.isHidden = true }
+                    .onDisappear { self.tabBar.isHidden = false }
+                ,isActive: $showCreateElection) {
                     Button(action: {self.showCreateElection.toggle()}, label: { Image(systemName: "plus").resizable().frame(width: 32, height: 32,alignment: .topTrailing).foregroundColor(.white).offset(x:-20,y:-20)})
                     }.navigationBarTitle("").navigationBarHidden(true).navigationBarBackButtonHidden(true)
                 

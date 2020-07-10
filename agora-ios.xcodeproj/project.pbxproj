@@ -40,6 +40,7 @@
 		E19012F9243075D100741EF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E19012F8243075D100741EF9 /* Alamofire */; };
 		E191557A2498CD7C00AC78D9 /* UserLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19155792498CD7C00AC78D9 /* UserLoginManager.swift */; };
 		E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1926F43248CEA7800CC08A3 /* Credentials.swift */; };
+		E192DB2224B846FA00D1E5EC /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192DB2124B846FA00D1E5EC /* TabBarAccessor.swift */; };
 		E1984D7524A761B60099F970 /* Election.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1984D7424A761B60099F970 /* Election.swift */; };
 		E1989DAB248B5C52004ACBE7 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */; };
 		E1989DAE248B5D16004ACBE7 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */; };
@@ -123,6 +124,7 @@
 		E19012F22430729100741EF9 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E19155792498CD7C00AC78D9 /* UserLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginManager.swift; sourceTree = "<group>"; };
 		E1926F43248CEA7800CC08A3 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		E192DB2124B846FA00D1E5EC /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
 		E1984D7424A761B60099F970 /* Election.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Election.swift; sourceTree = "<group>"; };
 		E1989DAA248B5C52004ACBE7 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		E1989DAD248B5D16004ACBE7 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EB7A64248FCC0C008726D8 /* DateFormat.swift */,
+				E192DB2124B846FA00D1E5EC /* TabBarAccessor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */,
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
+				E192DB2224B846FA00D1E5EC /* TabBarAccessor.swift in Sources */,
 				E181E71D2484F7BD00875E3F /* AppleIdButton.swift in Sources */,
 				E15FA5E02423400300E9BF58 /* ElectionView.swift in Sources */,
 				E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */,
