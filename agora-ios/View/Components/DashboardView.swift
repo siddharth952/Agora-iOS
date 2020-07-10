@@ -20,9 +20,9 @@ struct DashboardView: View {
         return NavigationView {
             VStack {
                 Top_Dashboard(tabBar: $tabBar)
-                Spacer()
+                Spacer(minLength: 10)
                 Mid_Dashboard()
-            }
+            }.edgesIgnoringSafeArea(.top)
         }.background(TabBarAccessor { tabbar in
     
             DispatchQueue.main.async {
@@ -63,9 +63,9 @@ struct Top_Dashboard: View {
                 
             }.padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(ZStack {
-                    LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 5).edgesIgnoringSafeArea(.top)
+                    LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 5)
                     Image("Mountains").offset(y:-15)
-                })
+                }.edgesIgnoringSafeArea(.top))
         }
         
     }
