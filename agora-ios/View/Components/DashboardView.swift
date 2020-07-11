@@ -56,7 +56,7 @@ struct Top_Dashboard: View {
                 
                 NavigationLink(destination: CreateElection(showCreateElectionView: self.$showCreateElection)
                     .onAppear { self.tabBar.isHidden = true }
-                    .onDisappear { self.tabBar.isHidden = false; self.userResults.publishDatabaseLoad()}
+                    .onDisappear { self.tabBar.isHidden = false}
                 ,isActive: $showCreateElection) {
                     Button(action: {self.showCreateElection.toggle()}, label: { Image(systemName: "plus").resizable().frame(width: 32, height: 32,alignment: .topTrailing).foregroundColor(.white).offset(x:-20,y:-20)})
                     }.navigationBarTitle("").navigationBarHidden(true).navigationBarBackButtonHidden(true)
@@ -91,23 +91,26 @@ struct Mid_Dashboard: View{
         VStack(spacing:0) {
             SearchBar(text:$inputSearch).frame(width:UIScreen.main.bounds.width - 60)
             Rectangle().frame(width: 350, height: 5, alignment: .center).foregroundColor(Color(.gray)).opacity(0.7)
-           // ScrollView.init(.vertical, showsIndicators: false) {
-                if showShimmer{
-                    ForEach(0 ..< 4) { number in
-                        CardShimmer(height: UIScreen.main.bounds.height / 6 - 10)
+            ScrollView.init(.vertical, showsIndicators: false) {
+                
+                VStack{
+                    
+                    if showShimmer{
+                        ForEach(0 ..< 4) { number in
+                            CardShimmer(height: UIScreen.main.bounds.height / 6 - 10)
+                        }
+                    }else{
+                        StaticCard(headerText: "Total Elections", numberElections:$electionTotalCount , myColor: "_Purple").transition(.move(edge: .leading))
+                        StaticCard(headerText: "Active Elections", numberElections: $electionActiveCount,myColor: "Blue").transition(.move(edge: .trailing))
+                        StaticCard(headerText: "Finished Elections", numberElections: $electionFinishedCount,myColor: "Pink").transition(.move(edge: .leading))
+                        StaticCard(headerText: "Pending Elections", numberElections: $electionPendingCount,myColor: "Red").transition(.move(edge: .trailing))
                     }
-                }else{
-                    StaticCard(headerText: "Total Elections", numberElections:$electionTotalCount , myColor: "_Purple").transition(.move(edge: .leading))
-                    StaticCard(headerText: "Active Elections", numberElections: $electionActiveCount,myColor: "Blue").transition(.move(edge: .trailing))
-                    StaticCard(headerText: "Finished Elections", numberElections: $electionFinishedCount,myColor: "Pink").transition(.move(edge: .leading))
-                    StaticCard(headerText: "Pending Elections", numberElections: $electionPendingCount,myColor: "Red").transition(.move(edge: .trailing))
                 }
+                
 
-          //  }
+            }
             
         }.onAppear(){
-            self.loadElectionData()
-        }.onReceive(electionsResults.objectWillChange) {_ in
             self.loadElectionData()
         }
         
