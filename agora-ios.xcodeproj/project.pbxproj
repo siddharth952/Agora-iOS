@@ -50,6 +50,7 @@
 		E1AA779A2498A5E90067A231 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E1AA77992498A5E90067A231 /* FacebookLogin */; };
 		E1AA779C2498AF980067A231 /* FacebookButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA779B2498AF980067A231 /* FacebookButton.swift */; };
 		E1B4FCCF2492774700907329 /* DatabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B4FCCE2492774700907329 /* DatabaseUser.swift */; };
+		E1D3B7BA24BA14810077D82C /* CardShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B7B924BA14810077D82C /* CardShimmer.swift */; };
 		E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E98279242935FD007C461C /* ElectionEditView.swift */; };
 		E1EB7A65248FCC0C008726D8 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EB7A64248FCC0C008726D8 /* DateFormat.swift */; };
 		E1FAEDF2248E4CEB003DED66 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FAEDF1248E4CEB003DED66 /* ActivityIndicator.swift */; };
@@ -132,6 +133,7 @@
 		E19FF6B624852E5F0087A238 /* CornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornersShape.swift; sourceTree = "<group>"; };
 		E1AA779B2498AF980067A231 /* FacebookButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookButton.swift; sourceTree = "<group>"; };
 		E1B4FCCE2492774700907329 /* DatabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUser.swift; sourceTree = "<group>"; };
+		E1D3B7B924BA14810077D82C /* CardShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShimmer.swift; sourceTree = "<group>"; };
 		E1DD630E2428AC7E00DFCA04 /* RealmSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = RealmSwift.framework.dSYM; sourceTree = "<group>"; };
 		E1DD630F2428AC7E00DFCA04 /* Realm.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Realm.framework.dSYM; sourceTree = "<group>"; };
 		E1DD63102428AC7E00DFCA04 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				E16F276A2486366800F754B0 /* UserTextField.swift */,
 				E1FAEDF1248E4CEB003DED66 /* ActivityIndicator.swift */,
 				E1AA779B2498AF980067A231 /* FacebookButton.swift */,
+				E1D3B7B924BA14810077D82C /* CardShimmer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				E1EB7A65248FCC0C008726D8 /* DateFormat.swift in Sources */,
 				E191557A2498CD7C00AC78D9 /* UserLoginManager.swift in Sources */,
 				E16F276B2486366800F754B0 /* UserTextField.swift in Sources */,
+				E1D3B7BA24BA14810077D82C /* CardShimmer.swift in Sources */,
 				E1926F44248CEA7800CC08A3 /* Credentials.swift in Sources */,
 				E164BCE024236FD7002E8B23 /* Navigation.swift in Sources */,
 				E13215D82424760200B40532 /* CreateElection.swift in Sources */,

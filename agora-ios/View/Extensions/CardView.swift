@@ -28,6 +28,9 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
         }
     }
     
+    func publishDatabaseLoad() {
+        objectWillChange.send()
+    }
     deinit {
         token.invalidate()
     }
