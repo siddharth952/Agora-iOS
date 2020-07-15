@@ -72,7 +72,7 @@ struct Mid_Elections: View{
                                     
                                 }, label: { Text("Save").font(.callout).foregroundColor(.white)})
                                 
-                        }.background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 7 , alignment: .center))
+                        }.background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 7 , alignment: .center).edgesIgnoringSafeArea(.top))
                         Text("Add Elections")
                                                .foregroundColor(.white)
                                                .fontWeight(.regular)
