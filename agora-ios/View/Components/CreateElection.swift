@@ -42,6 +42,7 @@ struct Mid_Elections: View{
     @State var showBallotOptions:Bool = false
     @State var showAlgoCard:Bool = false
     @State var candidate:String = ""
+    @State var activityShow:Bool = false
     
     //Algorithm
     @State var selectedAlgo:String = "Select Algorithm"
@@ -66,7 +67,7 @@ struct Mid_Elections: View{
                                     
                                
                                 Button(action: {
-                                    
+                                    self.activityShow.toggle()
                                     // Upload to server
                                     let ballot = Ballot(voteBallot: "0", hash: "0")
                                     let election = Election(name: self.name, description: self.description, electionType: self.electionType, candidates: self.candidates, ballotVisibility: self.ballotVisibility, voterListVisibility: self.voterListVisibility, isInvite: self.isInvite, startingDate: self.startingDate.asString(), endingDate: self.endingDate.asString(), isRealTime: self.isRealTime, votingAlgo: self.selectedAlgo, noVacancies: self.noVacancies, ballot: [ballot])
@@ -75,7 +76,8 @@ struct Mid_Elections: View{
                                     print(election.startingDate)
                                     DatabaseElectionManager.apiService.createNewElection(for: election, userXAuth: UserDefaults.standard.string(forKey: "userXAUTH")!) {
 
-                                        //TODO: Update Indicator state
+                                        //Update Indicator state
+                                        self.activityShow = false
 
                                         //TODO: Show Success overlay and dismiss after 2 secs
 
@@ -290,6 +292,10 @@ struct Mid_Elections: View{
             
             if self.showAlgoCard{
                 AlgoCardView(showCard: $showAlgoCard, selectedAlgo: $selectedAlgo)
+            }
+            
+            if self.activityShow == true{
+                ActivityIndicator()
             }
         }
 
