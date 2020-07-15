@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Election{
+struct Election: Encodable{
 
      let name:String
      let description:String
@@ -18,12 +18,14 @@ struct Election{
      let ballotVisibility:String
      let voterListVisibility:Bool
      let isInvite:Bool
-     let startingDate = Date()
-     let endingDate = Date()
+     let startingDate:String
+     let endingDate:String
      let isRealTime:Bool
      let votingAlgo:String
      let noVacancies:Int
      let ballot:[Ballot]
+    
+    
     
     func toJSON() -> JSON {
         return [
@@ -33,8 +35,8 @@ struct Election{
             "candidates": candidates as Any,
             "ballotVisibility": ballotVisibility as Any,
             "voterListVisibility": voterListVisibility as Any,
-            "startingDate": startingDate.asString as Any,
-            "endingDate": endingDate.asString as Any,
+            "startingDate": startingDate as Any,
+            "endingDate": endingDate as Any,
             "isInvite": isInvite as Any,
             "isRealTime": isRealTime as Any,
             "votingAlgo": votingAlgo as Any,
