@@ -13,7 +13,6 @@ struct EventUpdateOverlay: View {
     
     var body: some View {
         return ZStack{
-            Color.black.opacity(0.08).edgesIgnoringSafeArea(.all)
             VStack{
                 Spacer()
                 HStack {
@@ -21,7 +20,7 @@ struct EventUpdateOverlay: View {
                     Text("New Event added to your elections\nsuccessfully.").foregroundColor(Color("Color2")).fontWeight(.semibold)
                     Spacer()
                 }.padding(30).background(Color.white)
-                }
+            }.edgesIgnoringSafeArea(.bottom)
         }
     }
 }
