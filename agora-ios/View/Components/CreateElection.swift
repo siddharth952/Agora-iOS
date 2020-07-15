@@ -53,6 +53,7 @@ struct Mid_Elections: View{
         formatter1.dateStyle = .medium
         
         return ZStack {
+            ZStack {
                 VStack {
                     ZStack {
                         HStack(spacing:10) {
@@ -67,13 +68,17 @@ struct Mid_Elections: View{
                                 Button(action: {
                                     
                                     // Upload to server
-                                    let election = Election(name: self.name, description: self.description, electionType: self.electionType, candidates: self.candidates, ballotVisibility: self.ballotVisibility, voterListVisibility: self.voterListVisibility, isInvite: self.isInvite, isRealTime: self.isRealTime, votingAlgo: self.selectedAlgo, noVacancies: self.noVacancies, ballot: [Ballot(voteBallot: "", hash: "")])
+                                    let ballot = Ballot(voteBallot: "0", hash: "0")
+                                    let election = Election(name: self.name, description: self.description, electionType: self.electionType, candidates: self.candidates, ballotVisibility: self.ballotVisibility, voterListVisibility: self.voterListVisibility, isInvite: self.isInvite, startingDate: self.startingDate.asString(), endingDate: self.endingDate.asString(), isRealTime: self.isRealTime, votingAlgo: self.selectedAlgo, noVacancies: self.noVacancies, ballot: [ballot])
+                                    
+                                    
+                                    print(election.startingDate)
                                     DatabaseElectionManager.apiService.createNewElection(for: election, userXAuth: UserDefaults.standard.string(forKey: "userXAUTH")!) {
-                                        
+
                                         //TODO: Update Indicator state
-                                        
+
                                         //TODO: Show Success overlay and dismiss after 2 secs
-                                        
+
                                         // Sent
                                         print("Sent to Server successfully!")
                                     }
@@ -286,8 +291,8 @@ struct Mid_Elections: View{
             if self.showAlgoCard{
                 AlgoCardView(showCard: $showAlgoCard, selectedAlgo: $selectedAlgo)
             }
-        
-        
+        }
+
     }
     
 }
