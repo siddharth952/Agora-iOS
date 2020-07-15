@@ -20,7 +20,6 @@ struct Election{
      let isInvite:Bool
      let startingDate = Date()
      let endingDate = Date()
-     let realtimeResult:Bool
      let isRealTime:Bool
      let votingAlgo:String
      let noVacancies:Int
