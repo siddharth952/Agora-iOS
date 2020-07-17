@@ -264,6 +264,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E17DB76024C1D170005F398B /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		E18F186C2420F770002FED89 = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +330,7 @@
 		E18F18992420F774002FED89 /* agora-iosUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E17DB76024C1D170005F398B /* Scripts */,
 				E18F189A2420F774002FED89 /* agora_iosUITests.swift */,
 				E18F189C2420F774002FED89 /* Info.plist */,
 			);
