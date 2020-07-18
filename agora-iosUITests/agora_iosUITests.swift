@@ -30,48 +30,68 @@ class agora_iosUITests: XCTestCase {
            let app = XCUIApplication()
            app.launch()
         
+        // Logout if already logged in
+        if app.tabBars.buttons["Settings"].exists {
+            app.tabBars.buttons["Settings"].tap()
+            app.buttons["Logout"].tap()
+            app.alerts["Log out?"].scrollViews.otherElements.buttons["Yes"].tap()
+        }
+
            app.buttons["Login"].tap()
            let loginViewElementsQuery = app.scrollViews.otherElements.containing(.image, identifier:"login_tree")
            loginViewElementsQuery.children(matching: .textField).element.tap()
-           loginViewElementsQuery.children(matching: .textField).element.typeText("invalidUser\n")
-           loginViewElementsQuery.children(matching: .secureTextField).element.tap()
-           loginViewElementsQuery.children(matching: .secureTextField).element.typeText("invalidUser\n")
+           let usernameField = loginViewElementsQuery.children(matching: .textField).element
+           let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
+           
+           usernameField.tap()
+           sleep(1)
+           usernameField.typeText("invalidUser\n")
+           passwordField.tap()
+           sleep(1)
+           passwordField.typeText("invalid\n")
            app.scrollViews.otherElements.buttons["Sign In"].tap()
     
-           // Wait for existence of alert
-           let label = app.alerts["Incorrect username and / or password."]
-           let exists = NSPredicate(format: "exists == 1")
-
-           expectation(for: exists, evaluatedWith: label, handler: nil)
-           waitForExpectations(timeout: 5, handler: nil)
+        // Wait for existence of alert
+        XCTAssertTrue(app.alerts["Incorrect username and / or password."].waitForExistence(timeout: 10))
        }
 
     func test_valid_login_with_username() {
         let app = XCUIApplication()
         app.launch()
         
+        // Logout if already logged in
+        if app.tabBars.buttons["Settings"].exists {
+            app.tabBars.buttons["Settings"].tap()
+            app.buttons["Logout"].tap()
+            app.alerts["Log out?"].scrollViews.otherElements.buttons["Yes"].tap()
+        }
+        
         sleep(1)
         app.buttons["Login"].tap()
         
         let loginViewElementsQuery = app.scrollViews.otherElements.containing(.image, identifier:"login_tree")
         loginViewElementsQuery.children(matching: .textField).element.tap()
-        loginViewElementsQuery.children(matching: .textField).element.typeText("test952\n")
+        let usernameField = loginViewElementsQuery.children(matching: .textField).element
+        let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
         
-        loginViewElementsQuery.children(matching: .secureTextField).element.tap()
+        usernameField.doubleTap()
         sleep(1)
-        loginViewElementsQuery.children(matching: .secureTextField).element.typeText("test952\n")
+        usernameField.typeText("test952\n")
+        passwordField.doubleTap()
+        sleep(1)
+        passwordField.typeText("test952\n")
+        
+       
         app.scrollViews.otherElements.buttons["Sign In"].tap()
 
         // Wait for existence of dashboard view
-        let label = app.staticTexts["     Hello,\n" + "test952"]
-        let exists = NSPredicate(format: "exists == 1")
-
-        expectation(for: exists, evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 15, handler: nil)
+        XCTAssertTrue(app.staticTexts["     Hello,\n" + "test952"].waitForExistence(timeout: 15))
         
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Logout"].tap()
-        app.alerts["Log out?"].scrollViews.otherElements.buttons["Yes"].tap()
+        // Wait for existence of alert
+        XCTAssertTrue(app.alerts["Log out?"].waitForExistence(timeout: 15))
+        
 
     }
     
@@ -81,39 +101,55 @@ class agora_iosUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
+        // Logout if already logged in
+        if app.tabBars.buttons["Settings"].exists {
+            app.tabBars.buttons["Settings"].tap()
+            app.buttons["Logout"].tap()
+            app.alerts["Log out?"].scrollViews.otherElements.buttons["Yes"].tap()
+           
+        }
+        
         sleep(1)
         app.buttons["Login"].tap()
         
         let loginViewElementsQuery = app.scrollViews.otherElements.containing(.image, identifier:"login_tree")
         loginViewElementsQuery.children(matching: .textField).element.tap()
-        loginViewElementsQuery.children(matching: .textField).element.typeText("test952\n")
+        let usernameField = loginViewElementsQuery.children(matching: .textField).element
+        let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
         
-        loginViewElementsQuery.children(matching: .secureTextField).element.tap()
+        usernameField.tap()
         sleep(1)
-        loginViewElementsQuery.children(matching: .secureTextField).element.typeText("test952\n")
+        usernameField.typeText("test952\n")
+        passwordField.tap()
+        sleep(1)
+        passwordField.typeText("test952\n")
+
         app.scrollViews.otherElements.buttons["Sign In"].tap()
-        
+
         // Wait for existence of dashboard view
-        let label = app.staticTexts["     Hello,\n" + "test952"]
-        let exists = NSPredicate(format: "exists == 1")
-        
-        sleep(2)
+        XCTAssertTrue(app.staticTexts["     Hello,\n" + "test952"].waitForExistence(timeout: 15))
         
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Logout"].tap()
+        // Wait for existence of alert
+        XCTAssertTrue(app.alerts["Log out?"].waitForExistence(timeout: 15))
         app.alerts["Log out?"].scrollViews.otherElements.buttons["Yes"].tap()
+        
+    
+        
+        
     }
     
     func test_add_new_election_for_user(){
         
     }
 
-    func test_launch_performance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func test_launch_performance() {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }
