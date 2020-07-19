@@ -43,10 +43,10 @@ class agora_iosUITests: XCTestCase {
            let usernameField = loginViewElementsQuery.children(matching: .textField).element
            let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
            
-           usernameField.tap()
+           usernameField.doubleTap()
            sleep(1)
            usernameField.typeText("invalidUser\n")
-           passwordField.tap()
+           passwordField.doubleTap()
            sleep(1)
            passwordField.typeText("invalid\n")
            app.scrollViews.otherElements.buttons["Sign In"].tap()
@@ -75,17 +75,29 @@ class agora_iosUITests: XCTestCase {
         let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
         
         usernameField.doubleTap()
+        
         sleep(1)
-        usernameField.typeText("test952\n")
+        app/*@START_MENU_TOKEN@*/.buttons["shift"]/*[[".keyboards.buttons[\"shift\"]",".buttons[\"shift\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.keys["t"].tap()
+        app.keys["e"].tap()
+        app.keys["s"].tap()
+        app.keys["t"].tap()
+        app.keys["more"].tap()
+        app.keys["1"].tap()
+
         passwordField.doubleTap()
         sleep(1)
-        passwordField.typeText("test952\n")
-        
+        app.keys["t"].tap()
+        app.keys["e"].tap()
+        app.keys["s"].tap()
+        app.keys["t"].tap()
+        app.keys["more"].tap()
+        app.keys["1"].tap()
        
         app.scrollViews.otherElements.buttons["Sign In"].tap()
 
         // Wait for existence of dashboard view
-        XCTAssertTrue(app.staticTexts["     Hello,\n" + "test952"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts["Total Elections"].waitForExistence(timeout: 15))
         
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Logout"].tap()
@@ -117,17 +129,29 @@ class agora_iosUITests: XCTestCase {
         let usernameField = loginViewElementsQuery.children(matching: .textField).element
         let passwordField = loginViewElementsQuery.children(matching: .secureTextField).element
         
-        usernameField.tap()
+        usernameField.doubleTap()
         sleep(1)
-        usernameField.typeText("test952\n")
-        passwordField.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["shift"]/*[[".keyboards.buttons[\"shift\"]",".buttons[\"shift\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.keys["t"].tap()
+        app.keys["e"].tap()
+        app.keys["s"].tap()
+        app.keys["t"].tap()
+        app.keys["more"].tap()
+        app.keys["1"].tap()
+
+        passwordField.doubleTap()
         sleep(1)
-        passwordField.typeText("test952\n")
+        app.keys["t"].tap()
+        app.keys["e"].tap()
+        app.keys["s"].tap()
+        app.keys["t"].tap()
+        app.keys["more"].tap()
+        app.keys["1"].tap()
 
         app.scrollViews.otherElements.buttons["Sign In"].tap()
 
         // Wait for existence of dashboard view
-        XCTAssertTrue(app.staticTexts["     Hello,\n" + "test952"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts["Total Elections"].waitForExistence(timeout: 15))
         
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Logout"].tap()
