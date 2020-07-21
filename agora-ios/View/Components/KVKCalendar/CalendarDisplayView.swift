@@ -42,6 +42,7 @@ struct CalendarDisplayView: UIViewRepresentable {
         style.headerScroll.colorDate = .white
         style.headerScroll.isHiddenTitleDate = true
         style.headerScroll.isHiddenCornerTitleDate = false
+        style.headerScroll.colorWeekendDate = .systemYellow
         
         
         return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
