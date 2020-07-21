@@ -38,6 +38,11 @@ struct CalendarDisplayView: UIViewRepresentable {
         style.allDay.isPinned = true
         style.startWeekDay = .sunday
         style.timeHourSystem = .twelveHour
+        style.headerScroll.colorSelectDate = .white
+        style.headerScroll.colorDate = .white
+        style.headerScroll.isHiddenTitleDate = true
+        style.headerScroll.isHiddenCornerTitleDate = false
+        
         
         return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
         
@@ -83,7 +88,7 @@ struct CalendarDisplayView: UIViewRepresentable {
                 event.id = index
                 event.start = model.start // start date event
                 event.end = model.end // end date event
-                event.color = EventColor(UIColor.init(named: "Color1") ?? UIColor.blue)
+                event.color = EventColor(UIColor.init(named: "Color1") ?? UIColor.blue,alpha: 0.95)
                 event.isAllDay = model.isAllDay
                 event.isContainsFile = false
                 event.textForMonth = model.title
@@ -117,7 +122,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             // - backgroundColor = cell background color
             // - textColor = cell text color
             // - dotBackgroundColor = selected date dot color
-            return DateStyle(backgroundColor: UIColor.init(named: "Color2_2") ?? .clear, textColor: .white, dotBackgroundColor: .systemRed)
+            return DateStyle(backgroundColor: .clear, textColor: .white, dotBackgroundColor: UIColor(named: "Red"))
         }
         
         func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
