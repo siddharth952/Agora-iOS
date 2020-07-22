@@ -13,10 +13,14 @@ import RealmSwift
 
 struct CalendarDisplayView: UIViewRepresentable {
     @ObservedObject var databaseElectionEvents = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseElection.self))
+    @ObservedObject var calendarManager: CalendarManager
+    @Binding var isCallingFunc: Bool
     
     var selectDate: Date?
-    public init(selectDate: Date?) {
+    public init(selectDate: Date?, isCallingFunc:Binding<Bool>, calendarManager:CalendarManager ) {
         self.selectDate = selectDate
+        self._isCallingFunc = isCallingFunc
+        self.calendarManager = calendarManager
     }
     private var calendar: CalendarView = {
         
@@ -44,6 +48,7 @@ struct CalendarDisplayView: UIViewRepresentable {
         style.headerScroll.isHiddenCornerTitleDate = false
         style.headerScroll.colorWeekendDate = .systemYellow
         
+        style.month.isHiddenTitleDate = true
         
         return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
         
@@ -60,13 +65,16 @@ struct CalendarDisplayView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<CalendarDisplayView>) {
         context.coordinator.eventsForCalendar()
-        
+        if isCallingFunc {
+            context.coordinator.handleCalendarTypeSelection(uiView)
+            isCallingFunc = false
+        }
         
     }
     
     // Tell SwiftUI about the Coordinator class
     func makeCoordinator() -> CalendarDisplayView.Coordinator {
-        Coordinator(self, databaseElectionEvents)
+        Coordinator(self, databaseElectionEvents,calendarManager)
     }
     
     // MARK: Calendar DataSource and Delegate
@@ -74,6 +82,7 @@ struct CalendarDisplayView: UIViewRepresentable {
     
     class Coordinator: NSObject, CalendarDataSource, CalendarDelegate {
         
+        var calendarManager: CalendarManager
         var selectDate: Date?
         private var events = [Event]()
 
@@ -123,7 +132,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             // - backgroundColor = cell background color
             // - textColor = cell text color
             // - dotBackgroundColor = selected date dot color
-            return DateStyle(backgroundColor: .clear, textColor: .white, dotBackgroundColor: UIColor(named: "Red"))
+            return DateStyle(backgroundColor: .clear, textColor: calendarManager.currentTypeUserSelection == 2 ? .black : .white, dotBackgroundColor: UIColor(named: "Red"))
         }
         
         func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
@@ -135,13 +144,13 @@ struct CalendarDisplayView: UIViewRepresentable {
         }
         
         
-        
         private let view: CalendarDisplayView
         private let bindableDatabase:BindableResults<DatabaseElection>
         
-        init(_ view: CalendarDisplayView,_ databaseResult:BindableResults<DatabaseElection>) {
+        init(_ view: CalendarDisplayView,_ databaseResult:BindableResults<DatabaseElection>, _ calendarManager:CalendarManager ) {
             self.view = view
             self.bindableDatabase = databaseResult
+            self.calendarManager = calendarManager
             super.init()
             
             loadEvents { (events) in
@@ -151,11 +160,18 @@ struct CalendarDisplayView: UIViewRepresentable {
         }
         
         
+        func handleCalendarTypeSelection(_ uiView: CalendarView){
+            let type = CalendarType.allCases[calendarManager.currentTypeUserSelection]
+            uiView.set(type: type, date: selectDate ?? Date())
+            uiView.reloadData()
+        }
+        
+        
     }
 }
 
 struct CalendarDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarDisplayView(selectDate: Date())
+        CalendarDisplayView(selectDate: Date(), isCallingFunc: .constant(false), calendarManager: CalendarManager())
     }
 }

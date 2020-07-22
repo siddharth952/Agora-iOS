@@ -22,6 +22,7 @@
 		E16BE01C24C6ECF40018CB0F /* KVKCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16E5E46246EEDB00040A9CF /* KVKCalendar.framework */; };
 		E16BE01D24C6ECF40018CB0F /* KVKCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E16E5E46246EEDB00040A9CF /* KVKCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E16F276B2486366800F754B0 /* UserTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F276A2486366800F754B0 /* UserTextField.swift */; };
+		E1708E8E24C769BF006BEB34 /* ElectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1708E8D24C769BF006BEB34 /* ElectionDetailView.swift */; };
 		E17B642B2427163400475579 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B642A2427163400475579 /* Settings.swift */; };
 		E17B642D2427189B00475579 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B642C2427189B00475579 /* LoginView.swift */; };
 		E181E71A2484E27100875E3F /* TopCircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E181E7192484E27100875E3F /* TopCircleShape.swift */; };
@@ -106,6 +107,7 @@
 		E16E5E46246EEDB00040A9CF /* KVKCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KVKCalendar.framework; path = Carthage/Build/iOS/KVKCalendar.framework; sourceTree = "<group>"; };
 		E16E5E47246EEDB00040A9CF /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		E16F276A2486366800F754B0 /* UserTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextField.swift; sourceTree = "<group>"; };
+		E1708E8D24C769BF006BEB34 /* ElectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionDetailView.swift; sourceTree = "<group>"; };
 		E17B642A2427163400475579 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E17B642C2427189B00475579 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E181E7192484E27100875E3F /* TopCircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCircleShape.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		E15FA5D024233E3E00E9BF58 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E1708E8C24C769A3006BEB34 /* ElectionDetail */,
 				E117947B24B02CAE0093C86F /* KVKCalendar */,
 				E17B642C2427189B00475579 /* LoginView.swift */,
 				E15FA5DD24233FF300E9BF58 /* DashboardView.swift */,
@@ -262,6 +265,14 @@
 				E1E98279242935FD007C461C /* ElectionEditView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E1708E8C24C769A3006BEB34 /* ElectionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E1708E8D24C769BF006BEB34 /* ElectionDetailView.swift */,
+			);
+			path = ElectionDetail;
 			sourceTree = "<group>";
 		};
 		E18F186C2420F770002FED89 = {
@@ -582,6 +593,7 @@
 				E15FA5D224233E7200E9BF58 /* ButtonModifier.swift in Sources */,
 				E19FF6B724852E5F0087A238 /* CornersShape.swift in Sources */,
 				E1E9827A242935FD007C461C /* ElectionEditView.swift in Sources */,
+				E1708E8E24C769BF006BEB34 /* ElectionDetailView.swift in Sources */,
 				E17B642B2427163400475579 /* Settings.swift in Sources */,
 				E192DB2224B846FA00D1E5EC /* TabBarAccessor.swift in Sources */,
 				E181E71D2484F7BD00875E3F /* AppleIdButton.swift in Sources */,
