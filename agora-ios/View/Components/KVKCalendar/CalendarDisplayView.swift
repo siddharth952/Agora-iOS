@@ -31,11 +31,10 @@ struct CalendarDisplayView: UIViewRepresentable {
             style.timeline.offsetTimeX = 2
             style.timeline.offsetLineLeft = 2
             style.timeline.eventCornersRadius = CGSize(width: 8, height: 8)
-            style.timeline.startFromFirstEvent = true
         } else {
             style.timeline.widthEventViewer = 500
         }
-        style.timeline.startFromFirstEvent = false
+        style.timeline.startFromFirstEvent = true
         style.timeline.offsetTimeY = 80
         style.timeline.offsetEvent = 3
         style.timeline.currentLineHourWidth = 40
