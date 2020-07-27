@@ -28,8 +28,8 @@ struct CalendarDisplayView: UIViewRepresentable {
         if UIDevice.current.userInterfaceIdiom == .phone {
             style.month.isHiddenSeporator = true
             style.timeline.widthTime = 40
-            style.timeline.offsetTimeX = 2
-            style.timeline.offsetLineLeft = 2
+            style.timeline.offsetTimeX = 6
+            style.timeline.offsetLineLeft = 7
             style.timeline.eventCornersRadius = CGSize(width: 8, height: 8)
         } else {
             style.timeline.widthEventViewer = 500
@@ -43,9 +43,11 @@ struct CalendarDisplayView: UIViewRepresentable {
         style.timeHourSystem = .twelveHour
         style.headerScroll.colorSelectDate = .white
         style.headerScroll.colorDate = .white
-        style.headerScroll.isHiddenTitleDate = true
+        style.headerScroll.isHiddenTitleDate = false
         style.headerScroll.isHiddenCornerTitleDate = false
         style.headerScroll.colorWeekendDate = .systemYellow
+        style.headerScroll.colorBackground = .clear
+        style.headerScroll.colorTitleDate = .white
         
         style.month.isHiddenTitleDate = true
         
@@ -106,7 +108,7 @@ struct CalendarDisplayView: UIViewRepresentable {
                 if model.isAllDay {
                     event.text = "\(model.title)"
                 } else {
-                    event.text = "\(model.start) - \(model.end)\n\(model.title)"
+                    event.text = "\(timeFormatter(date: model.start)) - \(timeFormatter(date: model.end))\n\(model.title)"
                 }
                 events.append(event)
                 
@@ -163,6 +165,14 @@ struct CalendarDisplayView: UIViewRepresentable {
             let type = CalendarType.allCases[calendarManager.currentTypeUserSelection]
             uiView.set(type: type, date: selectDate ?? Date())
             uiView.reloadData()
+        }
+        
+        func updateYear(_ date:Date?){
+            
+            let toYearFormatter = DateFormatter()
+            toYearFormatter.dateFormat = "YYYY"
+            let name = toYearFormatter.string(from: date!)
+            calendarManager.currentYear = name
         }
         
         
