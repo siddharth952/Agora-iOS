@@ -11,10 +11,11 @@ import SwiftUI
 struct ElectionDetailsView: View {
     @State var showResultsView:Bool
     var electionName:String = "Melbourne March Election"
+    var electionAlgo:String = ""
     
     var body: some View {
         
-        return VStack {
+        return VStack(alignment: .leading) {
             ZStack {
                 HStack(spacing:10) {
                     
@@ -30,17 +31,26 @@ struct ElectionDetailsView: View {
                     .font(.title)
             }.padding()
             
-            Button(action: {}){
-                Text("Show Election Results").frame(width: UIScreen.main.bounds.width / 1.4 ,height: 50).foregroundColor(.white)
-                
-            }.foregroundColor(.black)
-                .background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top))
-                .cornerRadius(20)
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
+            HStack {
+                Spacer()
+                Button(action: {}){
+                    Text("Show Election Results").frame(width: UIScreen.main.bounds.width / 1.4 ,height: 50).foregroundColor(.white)
+                    
+                }.foregroundColor(.black)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top))
+                    .cornerRadius(20)
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                Spacer()
+            }
             
             Divider()
+            
+            VStack {
+                Text("Election Name: " + electionName)
+                Text("Algorithm: " + electionAlgo)
+            }.padding()
             
             Spacer()
             
