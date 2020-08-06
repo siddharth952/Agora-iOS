@@ -96,7 +96,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             
             for (index, model) in bindableDatabase.results.enumerated() {
                 var event = Event()
-                event.id = index
+                event.id = model._id // election id
                 event.start = model.start // start date event
                 event.end = model.end // end date event
                 event.color = EventColor(UIColor.init(named: "Color1") ?? UIColor.blue,alpha: 0.95)
@@ -141,6 +141,22 @@ struct CalendarDisplayView: UIViewRepresentable {
             loadEvents { (events) in
                 self.events = events
                 self.view.calendar.reloadData()
+            }
+        }
+        
+        
+        func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
+            print(type, event)
+            switch type {
+            case .day:
+                calendarManager.election.removeAll()
+                print(event.id)
+                // Get election details from db and navigate to details view
+                calendarManager.getParticularElectionFromDb(id: event.id as! String)
+                calendarManager.eventUpdateOverlayShow = true
+                
+            default:
+                break
             }
         }
         

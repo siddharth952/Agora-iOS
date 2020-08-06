@@ -260,6 +260,9 @@ class APIService{
                             databaseElection.electionType = i.1["electionType"].stringValue
                             databaseElection.creatorName = i.1["creatorName"].stringValue
                             databaseElection.creatorEmail = i.1["creatorEmail"].stringValue
+//                            databaseElection.electionDescription = i.1["description"].stringValue
+//                            // Array containing the non-nil candidates
+//                            databaseElection.candidates = i.1["candidates"].arrayValue.compactMap({$0.string})
                             
                             databaseElection.start = i.1["start"].dateValue!
                             
