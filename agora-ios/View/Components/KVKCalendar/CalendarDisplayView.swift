@@ -31,10 +31,11 @@ struct CalendarDisplayView: UIViewRepresentable {
             style.timeline.offsetTimeX = 6
             style.timeline.offsetLineLeft = 7
             style.timeline.eventCornersRadius = CGSize(width: 8, height: 8)
+            style.timeline.startFromFirstEvent = true
         } else {
             style.timeline.widthEventViewer = 500
         }
-        style.timeline.startFromFirstEvent = true
+        
         style.timeline.offsetTimeY = 80
         style.timeline.offsetEvent = 3
         style.timeline.currentLineHourWidth = 40
@@ -140,6 +141,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             selectDate = date ?? Date()
             loadEvents { (events) in
                 self.events = events
+                updateYear(date)
                 self.view.calendar.reloadData()
             }
         }
@@ -180,6 +182,13 @@ struct CalendarDisplayView: UIViewRepresentable {
         func handleCalendarTypeSelection(_ uiView: CalendarView){
             let type = CalendarType.allCases[calendarManager.currentTypeUserSelection]
             uiView.set(type: type, date: selectDate ?? Date())
+            // If month calendar view then resize view
+            if calendarManager.currentTypeUserSelection == 2 {
+                uiView.reloadFrame(CGRect(x: 0, y: 50 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height ))
+            } else {
+                uiView.reloadFrame(CGRect(x: 0, y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height ))
+            }
+            
             uiView.reloadData()
         }
         

@@ -14,7 +14,9 @@ struct ElectionDetailsView: View {
     
     var body: some View {
         
-        return VStack() {
+        return ZStack{
+            Color.white
+            VStack() {
             ZStack {
                 HStack(spacing:10) {
                     
@@ -42,7 +44,7 @@ struct ElectionDetailsView: View {
             
             HStack {
                 Spacer()
-                Button(action: {}){
+                Button(action: {print(self.calendarManager.election[0])}){
                     Text("Remind Me").frame(width: UIScreen.main.bounds.width / 1.4 ,height: 50).foregroundColor(.white)
                     
                 }.customButton(width: UIScreen.main.bounds.width / 1.4)
@@ -52,8 +54,8 @@ struct ElectionDetailsView: View {
             
             Divider()
             
-            VStack(alignment:.leading) {
-                Group{
+            ScrollView() {
+                
                     Text("Election Name: " + calendarManager.election[0].name)
                     .fontWeight(.medium)
                         .font(.footnote)
@@ -75,13 +77,15 @@ struct ElectionDetailsView: View {
                     .font(.footnote)
                     .padding(.top,10)
                     .padding(.bottom,10)
-                    Text("Ballots: " + "\(calendarManager.election[0].ballot.count)")
+                Text("Election Type: " + "\(calendarManager.election[0].electionType)")
                     .fontWeight(.medium)
                     .font(.footnote)
                     .padding(.top,10)
                     .padding(.bottom,10)
+                List(calendarManager.election[0].candidates,id: \.self){ candidate in
+                    Text(candidate)
+                    }.frame(width: UIScreen.main.bounds.width * 0.9, height: 400, alignment: .center).cornerRadius(10)
                    
-                }
             }.padding(.top, 10)
             .padding(.leading,10)
             .frame(width:UIScreen.main.bounds.width - 20)
@@ -91,7 +95,7 @@ struct ElectionDetailsView: View {
             
             Spacer()
             
-        }
+            }}
     }
 }
 

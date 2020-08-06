@@ -260,9 +260,10 @@ class APIService{
                             databaseElection.electionType = i.1["electionType"].stringValue
                             databaseElection.creatorName = i.1["creatorName"].stringValue
                             databaseElection.creatorEmail = i.1["creatorEmail"].stringValue
-//                            databaseElection.electionDescription = i.1["description"].stringValue
-//                            // Array containing the non-nil candidates
-//                            databaseElection.candidates = i.1["candidates"].arrayValue.compactMap({$0.string})
+                            databaseElection.electionDescription = i.1["description"].stringValue
+                            // Array containing the non-nil candidates
+                            let candidatesArray = i.1["candidates"].arrayValue.compactMap({$0.string})
+                            databaseElection.candidates.append(objectsIn: candidatesArray)
                             
                             databaseElection.start = i.1["start"].dateValue!
                             
@@ -284,7 +285,6 @@ class APIService{
                             
                             
                             databaseElection.eleColor = ["Blue","Red","Pink"].randomElement()!
-                            
                             try realm.write({
                                 realm.add(databaseElection,update: .modified)
                                 print("Election details added successfully")
