@@ -27,8 +27,8 @@ class CalendarManager: ObservableObject{
           
             print(results)
             
-            let election = Election(name: results[0].title, description: results[0].description, electionType: results[0].electionType, candidates: ["Sam,Siddharth,Ryan,Ram"], ballotVisibility: results[0].ballotVisibility, voterListVisibility: results[0].voterListVisibility, isInvite: results[0].isInvite, startingDate: results[0].start.asString(), endingDate: results[0].end.asString(), isRealTime: results[0].realtimeResult, votingAlgo: results[0].votingAlgo, noVacancies: 2, ballot: [Ballot(voteBallot: "", hash: "")])
-            
+            let election = Election(name: results[0].title, description: results[0].electionDescription, electionType: results[0].electionType, candidates: Array(results[0].candidates), ballotVisibility: results[0].ballotVisibility, voterListVisibility: results[0].voterListVisibility, isInvite: results[0].isInvite, startingDate: results[0].start.asString(), endingDate: results[0].end.asString(), isRealTime: results[0].realtimeResult, votingAlgo: results[0].votingAlgo, noVacancies: 2, ballot: [Ballot(voteBallot: "", hash: "")])
+            print("Candidates of selected election ",results[0].candidates)
             self.election.append(election)
             
         }catch{
@@ -92,7 +92,6 @@ struct CalendarContentView: View {
                     Spacer()
                 }
                 .background(ZStack{LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.top).frame(width: UIScreen.main.bounds.width * 1.5, height: UIScreen.main.bounds.height / 3.5, alignment: .center);Image("Mountains").resizable().scaledToFill()})
-                
                 
                 CalendarDisplayView(selectDate: Date(), isCallingFunc: $willCallFunc, calendarManager: calendarManager)
             }
