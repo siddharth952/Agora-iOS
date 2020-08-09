@@ -27,7 +27,7 @@ class CalendarManager: ObservableObject{
           
             print(results)
             
-            let election = Election(name: results[0].title, description: results[0].electionDescription, electionType: results[0].electionType, candidates: Array(results[0].candidates), ballotVisibility: results[0].ballotVisibility, voterListVisibility: results[0].voterListVisibility, isInvite: results[0].isInvite, startingDate: results[0].start.asString(), endingDate: results[0].end.asString(), isRealTime: results[0].realtimeResult, votingAlgo: results[0].votingAlgo, noVacancies: 2, ballot: [Ballot(voteBallot: "", hash: "")])
+            let election = Election(name: results[0].title, description: results[0].electionDescription, electionType: results[0].electionType, candidates: Array(results[0].candidates), ballotVisibility: results[0].ballotVisibility, voterListVisibility: results[0].voterListVisibility, isInvite: results[0].isInvite, startingDate: results[0].start, endingDate: results[0].end, isRealTime: results[0].realtimeResult, votingAlgo: results[0].votingAlgo, noVacancies: 2, ballot: [Ballot(voteBallot: "", hash: "")])
             print("Candidates of selected election ",results[0].candidates)
             self.election.append(election)
             
@@ -99,7 +99,6 @@ struct CalendarContentView: View {
             if calendarManager.eventUpdateOverlayShow == true{
               
                 Color.black.opacity(0.18).edgesIgnoringSafeArea(.all)
-
                 ElectionDetailsView(calendarManager: calendarManager)
             }
 
