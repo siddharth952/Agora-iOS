@@ -112,7 +112,7 @@ struct ElectionDetailsView: View {
             
             // A day before starting date of election
             var futureDate = election.startingDate
-            futureDate.changeMinutes(by: -2)
+            futureDate.changeDays(by: -1)
             
             var dateComponents = DateComponents()
 
@@ -123,9 +123,7 @@ struct ElectionDetailsView: View {
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
-            // Testing
-//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//
+            
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
             center.add(request)
