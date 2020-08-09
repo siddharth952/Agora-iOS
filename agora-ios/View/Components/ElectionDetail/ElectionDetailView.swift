@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ElectionDetailsView: View {
     @ObservedObject var calendarManager:CalendarManager
@@ -14,8 +15,7 @@ struct ElectionDetailsView: View {
     
     var body: some View {
         
-        return ZStack{
-            Color.white
+        return
             VStack() {
             ZStack {
                 HStack(spacing:10) {
@@ -44,7 +44,7 @@ struct ElectionDetailsView: View {
             
             HStack {
                 Spacer()
-                Button(action: {print(self.calendarManager.election[0])}){
+                Button(action: {self.addNotification(for: self.calendarManager.election[0])}){
                     Text("Remind Me").frame(width: UIScreen.main.bounds.width / 1.4 ,height: 50).foregroundColor(.white)
                     
                 }.customButton(width: UIScreen.main.bounds.width / 1.4)
@@ -54,48 +54,114 @@ struct ElectionDetailsView: View {
             
             Divider()
             
-            ScrollView() {
+                ScrollView(.vertical, showsIndicators: false) {
                 
                     Text("Election Name: " + calendarManager.election[0].name)
                     .fontWeight(.medium)
-                        .font(.footnote)
                     .padding(.top,10)
                     .padding(.bottom,10)
                     Text("Election description: " + calendarManager.election[0].description)
                     .fontWeight(.medium)
-                        .font(.footnote)
+                       
                         .multilineTextAlignment(.leading)
                     .padding(.top,10)
                     .padding(.bottom,10)
                     Text("Algorithm: " + calendarManager.election[0].votingAlgo)
                     .fontWeight(.medium)
-                    .font(.footnote)
+                   
                     .padding(.top,10)
                     .padding(.bottom,10)
-                    Text("Start : " + calendarManager.election[0].startingDate + "\nEnd : "+calendarManager.election[0].endingDate)
+                    Text("Start : " + dateToReadableStringDateFormatter(date: calendarManager.election[0].startingDate) + "\nEnd : " + dateToReadableStringDateFormatter(date: calendarManager.election[0].endingDate))
                     .fontWeight(.medium)
-                    .font(.footnote)
+                    
                     .padding(.top,10)
                     .padding(.bottom,10)
                 Text("Election Type: " + "\(calendarManager.election[0].electionType)")
                     .fontWeight(.medium)
-                    .font(.footnote)
                     .padding(.top,10)
                     .padding(.bottom,10)
+                Text("Candidates").fontWeight(.semibold)
+                .font(.footnote)
+                .padding(.top,10)
+                .padding(.bottom,10)
                 List(calendarManager.election[0].candidates,id: \.self){ candidate in
-                    Text(candidate)
+                    CandidateBadge(candidateName: candidate)
                     }.frame(width: UIScreen.main.bounds.width * 0.9, height: 400, alignment: .center).cornerRadius(10)
+                    
                    
             }.padding(.top, 10)
             .padding(.leading,10)
             .frame(width:UIScreen.main.bounds.width - 20)
             .background(Color(.systemGray6))
             .cornerRadius(10)
-            .animation(.spring())
-            
+        
             Spacer()
             
-            }}
+            }
+    }
+    
+    
+    func addNotification(for election: Election) {
+        let center = UNUserNotificationCenter.current()
+        
+        let addRequest = {
+            let content = UNMutableNotificationContent()
+            content.title = election.name
+            content.subtitle = dateToReadableStringDateFormatter(date: election.startingDate)
+            content.sound = UNNotificationSound.default
+            
+            // A day before starting date of election
+            var futureDate = election.startingDate
+            futureDate.changeMinutes(by: -2)
+            
+            var dateComponents = DateComponents()
+
+            dateComponents.day = futureDate.day
+            dateComponents.hour = futureDate.hour
+            dateComponents.year = futureDate.year
+            dateComponents.minute = futureDate.minute
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            
+            // Testing
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            center.add(request)
+            
+        }
+        center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .authorized {
+                addRequest()
+            } else {
+                center.requestAuthorization(options: [.alert, .badge,.sound]) { (success, error) in
+                    if success {
+                        addRequest()
+                    } else {
+                        print("requestAuthorization Failed!")
+                    }
+                }
+            }
+        }
+        
+    }
+    
+}
+
+struct CandidateBadge: View {
+    var candidateName:String = ""
+    var body: some View {
+        VStack(spacing:0){
+                HStack(){
+                    Circle()
+                        .stroke(LinearGradient(gradient: Gradient(colors: [Color("Color2"), Color("Color1")]), startPoint: .top, endPoint: .bottom), lineWidth: 4)
+                        .frame(width:64,height:64)
+                        .background(Text("\(candidateName.substring(to: candidateName.index(candidateName.startIndex, offsetBy: 2)))").font(.title).fontWeight(.bold))
+                    Text(candidateName)
+                    Spacer()
+                }.padding()
+        }
     }
 }
 

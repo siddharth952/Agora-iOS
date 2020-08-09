@@ -393,6 +393,14 @@ class APIService{
         let queryURL = baseURL!.appendingPathComponent(EndPoint.electionCreate.path())
         
         let jsonEncoder = JSONEncoder()
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
+        
+        jsonEncoder.dateEncodingStrategy = .formatted(formatter)
+        
+        
         let jsonData = try! jsonEncoder.encode(election)
         let json = try? JSON(data: jsonData)
         guard let jsonDict = json?.dictionaryObject else {
