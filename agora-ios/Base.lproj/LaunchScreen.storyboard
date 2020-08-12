@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,27 +10,29 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w3Q-Y9-GJA"/>
+                        <viewControllerLayoutGuide type="bottom" id="DWX-D3-TQ2"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="yH3-Ch-aXY">
-                                <rect key="frame" x="-34" y="0.0" width="487" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="yH3-Ch-aXY">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle2" translatesAutoresizingMaskIntoConstraints="NO" id="uPh-YZ-tnM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle2" translatesAutoresizingMaskIntoConstraints="NO" id="uPh-YZ-tnM">
+                                <rect key="frame" x="0.0" y="-44" width="768" height="1102"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RectangleLS" translatesAutoresizingMaskIntoConstraints="NO" id="hpa-s2-eoP">
-                                <rect key="frame" x="140" y="384" width="135" height="128"/>
+                                <rect key="frame" x="316.5" y="448" width="135" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="l7w-X0-MjF"/>
                                     <constraint firstAttribute="height" constant="128" id="nCq-so-eO0"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Cdm-JN-tRq">
-                                <rect key="frame" x="156" y="398" width="102" height="88"/>
+                                <rect key="frame" x="333" y="462" width="102" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="13o-sB-0VF"/>
                                     <constraint firstAttribute="width" constant="102" id="kti-70-Oex"/>
@@ -40,23 +41,30 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hpa-s2-eoP" secondAttribute="trailing" constant="139" id="57T-96-ehq"/>
-                            <constraint firstItem="Cdm-JN-tRq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="354" id="Orh-BU-uYE"/>
-                            <constraint firstItem="hpa-s2-eoP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="340" id="jem-rT-RM0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cdm-JN-tRq" secondAttribute="trailing" constant="156" id="tKo-1Z-rFT"/>
+                            <constraint firstItem="hpa-s2-eoP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9Lw-Na-9IM"/>
+                            <constraint firstItem="Cdm-JN-tRq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-6" id="DwV-Ge-lOL"/>
+                            <constraint firstItem="hpa-s2-eoP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="H89-b5-4pf"/>
+                            <constraint firstItem="uPh-YZ-tnM" firstAttribute="top" secondItem="w3Q-Y9-GJA" secondAttribute="bottom" constant="-44" id="HCe-Fm-hQO"/>
+                            <constraint firstItem="yH3-Ch-aXY" firstAttribute="top" secondItem="w3Q-Y9-GJA" secondAttribute="bottom" id="Llj-aB-s4F"/>
+                            <constraint firstItem="DWX-D3-TQ2" firstAttribute="top" secondItem="yH3-Ch-aXY" secondAttribute="bottom" id="Vwl-qt-8zb"/>
+                            <constraint firstItem="Cdm-JN-tRq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Z9g-O6-S4x"/>
+                            <constraint firstItem="DWX-D3-TQ2" firstAttribute="top" secondItem="uPh-YZ-tnM" secondAttribute="bottom" constant="-34" id="i3Z-cL-vWs"/>
+                            <constraint firstItem="yH3-Ch-aXY" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="kTP-m2-2S2"/>
+                            <constraint firstAttribute="trailing" secondItem="uPh-YZ-tnM" secondAttribute="trailing" id="mQf-Ou-K3e"/>
+                            <constraint firstAttribute="trailing" secondItem="yH3-Ch-aXY" secondAttribute="trailing" id="r2D-X7-cTc"/>
+                            <constraint firstItem="uPh-YZ-tnM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="v20-H3-T0O"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="50.724637681159422" y="375"/>
         </scene>
     </scenes>
     <resources>
         <image name="Bitmap" width="375" height="812"/>
         <image name="Rectangle2" width="375" height="812"/>
         <image name="RectangleLS" width="139" height="139"/>
-        <image name="logo" width="79" height="83"/>
+        <image name="logo" width="39.5" height="41.5"/>
     </resources>
 </document>
