@@ -47,7 +47,7 @@ struct LoginView: View {
                             .padding(.bottom,UIApplication.shared.windows.first?.safeAreaInsets.bottom)
                         
                     }
-                }.accessibility(identifier: "baseLoginView")
+                }.accessibility(identifier: "baseLoginView").navigationViewStyle(StackNavigationViewStyle())
             }
         }.onAppear{
             
