@@ -15,7 +15,7 @@ struct Navigation: View {
                 Image(systemName: "house").resizable()
                 Text("Home")
                 }).tag(0)
-            ElectionView().tabItem({
+            CalendarContentView().tabItem({
                 Image(systemName: "calendar").resizable()
                 Text("All")
                 }).tag(1)

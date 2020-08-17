@@ -52,8 +52,12 @@ struct CalendarDisplayView: UIViewRepresentable {
         
         style.month.isHiddenTitleDate = true
         
-        return CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
+        var calendar =  CalendarView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style)
         
+        // Show week view instead of day view
+        if UIDevice.current.userInterfaceIdiom == .pad { calendar.set(type: .week, date: Date()) }
+        
+        return calendar
     }()
     
     // Once when it is ready to display the view
@@ -157,6 +161,13 @@ struct CalendarDisplayView: UIViewRepresentable {
                 calendarManager.getParticularElectionFromDb(id: event.id as! String)
                 calendarManager.eventUpdateOverlayShow = true
                 
+            case .week:
+                calendarManager.election.removeAll()
+                print(event.id)
+                // Get election details from db and navigate to details view
+                calendarManager.getParticularElectionFromDb(id: event.id as! String)
+                calendarManager.eventUpdateOverlayShow = true
+                
             default:
                 break
             }
@@ -183,7 +194,7 @@ struct CalendarDisplayView: UIViewRepresentable {
             let type = CalendarType.allCases[calendarManager.currentTypeUserSelection]
             uiView.set(type: type, date: selectDate ?? Date())
             // If month calendar view then resize view
-            if calendarManager.currentTypeUserSelection == 2 {
+            if calendarManager.currentTypeUserSelection == 2 || calendarManager.currentTypeUserSelection == 3 {
                 uiView.reloadFrame(CGRect(x: 0, y: 50 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height ))
             } else {
                 uiView.reloadFrame(CGRect(x: 0, y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height ))

@@ -13,7 +13,7 @@ import RealmSwift
 
 class CalendarManager: ObservableObject{
     @ObservedObject var electionsResults = BindableResults(results: try! Realm(configuration: Realm.Configuration(schemaVersion : 4)).objects(DatabaseElection.self))
-     var currentTypeUserSelection:Int = 0
+    var currentTypeUserSelection:Int = UIDevice.current.userInterfaceIdiom == .pad ? 1 : 0
      var currentYear:String = "2020"
     @Published var eventUpdateOverlayShow:Bool = false
     @Published var election:[Election] = []
@@ -54,17 +54,21 @@ struct CalendarContentView: View {
                 HStack(spacing: 15){
                     if userSelection == 2 {Text(calendarManager.currentYear).foregroundColor(.white).fontWeight(.bold).padding(.leading,10)}
                     Spacer()
-                    Button(action: {self.userSelection = 0;self.calendarManager.currentTypeUserSelection = 0;self.willCallFunc = true}) {
-                        
-                        Text("\(CalendarType.day.rawValue.capitalized)")
-                            .fontWeight(.medium)
-                            .foregroundColor(self.userSelection == 0 ? .white : .black)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 20)
-                        
+                    
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        Button(action: {self.userSelection = 0;self.calendarManager.currentTypeUserSelection = 0;self.willCallFunc = true}) {
+                            
+                            Text("\(CalendarType.day.rawValue.capitalized)")
+                                .fontWeight(.medium)
+                                .foregroundColor(self.userSelection == 0 ? .white : .black)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 20)
+                            
+                        }
+                        .background(self.userSelection == 0 ? Color.init("_Purple") : Color.white)
+                        .clipShape(Capsule())
                     }
-                    .background(self.userSelection == 0 ? Color.init("_Purple") : Color.white)
-                    .clipShape(Capsule())
+
                     
                     
                     Button(action: {self.userSelection = 1;self.calendarManager.currentTypeUserSelection = 1;self.willCallFunc = true}) {
@@ -89,9 +93,25 @@ struct CalendarContentView: View {
                     }
                     .background(self.userSelection == 2 ? Color.init("_Purple") : Color.white)
                     .clipShape(Capsule())
-                    Spacer()
+                    if UIDevice.current.userInterfaceIdiom != .pad { Spacer() }
+                    
+                    
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Button(action: { withAnimation(.easeIn){self.userSelection = 3;self.calendarManager.currentTypeUserSelection = 3;self.willCallFunc = true}}) {
+                            
+                            Text("\(CalendarType.year.rawValue.capitalized)")
+                                .foregroundColor(self.userSelection == 3 ? .white : .black)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 20)
+                            
+                        }
+                        .background(self.userSelection == 3 ? Color.init("_Purple") : Color.white)
+                        .clipShape(Capsule())
+                        Spacer()
+                    }
+                    
                 }
-                .background(ZStack{LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.top).frame(width: UIScreen.main.bounds.width * 1.5, height: UIScreen.main.bounds.height / 3.5, alignment: .center);Image("Mountains").resizable().scaledToFill()})
+                .background(ZStack{LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.top).frame(width: UIDevice.current.userInterfaceIdiom != .pad ? UIScreen.main.bounds.width * 1.5 : UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3.4, alignment: .center);Image("Mountains").resizable().scaledToFill()})
                 
                 CalendarDisplayView(selectDate: Date(), isCallingFunc: $willCallFunc, calendarManager: calendarManager)
             }

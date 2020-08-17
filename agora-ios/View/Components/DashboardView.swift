@@ -29,7 +29,7 @@ struct DashboardView: View {
                 self.tabBar = tabbar
             }
 
-        })
+        }).navigationViewStyle(StackNavigationViewStyle())
         
     }
 }
@@ -64,7 +64,7 @@ struct Top_Dashboard: View {
             }.padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(ZStack {
                     LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 30, style: .circular)).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 5)
-                    Image("Mountains").offset(y:-15)
+                    Image("Mountains").resizable().offset(y:-15)
                 }.edgesIgnoringSafeArea(.top))
         }
         
@@ -86,7 +86,7 @@ struct Mid_Dashboard: View{
     
     var body: some View {
         VStack(spacing:0) {
-            SearchBar(text:$inputSearch).frame(width:UIScreen.main.bounds.width - 60)
+            SearchBar(text:$inputSearch).frame(width:UIScreen.main.bounds.width - 60).padding(.top,20)
             Rectangle().frame(width: 350, height: 5, alignment: .center).foregroundColor(Color(.gray)).opacity(0.7)
             ScrollView.init(.vertical, showsIndicators: false) {
                 
@@ -97,10 +97,10 @@ struct Mid_Dashboard: View{
                             CardShimmer(height: UIScreen.main.bounds.height / 6 - 10)
                         }
                     }else{
-                        StaticCard(headerText: "Total Elections", numberElections:electionCountManager.electionCountModel.electionTotalCountValue , cardColor: "_Purple").transition(.move(edge: .leading))
-                        StaticCard(headerText: "Active Elections", numberElections: electionCountManager.electionCountModel.electionActiveCountValue,cardColor: "Blue").transition(.move(edge: .trailing))
-                        StaticCard(headerText: "Finished Elections", numberElections: electionCountManager.electionCountModel.electionFinishedCountValue,cardColor: "Pink").transition(.move(edge: .leading))
-                        StaticCard(headerText: "Pending Elections", numberElections:electionCountManager.electionCountModel.electionPendingCountValue,cardColor: "Red").transition(.move(edge: .trailing))
+                        StaticCard(headerText: "Total Elections", numberElections:electionCountManager.electionCountModel.electionTotalCountValue , cardColor: "_Purple")
+                        StaticCard(headerText: "Active Elections", numberElections: electionCountManager.electionCountModel.electionActiveCountValue,cardColor: "Blue")
+                        StaticCard(headerText: "Finished Elections", numberElections: electionCountManager.electionCountModel.electionFinishedCountValue,cardColor: "Pink")
+                        StaticCard(headerText: "Pending Elections", numberElections:electionCountManager.electionCountModel.electionPendingCountValue,cardColor: "Red")
                     }
                 }
                 
