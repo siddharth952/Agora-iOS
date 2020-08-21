@@ -248,7 +248,7 @@ struct StaticCard: View {
                 .background(Color(cardColor))
                 .cornerRadius(10)
                 .shadow(color: .gray, radius: 6, x: 0, y: 2)
-                .animation(.spring())
+                
             
             
         }.padding(.top,20)

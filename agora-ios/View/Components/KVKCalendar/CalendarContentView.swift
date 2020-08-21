@@ -111,7 +111,7 @@ struct CalendarContentView: View {
                     }
                     
                 }
-                .background(ZStack{LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.top).frame(width: UIDevice.current.userInterfaceIdiom != .pad ? UIScreen.main.bounds.width * 1.5 : UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3.4, alignment: .center);Image("Mountains").resizable().scaledToFill()})
+                .background(ZStack{LinearGradient(gradient: Gradient(colors: [Color("Color2_2"), Color("Color2")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.top).frame(width: UIDevice.current.userInterfaceIdiom != .pad ? UIScreen.main.bounds.width * 1.5 : UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 4.2, alignment: .center);Image("Mountains").resizable().scaledToFill()})
                 
                 CalendarDisplayView(selectDate: Date(), isCallingFunc: $willCallFunc, calendarManager: calendarManager)
             }
