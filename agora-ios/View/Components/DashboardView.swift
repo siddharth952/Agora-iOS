@@ -29,7 +29,7 @@ struct DashboardView: View {
                 self.tabBar = tabbar
             }
 
-        }).navigationViewStyle(StackNavigationViewStyle())
+            }).currentDeviceNavigationViewStyle()
         
     }
 }
@@ -255,6 +255,16 @@ struct StaticCard: View {
     }
 }
 
+// Set navigationViewStyle based on device
+extension View {
+    public func currentDeviceNavigationViewStyle() -> AnyView {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return AnyView(self.navigationViewStyle(StackNavigationViewStyle()))
+        } else {
+            return AnyView(self.navigationViewStyle(DefaultNavigationViewStyle()))
+        }
+    }
+}
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
