@@ -137,30 +137,38 @@ struct Settings_Previews: PreviewProvider {
         @State private var oldPassword:String = ""
          @State private var newPassword:String = ""
         var body: some View {
-            VStack(spacing:15){
-                Text("Account Details").font(.largeTitle).padding(.top,10).offset(y:2)
-                Divider()
-                Spacer()
-                UserTextField(fieldName: "First Name", defaultText: Credentials.firstName, userField: $firstName)
-                UserTextField(fieldName: "Last Name", defaultText: Credentials.lastName, userField: $lastName)
-                UserTextField(fieldName:"Email Address", defaultText: Credentials.email, userField: $emailAddress)
-                UserTextField(fieldName:"Current Password",secure: true, defaultText: "",userField: $oldPassword)
-                UserTextField(fieldName:"New Password",secure: true, defaultText: "",userField: $newPassword)
-                Button(action: {
-                    // Save 
+            GeometryReader{ geo in
+                
+                VStack(spacing:15){
+                    Text("Account Details").font(.largeTitle).padding(.top,10).offset(y:2)
+                    Divider()
                     
-                }) {
-                    Text("Save Details").foregroundColor(.black).frame(width: UIScreen.main.bounds.width - 10 , height: 50)
+                    VStack{
+                        UserTextField(fieldName: "First Name", defaultText: Credentials.firstName, userField: self.$firstName)
+                        UserTextField(fieldName: "Last Name", defaultText: Credentials.lastName, userField: self.$lastName)
+                        UserTextField(fieldName:"Email Address", defaultText: Credentials.email, userField: self.$emailAddress)
+                        UserTextField(fieldName:"Current Password",secure: true, defaultText: "",userField: self.$oldPassword)
+                        UserTextField(fieldName:"New Password",secure: true, defaultText: "",userField: self.$newPassword)
+                    }.frame(width: geo.size.width - 20, height: geo.size.height / 2, alignment: .center)
+                    Divider().padding(.top,20)
+                    Button(action: {
+                        // Save
+
+                    }) {
+                        Text("Save Details").foregroundColor(.black).frame(width: UIScreen.main.bounds.width - 120 , height: 50)
+                        
                     
-                
-                }.foregroundColor(.white)
-                .background(Color.yellow)
-                .cornerRadius(20)
-                
-                
-                
-                
-            }.padding()
+                    }.foregroundColor(.white)
+                    .background(Color.yellow)
+                    .cornerRadius(20)
+                    .frame(width: geo.size.width - 120)
+                    
+                    
+                    
+                    
+                }.padding()
+            }
+            
           
     }
 }
